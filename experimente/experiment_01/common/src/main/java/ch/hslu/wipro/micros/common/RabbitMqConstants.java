@@ -1,15 +1,17 @@
 package ch.hslu.wipro.micros.common;
 
 public class RabbitMqConstants {
-    private static final String ARTICLE_REQUEST_EXCHANGE = "ch.hslu.wipro.micros.ArticleRequestExchange";
-    private static final String ARTICLE_REQUEST_QUEUE = "ch.hslu.wipro.micros.ArticleRequestQueue";
+    public static final String HOST_NAME  = "localhost";
 
-    private static final String ARTICLE_RESPONSE_EXCHANGE = "ch.hslu.wipro.micros.ArticleResponseExchange";
-    private static final String ARTICLE_RESPONSE_QUEUE = "ch.hslu.wipro.micros.ArticleResponseQueue";
+    public static final String ARTICLE_REQUEST_EXCHANGE = "ch.hslu.wipro.micros.ArticleRequestExchange";
+    public static final String ARTICLE_REQUEST_QUEUE = "ch.hslu.wipro.micros.ArticleRequestQueue";
 
-    private static final String CUSTOMER_REQUEST_EXCHANGE = "ch.hslu.wipro.micros.CustomerRequestExchange";
-    private static final String CUSTOMER_REQUEST_QUEUE = "ch.hslu.wipro.micros.CustomerRequestQueue";
+    public static final String ARTICLE_RESPONSE_EXCHANGE = "ch.hslu.wipro.micros.ArticleResponseExchange";
+    public static final String ARTICLE_RESPONSE_QUEUE = "ch.hslu.wipro.micros.ArticleResponseQueue";
 
-    private static final String CUSTOMER_RESPONSE_EXCHANGE = "ch.hslu.wipro.micros.CustomerResponseExchange";
-    private static final String CUSTOMER_RESPONSE_QUEUE = "ch.hslu.wipro.micros.CustomerResponseQueue";
+    public static final String CUSTOMER_REQUEST_EXCHANGE = "ch.hslu.wipro.micros.CustomerRequestExchange";
+    public static final String CUSTOMER_REQUEST_QUEUE = "ch.hslu.wipro.micros.CustomerRequestQueue";
+
+    public static final String CUSTOMER_RESPONSE_EXCHANGE = "ch.hslu.wipro.micros.CustomerResponseExchange";
+    public static final String CUSTOMER_RESPONSE_QUEUE = "ch.hslu.wipro.micros.CustomerResponseQueue";
 }
