@@ -23,7 +23,7 @@ public class RabbitMqManager implements Closeable {
     }
 
     /**
-     * Declares an article request exchange and a queue if the do not exist yet.
+     * Declares an ArticleRequest exchange and a queue and bind them together if the do not exist yet.
      * Then it publishes a message on the article request exchange, containing the id of the wanted article.
      *
      * @param id id of the article being requested.
@@ -35,6 +35,9 @@ public class RabbitMqManager implements Closeable {
 
         channel.queueDeclare(RabbitMqConstants.ARTICLE_REQUEST_QUEUE,
                 false, false, false, null);
+
+        channel.queueBind(RabbitMqConstants.ARTICLE_REQUEST_QUEUE,
+                RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE, "");
 
         BasicProperties basicProperties = new BasicProperties.Builder()
                 .contentType(RabbitMqConstants.JSON_MIME_TYPE)
