@@ -11,7 +11,6 @@
         <module>salesmanagement</module>
     </modules>
     <name>experiment_01</name>
-    <url>http://maven.apache.org</url>
 
     <properties>
         <rabbitmq.version>5.4.2</rabbitmq.version>
