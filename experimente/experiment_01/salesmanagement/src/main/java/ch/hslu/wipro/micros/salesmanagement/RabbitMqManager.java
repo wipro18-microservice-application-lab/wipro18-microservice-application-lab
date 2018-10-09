@@ -1,6 +1,7 @@
 package ch.hslu.wipro.micros.salesmanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
+import ch.hslu.wipro.micros.salesmanagement.consumer.ArticleResponseConsumer;
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -15,7 +16,7 @@ import static com.rabbitmq.client.AMQP.BasicProperties;
 public class RabbitMqManager implements Closeable {
     private Channel channel;
 
-    public RabbitMqManager() throws IOException, TimeoutException {
+    RabbitMqManager() throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(RabbitMqConstants.HOST_NAME);
         Connection connection = factory.newConnection();
@@ -29,7 +30,7 @@ public class RabbitMqManager implements Closeable {
      * @param id id of the article being requested.
      * @throws IOException throws exception if rabbitmq can't be reached.
      */
-    public void requestArticle(double id) throws IOException {
+    void sendArticleRequest(double id) throws IOException {
         channel.exchangeDeclare(RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE,
                 BuiltinExchangeType.DIRECT);
 
@@ -47,6 +48,11 @@ public class RabbitMqManager implements Closeable {
 
         channel.basicPublish(RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE,
                 "", basicProperties, articleRequestId.getBytes("UTF-8"));
+    }
+
+    public void listenForArticleResponse() throws IOException {
+        channel.basicConsume(RabbitMqConstants.ARTICLE_RESPONSE_QUEUE, true,
+                new ArticleResponseConsumer(channel));
     }
 
     public void close() throws IOException {
