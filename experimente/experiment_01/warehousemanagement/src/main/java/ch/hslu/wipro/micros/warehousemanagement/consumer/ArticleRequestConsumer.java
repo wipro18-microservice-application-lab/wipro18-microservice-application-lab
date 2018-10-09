@@ -47,7 +47,8 @@ public class ArticleRequestConsumer extends DefaultConsumer {
                 rabbitMqManager.sendAck(envelope.getDeliveryTag());
             }
         } catch (NumberFormatException e) {
-            logger.warn("wrong article id format. expected long, received %s", messageUtf8);
+            String warning = String.format("wrong article id format. expected long, received %s", messageUtf8);
+            logger.warn(warning);
         }
     }
 
