@@ -13,6 +13,7 @@ public class CustomerManagerApp {
     public static void main(String[] args) {
         try {
             RabbitMqManager rabbitMqManager = new RabbitMqManager();
+            rabbitMqManager.listenForCustomerRequest();
         } catch (IOException e) {
             logger.error("cannot connect to rabbitmq!");
         } catch (TimeoutException e) {

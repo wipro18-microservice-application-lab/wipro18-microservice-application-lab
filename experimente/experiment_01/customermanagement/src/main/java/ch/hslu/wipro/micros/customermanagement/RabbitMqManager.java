@@ -1,6 +1,7 @@
 package ch.hslu.wipro.micros.customermanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
+import ch.hslu.wipro.micros.customermanagement.consumer.CustomerRequestConsumer;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -17,6 +18,11 @@ public class RabbitMqManager implements Closeable {
         factory.setHost(RabbitMqConstants.HOST_NAME);
         Connection connection = factory.newConnection();
         channel = connection.createChannel();
+    }
+
+    public void listenForCustomerRequest() throws IOException {
+        channel.basicConsume(RabbitMqConstants.CUSTOMER_REQUEST_QUEUE, true,
+                new CustomerRequestConsumer(channel));
     }
 
     @Override
