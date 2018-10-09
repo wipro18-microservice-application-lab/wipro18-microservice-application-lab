@@ -30,7 +30,7 @@ public class RabbitMqManager implements Closeable {
      * @param id id of the article being requested.
      * @throws IOException throws exception if rabbitmq can't be reached.
      */
-    void sendArticleRequest(double id) throws IOException {
+    void sendArticleRequest(long id) throws IOException {
         channel.exchangeDeclare(RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE,
                 BuiltinExchangeType.DIRECT);
 
@@ -44,7 +44,7 @@ public class RabbitMqManager implements Closeable {
                 .contentType(RabbitMqConstants.JSON_MIME_TYPE)
                 .build();
 
-        String articleRequestId = Double.toString(id);
+        String articleRequestId = Long.toString(id);
 
         channel.basicPublish(RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE,
                 "", basicProperties, articleRequestId.getBytes("UTF-8"));

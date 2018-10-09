@@ -22,8 +22,6 @@ public class ArticleResponseConsumer extends DefaultConsumer {
         ArticleDto article = gson.fromJson(new String(body, StandardCharsets.UTF_8), ArticleDto.class);
 
         printReceivedDelivery(article, envelope);
-
-        System.out.println(new String(body, StandardCharsets.UTF_8));
     }
 
     private void printReceivedDelivery(ArticleDto article, Envelope envelope) {

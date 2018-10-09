@@ -17,7 +17,7 @@ public class SalesManagementApp {
             rabbitMqManager.sendArticleRequest(0);
             rabbitMqManager.listenForArticleResponse();
         } catch (IOException e) {
-            logger.error("cannot connect to rabbitmq!");
+            logger.warn("encountered an IOException while communicating with rabbitmq");
         } catch (TimeoutException e) {
             logger.error("a timeout has occurred!");
         }
