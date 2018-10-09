@@ -24,12 +24,14 @@ Um die .jar Dateien in den jeweiligen target Ordnern zu erstellen, kannst du fol
 mvn clean install
 ```
 #### SalesManager Microservice starten
-Um diesen Microservice zu starten überprüfe ob im target Ordner ein -jar-with-dependencies vorhanden ist. Dann führe folgenden Befehl aus:
+Um diesen Microservice zu starten überprüfe ob im target Ordner ein -jar-with-dependencies vorhanden ist. Dann führe einen der folgenden Befehl aus:
 ```
 java -jar .\salesmanagement\target\salesmanagement-1.0-SNAPSHOT-jar-with-dependencies.jar
+.\run-salesmanagement.ps1
 ```
 #### WarehouseManager Microservice starten
-Um diesen Microservice zu starten überprüfe ob im target Ordner ein -jar-with-dependencies vorhanden ist. Dann führe folgenden Befehl aus:
+Um diesen Microservice zu starten überprüfe ob im target Ordner ein -jar-with-dependencies vorhanden ist. Dann führe einen der folgenden Befehl aus:
 ```
 java -jar .\warehousemanagement\target\warehousemanagement-1.0-SNAPSHOT-jar-with-dependencies.jar
+.\run-warehousemanagement.ps1
 ```
