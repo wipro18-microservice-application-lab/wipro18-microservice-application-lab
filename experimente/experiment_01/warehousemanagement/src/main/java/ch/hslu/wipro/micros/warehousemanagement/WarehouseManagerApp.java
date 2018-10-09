@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public class WarehouseManagerApp {
-
     private static final Logger logger = LogManager.getLogger(WarehouseManagerApp.class);
 
     public static void main(String[] args) {
