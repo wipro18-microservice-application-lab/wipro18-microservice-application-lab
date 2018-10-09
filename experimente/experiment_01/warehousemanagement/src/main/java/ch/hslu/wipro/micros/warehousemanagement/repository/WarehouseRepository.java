@@ -9,5 +9,5 @@ public interface WarehouseRepository {
      * @param id    the id of the article requested.
      * @return      ArticleOperation containing success and articleDto.
      */
-    ArticleOperation getArticleDtoById(double id);
+    ArticleOperation getArticleDtoById(long id);
 }
