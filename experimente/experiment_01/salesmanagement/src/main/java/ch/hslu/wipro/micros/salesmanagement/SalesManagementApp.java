@@ -11,14 +11,14 @@ public class SalesManagementApp {
     private static final Logger logger = LogManager.getLogger(SalesManagementApp.class);
 
     public static void main(String[] args) {
-
+        System.out.println("enter an article id: ");
+        
         try (RabbitMqManager rabbitMqManager = new RabbitMqManager()) {
             rabbitMqManager.sendArticleRequest(0);
             rabbitMqManager.listenForArticleResponse();
 
             while(true) {
                 Scanner sc = new Scanner(System.in);
-                System.out.print("article id: ");
                 long articleId = sc.nextLong();
 
                 rabbitMqManager.sendArticleRequest(articleId);
