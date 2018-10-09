@@ -2,6 +2,10 @@ package ch.hslu.wipro.micros.warehousemanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
 import ch.hslu.wipro.micros.warehousemanagement.consumer.ArticleRequestConsumer;
+import ch.hslu.wipro.micros.warehousemanagement.repository.ArticleOperation;
+import ch.hslu.wipro.micros.warehousemanagement.repository.WarehouseRepository;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.rabbitmq.client.*;
 
 import java.io.Closeable;
@@ -9,13 +13,16 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public class RabbitMqManager implements Closeable {
+    private WarehouseRepository warehouseRepository;
     private Channel channel;
 
-    RabbitMqManager() throws IOException, TimeoutException {
+    RabbitMqManager(WarehouseRepository warehouseRepository) throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(RabbitMqConstants.HOST_NAME);
         Connection connection = factory.newConnection();
         channel = connection.createChannel();
+
+        this.warehouseRepository = warehouseRepository;
     }
 
     /**
@@ -33,25 +40,25 @@ public class RabbitMqManager implements Closeable {
      * Declares an ArticleResponse exchange and a queue and binds them together if the do not exist yet.
      * Then it publishes a message on the article request exchange, containing the requested Article.
      *
-     * @param articleRequestId the id of the article requested
+     * @param jsonArticle the requested article as json.
      * @throws IOException throws exception if rabbitmq can't be reached.
      */
-    public void sendArticleResponse(String articleRequestId) throws IOException {
-        channel.exchangeDeclare(RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE,
+    public void sendArticleResponse(String jsonArticle) throws IOException {
+        channel.exchangeDeclare(RabbitMqConstants.ARTICLE_RESPONSE_EXCHANGE,
                 BuiltinExchangeType.DIRECT);
 
-        channel.queueDeclare(RabbitMqConstants.ARTICLE_REQUEST_QUEUE,
+        channel.queueDeclare(RabbitMqConstants.ARTICLE_RESPONSE_QUEUE,
                 false, false, false, null);
 
-        channel.queueBind(RabbitMqConstants.ARTICLE_REQUEST_QUEUE,
-                RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE, "");
+        channel.queueBind(RabbitMqConstants.ARTICLE_RESPONSE_QUEUE,
+                RabbitMqConstants.ARTICLE_RESPONSE_EXCHANGE, "");
 
         AMQP.BasicProperties basicProperties = new AMQP.BasicProperties.Builder()
                 .contentType(RabbitMqConstants.JSON_MIME_TYPE)
                 .build();
 
-        channel.basicPublish(RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE,
-                "", basicProperties, articleRequestId.getBytes("UTF-8"));
+        channel.basicPublish(RabbitMqConstants.ARTICLE_RESPONSE_EXCHANGE,
+                "", basicProperties, jsonArticle.getBytes("UTF-8"));
     }
 
     public void sendAck(long deliveryTag) throws IOException {
