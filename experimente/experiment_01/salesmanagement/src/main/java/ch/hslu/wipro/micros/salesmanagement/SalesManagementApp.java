@@ -15,6 +15,7 @@ public class SalesManagementApp {
         try {
             RabbitMqManager rabbitMqManager = new RabbitMqManager();
             rabbitMqManager.sendArticleRequest(0);
+            rabbitMqManager.listenForArticleResponse();
         } catch (IOException e) {
             logger.error("cannot connect to rabbitmq!");
         } catch (TimeoutException e) {
