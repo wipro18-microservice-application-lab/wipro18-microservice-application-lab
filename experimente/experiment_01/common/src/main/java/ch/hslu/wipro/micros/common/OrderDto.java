@@ -3,7 +3,7 @@ package ch.hslu.wipro.micros.common;
 public class OrderDto {
     private ArticleDto article;
     private CustomerDto customer;
-    private double total;
+    private long total;
 
     public OrderDto(ArticleDto article, CustomerDto customer) {
         this.article = article;
@@ -19,7 +19,7 @@ public class OrderDto {
         return customer;
     }
 
-    public double getTotal() {
+    public long getTotal() {
         return total;
     }
 }

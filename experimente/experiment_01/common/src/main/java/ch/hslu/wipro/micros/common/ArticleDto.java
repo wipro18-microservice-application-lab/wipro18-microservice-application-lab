@@ -2,9 +2,9 @@ package ch.hslu.wipro.micros.common;
 
 public class ArticleDto {
     private String name;
-    private double price;
+    private long price;
 
-    public ArticleDto(String name, double price) {
+    public ArticleDto(String name, long price) {
         this.name = name;
         this.price = price;
     }
@@ -13,7 +13,7 @@ public class ArticleDto {
         return name;
     }
 
-    public double getPrice() {
+    public long getPrice() {
         return price;
     }
 }
