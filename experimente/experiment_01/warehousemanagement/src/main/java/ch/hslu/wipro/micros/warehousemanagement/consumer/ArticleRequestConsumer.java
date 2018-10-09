@@ -1,6 +1,5 @@
 package ch.hslu.wipro.micros.warehousemanagement.consumer;
 
-import ch.hslu.wipro.micros.common.RabbitMqConstants;
 import ch.hslu.wipro.micros.warehousemanagement.RabbitMqManager;
 import ch.hslu.wipro.micros.warehousemanagement.repository.ArticleOperation;
 import ch.hslu.wipro.micros.warehousemanagement.repository.FakeWarehouseRepository;
@@ -11,11 +10,14 @@ import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class ArticleRequestConsumer extends DefaultConsumer {
+    private static final Logger logger = LogManager.getLogger(ArticleRequestConsumer.class);
     private WarehouseRepository warehouseRepository = new FakeWarehouseRepository();
     private RabbitMqManager rabbitMqManager;
 
@@ -28,18 +30,24 @@ public class ArticleRequestConsumer extends DefaultConsumer {
     public void handleDelivery(String consumerTag, Envelope envelope,
                                AMQP.BasicProperties properties, byte[] body) throws IOException {
 
-        long articleRequestId = Long.parseLong(new String(body, StandardCharsets.UTF_8));
-        printReceivedDelivery(articleRequestId, envelope);
+        String messageUtf8 = new String(body, StandardCharsets.UTF_8);
 
-        ArticleOperation op = warehouseRepository.getArticleDtoById(articleRequestId);
-        if (op.isSuccess()) {
-            GsonBuilder builder = new GsonBuilder();
-            Gson gson = builder.create();
+        try {
+            long articleRequestId = Long.parseLong(messageUtf8);
+            printReceivedDelivery(articleRequestId, envelope);
 
-            String jsonArticle = gson.toJson(op.getArticle());
-            rabbitMqManager.sendArticleResponse(jsonArticle);
+            ArticleOperation op = warehouseRepository.getArticleDtoById(articleRequestId);
+            if (op.isSuccess()) {
+                GsonBuilder builder = new GsonBuilder();
+                Gson gson = builder.create();
 
-            rabbitMqManager.sendAck(envelope.getDeliveryTag());
+                String jsonArticle = gson.toJson(op.getArticle());
+                rabbitMqManager.sendArticleResponse(jsonArticle);
+
+                rabbitMqManager.sendAck(envelope.getDeliveryTag());
+            }
+        } catch (NumberFormatException e) {
+            logger.warn("wrong article id format. expected long, received %s", messageUtf8);
         }
     }
 
