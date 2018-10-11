@@ -1,6 +1,6 @@
 package ch.hslu.wipro.micros.warehousemanagement.repository;
 
-import ch.hslu.wipro.micros.common.ArticleDto;
+import ch.hslu.wipro.micros.common.dto.ArticleDto;
 
 public class ArticleOperation {
     private boolean success;

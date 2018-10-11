@@ -2,11 +2,9 @@ package ch.hslu.wipro.micros.warehousemanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
 import ch.hslu.wipro.micros.warehousemanagement.consumer.ArticleRequestConsumer;
-import ch.hslu.wipro.micros.warehousemanagement.repository.ArticleOperation;
 import ch.hslu.wipro.micros.warehousemanagement.repository.WarehouseRepository;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.rabbitmq.client.*;
+import static com.rabbitmq.client.AMQP.BasicProperties;
 
 import java.io.Closeable;
 import java.io.IOException;
@@ -33,7 +31,7 @@ public class RabbitMqManager implements Closeable {
      */
     void listenForArticleRequest() throws IOException {
         channel.basicConsume(RabbitMqConstants.ARTICLE_REQUEST_QUEUE, false,
-                new ArticleRequestConsumer(this, channel));
+                new ArticleRequestConsumer(this, warehouseRepository, channel));
     }
 
     /**
