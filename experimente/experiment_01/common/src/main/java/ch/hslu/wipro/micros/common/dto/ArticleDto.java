@@ -1,4 +1,4 @@
-package ch.hslu.wipro.micros.common;
+package ch.hslu.wipro.micros.common.dto;
 
 public class ArticleDto {
     private String name;

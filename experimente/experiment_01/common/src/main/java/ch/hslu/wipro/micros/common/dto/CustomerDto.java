@@ -1,4 +1,4 @@
-package ch.hslu.wipro.micros.common;
+package ch.hslu.wipro.micros.common.dto;
 
 public class CustomerDto {
     private String firstName, lastName;
