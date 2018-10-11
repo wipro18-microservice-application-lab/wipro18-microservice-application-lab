@@ -13,8 +13,10 @@ public class SalesManagementApp {
     public static void main(String[] args) {
 
         try (RabbitMqManager rabbitMqManager = new RabbitMqManager()) {
-            rabbitMqManager.sendArticleRequest(0);
+            rabbitMqManager.sendArticleRequest(0L);
+            rabbitMqManager.sendCustomerRequest(0L);
             rabbitMqManager.listenForArticleResponse();
+            rabbitMqManager.listenForCustomerResponse();
 
             while(true) {
                 Scanner sc = new Scanner(System.in);

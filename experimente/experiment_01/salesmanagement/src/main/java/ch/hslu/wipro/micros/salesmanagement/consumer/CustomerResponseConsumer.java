@@ -1,11 +1,10 @@
 package ch.hslu.wipro.micros.salesmanagement.consumer;
 
-import ch.hslu.wipro.micros.common.dto.ArticleDto;
+import ch.hslu.wipro.micros.common.dto.CustomerDto;
 import ch.hslu.wipro.micros.common.message.RequestOperation;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
@@ -14,23 +13,25 @@ import org.apache.logging.log4j.Logger;
 
 import java.nio.charset.StandardCharsets;
 
-public class ArticleResponseConsumer extends DefaultConsumer {
+import static com.rabbitmq.client.AMQP.BasicProperties;
+
+public class CustomerResponseConsumer extends DefaultConsumer {
     private static final Logger logger = LogManager.getLogger(ArticleResponseConsumer.class);
 
-    public ArticleResponseConsumer(Channel channel) {
+    public CustomerResponseConsumer(Channel channel) {
         super(channel);
     }
 
     @Override
     public void handleDelivery(String consumerTag, Envelope envelope,
-                               AMQP.BasicProperties properties, byte[] body) {
+                               BasicProperties properties, byte[] body) {
 
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
 
-        RequestOperation<ArticleDto> requestOperation =
+        RequestOperation<CustomerDto> requestOperation =
                 gson.fromJson(new String(body, StandardCharsets.UTF_8),
-                        new TypeToken<RequestOperation<ArticleDto>>() {
+                        new TypeToken<RequestOperation<CustomerDto>>() {
                         }.getType());
 
         if (requestOperation.isSuccessful()) {
@@ -40,22 +41,22 @@ public class ArticleResponseConsumer extends DefaultConsumer {
         }
     }
 
-    private void printFailedDelivery(RequestOperation<ArticleDto> requestOperation, Envelope envelope) {
+    private void printSuccessfulDelivery(RequestOperation<CustomerDto> requestOperation, Envelope envelope) {
+        String deliveryInfo = String.format("exchange: %s, deliveryTag: %s, customer name: %s %s",
+                envelope.getExchange(),
+                envelope.getDeliveryTag(),
+                requestOperation.getDto().getFirstName(),
+                requestOperation.getDto().getLastName());
+
+        logger.info(deliveryInfo);
+    }
+
+    private void printFailedDelivery(RequestOperation<CustomerDto> requestOperation, Envelope envelope) {
         String deliveryInfo = String.format("exchange: %s, deliveryTag: %s, no article with %d id found.",
                 envelope.getExchange(),
                 envelope.getDeliveryTag(),
                 requestOperation.getRequestedId());
 
         logger.warn(deliveryInfo);
-    }
-
-    private void printSuccessfulDelivery(RequestOperation<ArticleDto> requestOperation, Envelope envelope) {
-        String deliveryInfo = String.format("exchange: %s, deliveryTag: %s, article name: %s, article price: %d",
-                envelope.getExchange(),
-                envelope.getDeliveryTag(),
-                requestOperation.getDto().getName(),
-                requestOperation.getDto().getPrice());
-
-        logger.info(deliveryInfo);
     }
 }

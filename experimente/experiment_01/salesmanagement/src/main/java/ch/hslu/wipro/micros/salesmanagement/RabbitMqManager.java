@@ -2,6 +2,7 @@ package ch.hslu.wipro.micros.salesmanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
 import ch.hslu.wipro.micros.salesmanagement.consumer.ArticleResponseConsumer;
+import ch.hslu.wipro.micros.salesmanagement.consumer.CustomerResponseConsumer;
 import com.rabbitmq.client.BuiltinExchangeType;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -50,9 +51,34 @@ public class RabbitMqManager implements Closeable {
                 "", basicProperties, articleRequestId.getBytes("UTF-8"));
     }
 
-    public void listenForArticleResponse() throws IOException {
+    void sendCustomerRequest(long id) throws IOException {
+        channel.exchangeDeclare(RabbitMqConstants.CUSTOMER_REQUEST_EXCHANGE,
+                BuiltinExchangeType.DIRECT);
+
+        channel.queueDeclare(RabbitMqConstants.CUSTOMER_REQUEST_QUEUE,
+                false, false, false, null);
+
+        channel.queueBind(RabbitMqConstants.CUSTOMER_REQUEST_QUEUE,
+                RabbitMqConstants.CUSTOMER_REQUEST_EXCHANGE, "");
+
+        BasicProperties basicProperties = new BasicProperties.Builder()
+                .contentType(RabbitMqConstants.JSON_MIME_TYPE)
+                .build();
+
+        String articleRequestId = Long.toString(id);
+
+        channel.basicPublish(RabbitMqConstants.CUSTOMER_REQUEST_EXCHANGE,
+                "", basicProperties, articleRequestId.getBytes("UTF-8"));
+    }
+
+    void listenForArticleResponse() throws IOException {
         channel.basicConsume(RabbitMqConstants.ARTICLE_RESPONSE_QUEUE, true,
                 new ArticleResponseConsumer(channel));
+    }
+
+    void listenForCustomerResponse() throws IOException {
+        channel.basicConsume(RabbitMqConstants.CUSTOMER_RESPONSE_QUEUE, true,
+                new CustomerResponseConsumer(channel));
     }
 
     public void close() throws IOException {
