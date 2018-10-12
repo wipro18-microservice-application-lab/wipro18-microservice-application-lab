@@ -13,17 +13,22 @@ public class SalesManagementApp {
     public static void main(String[] args) {
 
         try (RabbitMqManager rabbitMqManager = new RabbitMqManager()) {
-            rabbitMqManager.sendArticleRequest(0L);
-            rabbitMqManager.sendCustomerRequest(0L);
             rabbitMqManager.listenForArticleResponse();
             rabbitMqManager.listenForCustomerResponse();
 
             while(true) {
+                logger.info("Create a new order");
+                logger.info("article id: ");
                 Scanner sc = new Scanner(System.in);
                 long articleId = sc.nextLong();
 
+                logger.info("customer id: ");
+                long customerId = sc.nextLong();
+
                 rabbitMqManager.sendArticleRequest(articleId);
+                rabbitMqManager.sendCustomerRequest(customerId);
             }
+
         } catch (IOException e) {
             logger.warn("encountered an IOException while communicating with rabbitmq");
         } catch (TimeoutException e) {
