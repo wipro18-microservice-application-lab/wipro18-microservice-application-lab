@@ -16,7 +16,7 @@ import java.nio.charset.StandardCharsets;
 import static com.rabbitmq.client.AMQP.BasicProperties;
 
 public class CustomerResponseConsumer extends DefaultConsumer {
-    private static final Logger logger = LogManager.getLogger(ArticleResponseConsumer.class);
+    private static final Logger logger = LogManager.getLogger(CustomerResponseConsumer.class);
 
     public CustomerResponseConsumer(Channel channel) {
         super(channel);
@@ -52,7 +52,7 @@ public class CustomerResponseConsumer extends DefaultConsumer {
     }
 
     private void printFailedDelivery(RequestOperation<CustomerDto> requestOperation, Envelope envelope) {
-        String deliveryInfo = String.format("exchange: %s, deliveryTag: %s, no article with %d id found.",
+        String deliveryInfo = String.format("exchange: %s, deliveryTag: %s, no customer with %d id found.",
                 envelope.getExchange(),
                 envelope.getDeliveryTag(),
                 requestOperation.getRequestedId());
