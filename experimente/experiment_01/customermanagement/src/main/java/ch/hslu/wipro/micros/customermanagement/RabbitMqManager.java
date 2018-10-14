@@ -1,6 +1,7 @@
 package ch.hslu.wipro.micros.customermanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
+import ch.hslu.wipro.micros.common.util.RabbitMqFunctions;
 import ch.hslu.wipro.micros.customermanagement.consumer.CustomerRequestConsumer;
 import ch.hslu.wipro.micros.customermanagement.repository.CustomerRepository;
 import com.rabbitmq.client.*;
@@ -23,19 +24,14 @@ public class RabbitMqManager implements Closeable {
     }
 
     void listenForCustomerRequest() throws IOException {
-        channel.basicConsume(RabbitMqConstants.CUSTOMER_REQUEST_QUEUE, true,
+        channel.basicConsume(RabbitMqConstants.CUSTOMER_REQUEST_QUEUE, false,
                 new CustomerRequestConsumer(this, customerRepository, channel));
     }
 
     public void sendCustomerResponse(String jsonCustomer) throws IOException {
-        channel.exchangeDeclare(RabbitMqConstants.CUSTOMER_RESPONSE_EXCHANGE,
-                BuiltinExchangeType.DIRECT);
-
-        channel.queueDeclare(RabbitMqConstants.CUSTOMER_RESPONSE_QUEUE,
-                false, false, false, null);
-
-        channel.queueBind(RabbitMqConstants.CUSTOMER_RESPONSE_QUEUE,
-                RabbitMqConstants.CUSTOMER_RESPONSE_EXCHANGE, "");
+        RabbitMqFunctions rabbitMqFunctions = new RabbitMqFunctions(channel);
+        rabbitMqFunctions.createAndBindQueueToExchange(RabbitMqConstants.CUSTOMER_REQUEST_QUEUE,
+                RabbitMqConstants.CUSTOMER_REQUEST_EXCHANGE);
 
         AMQP.BasicProperties basicProperties = new AMQP.BasicProperties.Builder()
                 .contentType(RabbitMqConstants.JSON_MIME_TYPE)
