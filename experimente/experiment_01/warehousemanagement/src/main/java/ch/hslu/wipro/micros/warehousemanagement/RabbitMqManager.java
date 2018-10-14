@@ -1,26 +1,26 @@
 package ch.hslu.wipro.micros.warehousemanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
+import ch.hslu.wipro.micros.common.util.RabbitMqFunctions;
 import ch.hslu.wipro.micros.warehousemanagement.consumer.ArticleRequestConsumer;
 import ch.hslu.wipro.micros.warehousemanagement.repository.WarehouseRepository;
-import com.rabbitmq.client.*;
-import static com.rabbitmq.client.AMQP.BasicProperties;
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public class RabbitMqManager implements Closeable {
-    private WarehouseRepository warehouseRepository;
     private Channel channel;
 
-    RabbitMqManager(WarehouseRepository warehouseRepository) throws IOException, TimeoutException {
+    RabbitMqManager() throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(RabbitMqConstants.HOST_NAME);
         Connection connection = factory.newConnection();
         channel = connection.createChannel();
-
-        this.warehouseRepository = warehouseRepository;
     }
 
     /**
@@ -31,7 +31,7 @@ public class RabbitMqManager implements Closeable {
      */
     void listenForArticleRequest() throws IOException {
         channel.basicConsume(RabbitMqConstants.ARTICLE_REQUEST_QUEUE, false,
-                new ArticleRequestConsumer(this, warehouseRepository, channel));
+                new ArticleRequestConsumer(this, channel));
     }
 
     /**
@@ -42,14 +42,9 @@ public class RabbitMqManager implements Closeable {
      * @throws IOException throws exception if rabbitmq can't be reached.
      */
     public void sendArticleResponse(String jsonArticle) throws IOException {
-        channel.exchangeDeclare(RabbitMqConstants.ARTICLE_RESPONSE_EXCHANGE,
-                BuiltinExchangeType.DIRECT);
-
-        channel.queueDeclare(RabbitMqConstants.ARTICLE_RESPONSE_QUEUE,
-                false, false, false, null);
-
-        channel.queueBind(RabbitMqConstants.ARTICLE_RESPONSE_QUEUE,
-                RabbitMqConstants.ARTICLE_RESPONSE_EXCHANGE, "");
+        RabbitMqFunctions rabbitMqFunctions = new RabbitMqFunctions(channel);
+        rabbitMqFunctions.createAndBindQueueToExchange(RabbitMqConstants.ARTICLE_RESPONSE_QUEUE,
+                RabbitMqConstants.ARTICLE_RESPONSE_EXCHANGE);
 
         AMQP.BasicProperties basicProperties = new AMQP.BasicProperties.Builder()
                 .contentType(RabbitMqConstants.JSON_MIME_TYPE)
