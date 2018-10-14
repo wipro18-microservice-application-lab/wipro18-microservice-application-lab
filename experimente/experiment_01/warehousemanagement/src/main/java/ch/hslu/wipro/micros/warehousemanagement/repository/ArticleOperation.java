@@ -6,7 +6,7 @@ public class ArticleOperation {
     private boolean success;
     private ArticleDto article;
 
-    public ArticleOperation(boolean success, ArticleDto article) {
+    ArticleOperation(boolean success, ArticleDto article) {
         this.success = success;
         this.article = article;
     }

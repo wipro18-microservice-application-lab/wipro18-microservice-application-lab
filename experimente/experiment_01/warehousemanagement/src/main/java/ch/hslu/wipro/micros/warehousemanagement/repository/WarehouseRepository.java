@@ -1,13 +1,14 @@
 package ch.hslu.wipro.micros.warehousemanagement.repository;
 
-public interface WarehouseRepository {
+import ch.hslu.wipro.micros.common.command.WarehouseCommand;
 
+public interface WarehouseRepository {
     /**
-     * Returns a flagged ArticleOperation containing information about the success of the operation
-     * and the requested articleDto.
+     * Handle WarehouseCommands issued over the EventBroker.
+     * WarehouseRepository needs to be subscribed to the EventBroker.
      *
-     * @param id    the id of the article requested.
-     * @return      ArticleOperation containing success and articleDto.
+     * @param source    EventBroker reference
+     * @param command   WarehouseCommand reference
      */
-    ArticleOperation getArticleDtoById(long id);
+    void brokerOnCommands(Object source, WarehouseCommand command);
 }
