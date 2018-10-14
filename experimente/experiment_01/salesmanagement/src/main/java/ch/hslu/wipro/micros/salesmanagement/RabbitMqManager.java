@@ -1,9 +1,13 @@
 package ch.hslu.wipro.micros.salesmanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
+import ch.hslu.wipro.micros.common.command.ChangeArticleStockCommand;
+import ch.hslu.wipro.micros.common.command.WarehouseCommand;
+import ch.hslu.wipro.micros.common.util.RabbitMqFunctions;
 import ch.hslu.wipro.micros.salesmanagement.consumer.ArticleResponseConsumer;
 import ch.hslu.wipro.micros.salesmanagement.consumer.CustomerResponseConsumer;
-import com.rabbitmq.client.BuiltinExchangeType;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -26,40 +30,37 @@ public class RabbitMqManager implements Closeable {
 
     /**
      * Declares an ArticleRequest exchange and a queue and bind them together if the do not exist yet.
-     * Then it publishes a message on the article request exchange, containing the id of the wanted article.
+     * Then it publishes a message on the article request exchange, containing a command for the warehouse management.
      *
-     * @param id id of the article being requested.
+     * @param warehouseCommand command for the warehouse management to process.
      * @throws IOException throws exception if rabbitmq can't be reached.
      */
-    void sendArticleRequest(long id) throws IOException {
-        channel.exchangeDeclare(RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE,
-                BuiltinExchangeType.DIRECT);
-
-        channel.queueDeclare(RabbitMqConstants.ARTICLE_REQUEST_QUEUE,
-                false, false, false, null);
-
-        channel.queueBind(RabbitMqConstants.ARTICLE_REQUEST_QUEUE,
-                RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE, "");
+    void sendArticleRequest(WarehouseCommand warehouseCommand) throws IOException {
+        RabbitMqFunctions rabbitMqFunctions = new RabbitMqFunctions(channel);
+        rabbitMqFunctions.createAndBindQueueToExchange(RabbitMqConstants.ARTICLE_REQUEST_QUEUE,
+                RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE);
 
         BasicProperties basicProperties = new BasicProperties.Builder()
                 .contentType(RabbitMqConstants.JSON_MIME_TYPE)
                 .build();
 
-        String articleRequestId = Long.toString(id);
+        String articleRequestJson = convertToJson(warehouseCommand);
 
         channel.basicPublish(RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE,
-                "", basicProperties, articleRequestId.getBytes("UTF-8"));
+                "", basicProperties, articleRequestJson.getBytes("UTF-8"));
+    }
+
+    private String convertToJson(WarehouseCommand warehouseCommand) {
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+
+        return gson.toJson(warehouseCommand);
     }
 
     void sendCustomerRequest(long id) throws IOException {
-        channel.exchangeDeclare(RabbitMqConstants.CUSTOMER_REQUEST_EXCHANGE,
-                BuiltinExchangeType.DIRECT);
-
-        channel.queueDeclare(RabbitMqConstants.CUSTOMER_REQUEST_QUEUE,
-                false, false, false, null);
-
-        channel.queueBind(RabbitMqConstants.CUSTOMER_REQUEST_QUEUE,
-                RabbitMqConstants.CUSTOMER_REQUEST_EXCHANGE, "");
+        RabbitMqFunctions rabbitMqFunctions = new RabbitMqFunctions(channel);
+        rabbitMqFunctions.createAndBindQueueToExchange(RabbitMqConstants.CUSTOMER_REQUEST_QUEUE,
+                RabbitMqConstants.CUSTOMER_REQUEST_EXCHANGE);
 
         BasicProperties basicProperties = new BasicProperties.Builder()
                 .contentType(RabbitMqConstants.JSON_MIME_TYPE)

@@ -1,5 +1,6 @@
 package ch.hslu.wipro.micros.salesmanagement;
 
+import ch.hslu.wipro.micros.common.command.ChangeArticleStockCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,7 +27,7 @@ public class SalesManagementApp {
                 logger.info("customer id: ");
                 long customerId = sc.nextLong();
 
-                rabbitMqManager.sendArticleRequest(articleId);
+                rabbitMqManager.sendArticleRequest(new ChangeArticleStockCommand(articleId, 1));
                 rabbitMqManager.sendCustomerRequest(customerId);
             }
 

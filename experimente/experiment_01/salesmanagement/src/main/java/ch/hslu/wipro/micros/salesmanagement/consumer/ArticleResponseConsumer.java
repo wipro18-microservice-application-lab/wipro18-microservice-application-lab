@@ -1,10 +1,8 @@
 package ch.hslu.wipro.micros.salesmanagement.consumer;
 
-import ch.hslu.wipro.micros.common.dto.ArticleDto;
-import ch.hslu.wipro.micros.common.message.RequestOperation;
+import ch.hslu.wipro.micros.common.message.WarehouseCommandState;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
@@ -25,36 +23,24 @@ public class ArticleResponseConsumer extends DefaultConsumer {
     public void handleDelivery(String consumerTag, Envelope envelope,
                                AMQP.BasicProperties properties, byte[] body) {
 
+        WarehouseCommandState warehouseCommandState = convertFromJson(body);
+        printReceivedDelivery(warehouseCommandState, envelope);
+    }
+
+    private WarehouseCommandState convertFromJson(byte[] body) {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
 
-        RequestOperation<ArticleDto> requestOperation =
-                gson.fromJson(new String(body, StandardCharsets.UTF_8),
-                        new TypeToken<RequestOperation<ArticleDto>>() {
-                        }.getType());
-
-        if (requestOperation.isSuccessful()) {
-            printSuccessfulDelivery(requestOperation, envelope);
-        } else {
-            printFailedDelivery(requestOperation, envelope);
-        }
+        return gson.fromJson(
+                new String(body, StandardCharsets.UTF_8),
+                WarehouseCommandState.class);
     }
 
-    private void printFailedDelivery(RequestOperation<ArticleDto> requestOperation, Envelope envelope) {
-        String deliveryInfo = String.format("exchange: %s, deliveryTag: %s, no article with %d id found.",
+    private void printReceivedDelivery(WarehouseCommandState warehouseCommandState, Envelope envelope) {
+        String deliveryInfo = String.format("exchange: %s, deliveryTag: %s, warehouse response: %s",
                 envelope.getExchange(),
                 envelope.getDeliveryTag(),
-                requestOperation.getRequestedId());
-
-        logger.warn(deliveryInfo);
-    }
-
-    private void printSuccessfulDelivery(RequestOperation<ArticleDto> requestOperation, Envelope envelope) {
-        String deliveryInfo = String.format("exchange: %s, deliveryTag: %s, article name: %s, article price: %d",
-                envelope.getExchange(),
-                envelope.getDeliveryTag(),
-                requestOperation.getDto().getName(),
-                requestOperation.getDto().getPrice());
+                warehouseCommandState);
 
         logger.info(deliveryInfo);
     }
