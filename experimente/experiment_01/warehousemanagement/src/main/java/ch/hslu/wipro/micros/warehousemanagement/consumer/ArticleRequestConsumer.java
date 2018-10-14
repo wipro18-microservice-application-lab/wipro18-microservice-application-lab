@@ -1,6 +1,7 @@
 package ch.hslu.wipro.micros.warehousemanagement.consumer;
 
 import ch.hslu.wipro.micros.common.command.ChangeArticleStockCommand;
+import ch.hslu.wipro.micros.common.command.UndoLastCommand;
 import ch.hslu.wipro.micros.common.command.WarehouseCommand;
 import ch.hslu.wipro.micros.common.message.WarehouseCommandState;
 import ch.hslu.wipro.micros.warehousemanagement.RabbitMqManager;
@@ -17,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
-import static com.rabbitmq.client.AMQP.*;
+import static com.rabbitmq.client.AMQP.BasicProperties;
 
 public class ArticleRequestConsumer extends DefaultConsumer {
     private static final Logger logger = LogManager.getLogger(ArticleRequestConsumer.class);
@@ -36,9 +37,13 @@ public class ArticleRequestConsumer extends DefaultConsumer {
         WarehouseCommand warehouseCommand = convertFromJson(body);
         printReceivedDelivery(warehouseCommand, envelope);
 
-        eventBroker.command(warehouseCommand);
-        eventBroker.getCommandStatus();
+        if (warehouseCommand instanceof UndoLastCommand) {
+            eventBroker.undoLast();
+        } else {
+            eventBroker.command(warehouseCommand);
+        }
 
+        eventBroker.getCommandStatus();
         String jsonResponse = convertToJson(eventBroker.getCommandStatus());
 
         rabbitMqManager.sendArticleResponse(jsonResponse);
@@ -58,9 +63,14 @@ public class ArticleRequestConsumer extends DefaultConsumer {
 
         String bodyUtf8 = new String(body, StandardCharsets.UTF_8);
 
-        if(bodyUtf8.contains(ChangeArticleStockCommand.class.getName())) {
+        if (bodyUtf8.contains(ChangeArticleStockCommand.class.getName())) {
             return gson.fromJson(bodyUtf8,
-                ChangeArticleStockCommand.class);
+                    ChangeArticleStockCommand.class);
+        }
+
+        if (bodyUtf8.contains(UndoLastCommand.class.getName())) {
+            return gson.fromJson(bodyUtf8,
+                    UndoLastCommand.class);
         }
 
         return gson.fromJson(bodyUtf8, WarehouseCommand.class);

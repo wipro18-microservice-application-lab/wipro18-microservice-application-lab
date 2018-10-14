@@ -4,6 +4,6 @@ services:
   rabbitmq:
     image: rabbitmq:3-management-alpine
     ports:
-      - "7000:15672"
-      - "5672:5672"
+    - "7000:15672"
+    - "5672:5672"
     hostname: rabbitmq

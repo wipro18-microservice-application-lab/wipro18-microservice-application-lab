@@ -3,7 +3,6 @@ package ch.hslu.wipro.micros.warehousemanagement;
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
 import ch.hslu.wipro.micros.common.util.RabbitMqFunctions;
 import ch.hslu.wipro.micros.warehousemanagement.consumer.ArticleRequestConsumer;
-import ch.hslu.wipro.micros.warehousemanagement.repository.WarehouseRepository;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;

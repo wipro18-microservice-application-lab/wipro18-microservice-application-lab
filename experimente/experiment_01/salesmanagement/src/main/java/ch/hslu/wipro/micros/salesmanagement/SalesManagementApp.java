@@ -1,12 +1,14 @@
 package ch.hslu.wipro.micros.salesmanagement;
 
 import ch.hslu.wipro.micros.common.command.ChangeArticleStockCommand;
+import ch.hslu.wipro.micros.common.command.UndoLastCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class SalesManagementApp {
@@ -18,19 +20,10 @@ public class SalesManagementApp {
             rabbitMqManager.listenForArticleResponse();
             rabbitMqManager.listenForCustomerResponse();
 
-            while(true) {
-                logger.info("Create a new order");
-                logger.info("article id: ");
-                Scanner sc = new Scanner(System.in);
-                long articleId = sc.nextLong();
+            rabbitMqManager.sendArticleRequest(new ChangeArticleStockCommand(0, 1));
+            rabbitMqManager.sendCustomerRequest(3);
 
-                logger.info("customer id: ");
-                long customerId = sc.nextLong();
-
-                rabbitMqManager.sendArticleRequest(new ChangeArticleStockCommand(articleId, 1));
-                rabbitMqManager.sendCustomerRequest(customerId);
-            }
-
+            rabbitMqManager.sendArticleRequest(new UndoLastCommand());
         } catch (IOException e) {
             logger.warn("encountered an IOException while communicating with rabbitmq");
         } catch (TimeoutException e) {

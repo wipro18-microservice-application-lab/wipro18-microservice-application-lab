@@ -16,12 +16,13 @@ public class EventBrokerTest {
     @Before
     public void setUp() {
         eb = EventBrokerFactory.getBroker();
+        eb.commands.close();
         eb.commands.subscribe(WarehouseRepositoryFactory.getRepository()::brokerOnCommands);
     }
 
     @Test
     public void testSuccessfulArticleChangeCommand() {
-        eb.command(new ChangeArticleStockCommand(APPLE_ID, 1));
+        eb.command(new ChangeArticleStockCommand(APPLE_ID, 5));
         assertEquals(SUCCESS, eb.getCommandStatus());
     }
 

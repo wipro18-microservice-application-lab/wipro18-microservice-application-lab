@@ -43,7 +43,7 @@ public class CustomerRequestConsumer extends DefaultConsumer {
             CustomerOperation op = customerRepository.getCustomerById(customerId);
             RequestOperation<CustomerDto> requestOperation;
 
-            if(op.isSuccess()) {
+            if (op.isSuccess()) {
                 requestOperation = new RequestOperation<>(true, customerId, op.getCustomer());
             } else {
                 requestOperation = new RequestOperation<>(false, customerId, null);

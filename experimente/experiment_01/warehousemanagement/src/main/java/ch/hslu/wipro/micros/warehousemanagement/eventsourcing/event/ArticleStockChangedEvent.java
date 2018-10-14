@@ -1,13 +1,12 @@
 package ch.hslu.wipro.micros.warehousemanagement.eventsourcing.event;
 
-import ch.hslu.wipro.micros.warehousemanagement.consumer.ArticleRequestConsumer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class ArticleStockChangedEvent implements WarehouseEvent {
-    private static final Logger logger = LogManager.getLogger(ArticleRequestConsumer.class);
-    private long articleId;
-    private int oldValue, newValue;
+    private static final Logger logger = LogManager.getLogger(ArticleStockChangedEvent.class);
+    public long articleId;
+    public int oldValue, newValue;
 
     public ArticleStockChangedEvent(long articleId, int oldValue, int newValue) {
         this.articleId = articleId;

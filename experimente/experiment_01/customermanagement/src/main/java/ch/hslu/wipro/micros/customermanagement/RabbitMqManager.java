@@ -4,7 +4,10 @@ import ch.hslu.wipro.micros.common.RabbitMqConstants;
 import ch.hslu.wipro.micros.common.util.RabbitMqFunctions;
 import ch.hslu.wipro.micros.customermanagement.consumer.CustomerRequestConsumer;
 import ch.hslu.wipro.micros.customermanagement.repository.CustomerRepository;
-import com.rabbitmq.client.*;
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 
 import java.io.Closeable;
 import java.io.IOException;

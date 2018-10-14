@@ -1,7 +1,6 @@
 package ch.hslu.wipro.micros.salesmanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
-import ch.hslu.wipro.micros.common.command.ChangeArticleStockCommand;
 import ch.hslu.wipro.micros.common.command.WarehouseCommand;
 import ch.hslu.wipro.micros.common.util.RabbitMqFunctions;
 import ch.hslu.wipro.micros.salesmanagement.consumer.ArticleResponseConsumer;
