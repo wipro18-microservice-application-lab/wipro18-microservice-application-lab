@@ -2,7 +2,8 @@ version: "3"
 
 services:
   rabbitmq:
-    image: rabbitmq:3-management-alpine
+    build:
+      context: ./rabbitmq
     ports:
     - "7000:15672"
     - "5672:5672"
