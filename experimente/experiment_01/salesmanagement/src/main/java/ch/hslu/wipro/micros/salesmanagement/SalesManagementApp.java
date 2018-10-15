@@ -6,9 +6,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 import java.util.concurrent.TimeoutException;
 
 public class SalesManagementApp {
@@ -17,13 +16,18 @@ public class SalesManagementApp {
     public static void main(String[] args) {
 
         try (RabbitMqManager rabbitMqManager = new RabbitMqManager()) {
-            rabbitMqManager.listenForArticleResponse();
-            rabbitMqManager.listenForCustomerResponse();
-
             rabbitMqManager.sendArticleRequest(new ChangeArticleStockCommand(0, 1));
             rabbitMqManager.sendCustomerRequest(3);
 
             rabbitMqManager.sendArticleRequest(new UndoLastCommand());
+
+            rabbitMqManager.listenForArticleResponse();
+            rabbitMqManager.listenForCustomerResponse();
+
+            Scanner sc = new Scanner(System.in);
+            while(true) {
+                sc.next();
+            }
         } catch (IOException e) {
             logger.warn("encountered an IOException while communicating with rabbitmq");
         } catch (TimeoutException e) {

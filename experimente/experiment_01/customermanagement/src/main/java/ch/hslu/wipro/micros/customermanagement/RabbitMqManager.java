@@ -13,6 +13,8 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
+import static com.rabbitmq.client.AMQP.*;
+
 public class RabbitMqManager implements Closeable {
     private CustomerRepository customerRepository;
     private Channel channel;
@@ -32,11 +34,7 @@ public class RabbitMqManager implements Closeable {
     }
 
     public void sendCustomerResponse(String jsonCustomer) throws IOException {
-        RabbitMqFunctions rabbitMqFunctions = new RabbitMqFunctions(channel);
-        rabbitMqFunctions.createAndBindQueueToExchange(RabbitMqConstants.CUSTOMER_REQUEST_QUEUE,
-                RabbitMqConstants.CUSTOMER_REQUEST_EXCHANGE);
-
-        AMQP.BasicProperties basicProperties = new AMQP.BasicProperties.Builder()
+        BasicProperties basicProperties = new BasicProperties.Builder()
                 .contentType(RabbitMqConstants.JSON_MIME_TYPE)
                 .build();
 

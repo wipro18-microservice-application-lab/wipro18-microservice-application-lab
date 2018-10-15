@@ -35,10 +35,6 @@ public class RabbitMqManager implements Closeable {
      * @throws IOException throws exception if rabbitmq can't be reached.
      */
     void sendArticleRequest(WarehouseCommand warehouseCommand) throws IOException {
-        RabbitMqFunctions rabbitMqFunctions = new RabbitMqFunctions(channel);
-        rabbitMqFunctions.createAndBindQueueToExchange(RabbitMqConstants.ARTICLE_REQUEST_QUEUE,
-                RabbitMqConstants.ARTICLE_REQUEST_EXCHANGE);
-
         BasicProperties basicProperties = new BasicProperties.Builder()
                 .contentType(RabbitMqConstants.JSON_MIME_TYPE)
                 .build();
