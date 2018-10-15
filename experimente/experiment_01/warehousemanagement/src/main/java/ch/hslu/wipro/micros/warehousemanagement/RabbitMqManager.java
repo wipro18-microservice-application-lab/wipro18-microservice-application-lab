@@ -1,9 +1,7 @@
 package ch.hslu.wipro.micros.warehousemanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
-import ch.hslu.wipro.micros.common.util.RabbitMqFunctions;
 import ch.hslu.wipro.micros.warehousemanagement.consumer.ArticleRequestConsumer;
-import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -12,7 +10,7 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-import static com.rabbitmq.client.AMQP.*;
+import static com.rabbitmq.client.AMQP.BasicProperties;
 
 public class RabbitMqManager implements Closeable {
     private Channel channel;
@@ -36,10 +34,9 @@ public class RabbitMqManager implements Closeable {
     }
 
     /**
-     * Declares an ArticleResponse exchange and a queue and binds them together if the do not exist yet.
-     * Then it publishes a message on the article request exchange, containing the requested Article.
+     * Publishes a message on the article request exchange, containing the a message if the request could be processed.
      *
-     * @param jsonArticle the requested article as json.
+     * @param jsonArticle success or fail of the received warehouse command.
      * @throws IOException throws exception if rabbitmq can't be reached.
      */
     public void sendArticleResponse(String jsonArticle) throws IOException {

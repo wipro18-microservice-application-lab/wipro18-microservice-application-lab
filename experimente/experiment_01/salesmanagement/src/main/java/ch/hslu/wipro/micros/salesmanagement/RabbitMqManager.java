@@ -2,7 +2,6 @@ package ch.hslu.wipro.micros.salesmanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
 import ch.hslu.wipro.micros.common.command.WarehouseCommand;
-import ch.hslu.wipro.micros.common.util.RabbitMqFunctions;
 import ch.hslu.wipro.micros.salesmanagement.consumer.ArticleResponseConsumer;
 import ch.hslu.wipro.micros.salesmanagement.consumer.CustomerResponseConsumer;
 import com.google.gson.Gson;
@@ -28,8 +27,8 @@ public class RabbitMqManager implements Closeable {
     }
 
     /**
-     * Declares an ArticleRequest exchange and a queue and bind them together if the do not exist yet.
-     * Then it publishes a message on the article request exchange, containing a command for the warehouse management.
+     * Publishes a message on the article request exchange, containing a command for the warehouse management
+     * to process.
      *
      * @param warehouseCommand command for the warehouse management to process.
      * @throws IOException throws exception if rabbitmq can't be reached.
@@ -52,11 +51,13 @@ public class RabbitMqManager implements Closeable {
         return gson.toJson(warehouseCommand);
     }
 
+    /**
+     * * Publishes a message on the customer request exchange, containing the id of the requested customer.
+     *
+     * @param id the id of the requested customer.
+     * @throws IOException throws exception if rabbitmq can't be reached.
+     */
     void sendCustomerRequest(long id) throws IOException {
-        RabbitMqFunctions rabbitMqFunctions = new RabbitMqFunctions(channel);
-        rabbitMqFunctions.createAndBindQueueToExchange(RabbitMqConstants.CUSTOMER_REQUEST_QUEUE,
-                RabbitMqConstants.CUSTOMER_REQUEST_EXCHANGE);
-
         BasicProperties basicProperties = new BasicProperties.Builder()
                 .contentType(RabbitMqConstants.JSON_MIME_TYPE)
                 .build();
