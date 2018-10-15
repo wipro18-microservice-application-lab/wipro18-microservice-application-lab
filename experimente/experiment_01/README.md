@@ -35,3 +35,10 @@ Um diesen Microservice zu starten überprüfe ob im target Ordner ein -jar-with-
 java -jar .\warehousemanagement\target\warehousemanagement-1.0-SNAPSHOT-jar-with-dependencies.jar
 .\run-warehousemanagement.ps1
 ```
+
+#### CustomerManager Microservice starten
+Um diesen Microservice zu starten überprüfe ob im target Ordner ein -jar-with-dependencies vorhanden ist. Dann führe einen der folgenden Befehl aus:
+```
+java -jar .\customermanagement\target\customermanagement-1.0-SNAPSHOT-jar-with-dependencies.jar
+.\run-customermanagement.ps1
+```
