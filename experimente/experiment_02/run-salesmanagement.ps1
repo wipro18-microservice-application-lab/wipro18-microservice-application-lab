@@ -1,0 +1,1 @@
+java -jar .\salesmanagement\target\salesmanagement-1.0-SNAPSHOT-jar-with-dependencies.jar

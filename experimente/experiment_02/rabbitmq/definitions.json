@@ -1,0 +1,127 @@
+{
+  "users": [
+    {
+      "name": "guest",
+	  "password": "guest",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "parameters": [],
+  "policies": [],
+  "exchanges": [
+    {
+      "name": "ch.hslu.wipro.micros.ArticleRequestExchange",
+      "vhost": "/",
+      "type": "direct",
+      "durable": false,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+	{
+      "name": "ch.hslu.wipro.micros.ArticleResponseExchange",
+      "vhost": "/",
+      "type": "direct",
+      "durable": false,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+	{
+      "name": "ch.hslu.wipro.micros.CustomerRequestExchange",
+      "vhost": "/",
+      "type": "direct",
+      "durable": false,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+	{
+      "name": "ch.hslu.wipro.micros.CustomerResponseExchange",
+      "vhost": "/",
+      "type": "direct",
+      "durable": false,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "queues": [
+    {
+      "name": "ch.hslu.wipro.micros.ArticleRequestQueue",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {}
+    },
+	{
+      "name": "ch.hslu.wipro.micros.ArticleResponseQueue",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {}
+    },
+	{
+      "name": "ch.hslu.wipro.micros.CustomerRequestQueue",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {}
+    },
+	{
+      "name": "ch.hslu.wipro.micros.CustomerResponseQueue",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "ch.hslu.wipro.micros.ArticleRequestExchange",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.ArticleRequestQueue",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+	{
+      "source": "ch.hslu.wipro.micros.ArticleResponseExchange",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.ArticleResponseQueue",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+	{
+      "source": "ch.hslu.wipro.micros.CustomerRequestExchange",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.CustomerRequestQueue",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    },
+	{
+      "source": "ch.hslu.wipro.micros.CustomerResponseExchange",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.CustomerResponseQueue",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    }
+  ]
+}
