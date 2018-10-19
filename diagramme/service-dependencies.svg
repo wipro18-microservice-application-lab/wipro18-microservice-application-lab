@@ -1,0 +1,61 @@
+<svg width="534pt" height="190pt" viewBox="0.00 0.00 534.00 190.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 186)">
+<title>G</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-186 531,-186 531,5 -4,5"></polygon>
+<!-- order -->
+<g id="node1" class="node"><title>order</title>
+<ellipse fill="none" stroke="black" cx="82" cy="-110" rx="81.0956" ry="18"></ellipse>
+<text text-anchor="middle" x="82" y="-105.8" font-family="Times,serif" font-size="14.00">Bestellverwaltung</text>
+</g>
+<!-- article -->
+<g id="node2" class="node"><title>article</title>
+<ellipse fill="none" stroke="black" cx="290" cy="-164" rx="76.9869" ry="18"></ellipse>
+<text text-anchor="middle" x="290" y="-159.8" font-family="Times,serif" font-size="14.00">Lagerverwaltung</text>
+</g>
+<!-- order&#45;&gt;article -->
+<g id="edge4" class="edge"><title>order-&gt;article</title>
+<path fill="none" stroke="black" d="M135.249,-123.696C163.521,-131.107 198.595,-140.302 228.101,-148.036"></path>
+<polygon fill="black" stroke="black" points="227.315,-151.448 237.876,-150.599 229.09,-144.677 227.315,-151.448"></polygon>
+</g>
+<!-- customer -->
+<g id="node3" class="node"><title>customer</title>
+<ellipse fill="none" stroke="black" cx="290" cy="-110" rx="85.0986" ry="18"></ellipse>
+<text text-anchor="middle" x="290" y="-105.8" font-family="Times,serif" font-size="14.00">Kundenverwaltung</text>
+</g>
+<!-- order&#45;&gt;customer -->
+<g id="edge2" class="edge"><title>order-&gt;customer</title>
+<path fill="none" stroke="black" d="M163.53,-110C173.686,-110 184.149,-110 194.496,-110"></path>
+<polygon fill="black" stroke="black" points="194.789,-113.5 204.789,-110 194.789,-106.5 194.789,-113.5"></polygon>
+</g>
+<!-- log -->
+<g id="node5" class="node"><title>log</title>
+<ellipse fill="none" stroke="black" cx="471" cy="-87" rx="54.51" ry="18"></ellipse>
+<text text-anchor="middle" x="471" y="-82.8" font-family="Times,serif" font-size="14.00">Audit trails</text>
+</g>
+<!-- order&#45;&gt;log -->
+<g id="edge6" class="edge"><title>order-&gt;log</title>
+<path fill="none" stroke="black" d="M132.67,-95.9161C153.312,-90.7511 177.631,-85.5476 200,-83 279.486,-73.9475 300.02,-81.2235 380,-83 388.634,-83.1918 397.731,-83.4869 406.689,-83.8319"></path>
+<polygon fill="black" stroke="black" points="406.578,-87.3302 416.712,-84.2398 406.863,-80.336 406.578,-87.3302"></polygon>
+</g>
+<!-- article&#45;&gt;log -->
+<g id="edge10" class="edge"><title>article-&gt;log</title>
+<path fill="none" stroke="black" d="M342.026,-150.553C354.626,-146.68 367.958,-142.103 380,-137 399.163,-128.879 419.513,-117.802 436.005,-108.138"></path>
+<polygon fill="black" stroke="black" points="437.934,-111.063 444.739,-102.942 434.355,-105.047 437.934,-111.063"></polygon>
+</g>
+<!-- customer&#45;&gt;log -->
+<g id="edge8" class="edge"><title>customer-&gt;log</title>
+<path fill="none" stroke="black" d="M363.032,-100.744C378.503,-98.7566 394.698,-96.6756 409.671,-94.7518"></path>
+<polygon fill="black" stroke="black" points="410.344,-98.1941 419.817,-93.4481 409.452,-91.2512 410.344,-98.1941"></polygon>
+</g>
+<!-- user -->
+<g id="node4" class="node"><title>user</title>
+<ellipse fill="none" stroke="black" cx="290" cy="-18" rx="89.1665" ry="18"></ellipse>
+<text text-anchor="middle" x="290" y="-13.8" font-family="Times,serif" font-size="14.00">Benutzerverwaltung</text>
+</g>
+<!-- user&#45;&gt;log -->
+<g id="edge12" class="edge"><title>user-&gt;log</title>
+<path fill="none" stroke="black" d="M335.51,-33.5613C349.771,-38.6653 365.597,-44.4531 380,-50 395.519,-55.9765 412.41,-62.8275 427.324,-68.9968"></path>
+<polygon fill="black" stroke="black" points="426.227,-72.3311 436.804,-72.9364 428.913,-65.867 426.227,-72.3311"></polygon>
+</g>
+</g>
+</svg>

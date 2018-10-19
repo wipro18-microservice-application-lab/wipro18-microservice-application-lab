@@ -1,0 +1,29 @@
+digraph G {
+
+  mobile[label="Mobile App"];
+  web[label="Web App"];
+
+  gateway[label="API Gateway"];
+
+  order[label="Bestellverwaltung"];
+  article[label="Lagerverwaltung"];
+  customer[label="Kundenverwaltung"];
+  user[label="Benutzerverwaltung"];
+  log[label="Audit trails"];
+
+  mobile -> gateway;
+  web -> gateway;
+
+  gateway -> order;
+  gateway -> article;
+  gateway -> user;
+  gateway -> customer;
+
+  order -> customer
+  order -> article
+  order -> log
+
+  customer -> log
+  article -> log
+  user -> log
+}

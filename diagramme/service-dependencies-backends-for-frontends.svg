@@ -1,0 +1,131 @@
+<svg width="533pt" height="332pt" viewBox="0.00 0.00 532.95 332.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 328)">
+<title>G</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-328 529.946,-328 529.946,5 -4,5"></polygon>
+<!-- mobile -->
+<g id="node1" class="node"><title>mobile</title>
+<ellipse fill="none" stroke="black" cx="412" cy="-306" rx="57.4614" ry="18"></ellipse>
+<text text-anchor="middle" x="412" y="-301.8" font-family="Times,serif" font-size="14.00">Mobile App</text>
+</g>
+<!-- mobile_gateway -->
+<g id="node3" class="node"><title>mobile_gateway</title>
+<ellipse fill="none" stroke="black" cx="412" cy="-234" rx="93.4439" ry="18"></ellipse>
+<text text-anchor="middle" x="412" y="-229.8" font-family="Times,serif" font-size="14.00">Mobile API Gateway</text>
+</g>
+<!-- mobile&#45;&gt;mobile_gateway -->
+<g id="edge2" class="edge"><title>mobile-&gt;mobile_gateway</title>
+<path fill="none" stroke="black" d="M412,-287.697C412,-279.983 412,-270.712 412,-262.112"></path>
+<polygon fill="black" stroke="black" points="415.5,-262.104 412,-252.104 408.5,-262.104 415.5,-262.104"></polygon>
+</g>
+<!-- web -->
+<g id="node2" class="node"><title>web</title>
+<ellipse fill="none" stroke="black" cx="201" cy="-306" rx="47.9655" ry="18"></ellipse>
+<text text-anchor="middle" x="201" y="-301.8" font-family="Times,serif" font-size="14.00">Web App</text>
+</g>
+<!-- web_gateway -->
+<g id="node4" class="node"><title>web_gateway</title>
+<ellipse fill="none" stroke="black" cx="201" cy="-234" rx="83.4474" ry="18"></ellipse>
+<text text-anchor="middle" x="201" y="-229.8" font-family="Times,serif" font-size="14.00">Web API Gateway</text>
+</g>
+<!-- web&#45;&gt;web_gateway -->
+<g id="edge4" class="edge"><title>web-&gt;web_gateway</title>
+<path fill="none" stroke="black" d="M201,-287.697C201,-279.983 201,-270.712 201,-262.112"></path>
+<polygon fill="black" stroke="black" points="204.5,-262.104 201,-252.104 197.5,-262.104 204.5,-262.104"></polygon>
+</g>
+<!-- order -->
+<g id="node5" class="node"><title>order</title>
+<ellipse fill="none" stroke="black" cx="194" cy="-162" rx="80.9472" ry="18"></ellipse>
+<text text-anchor="middle" x="194" y="-157.8" font-family="Times,serif" font-size="14.00">Bestellverwaltung</text>
+</g>
+<!-- mobile_gateway&#45;&gt;order -->
+<g id="edge6" class="edge"><title>mobile_gateway-&gt;order</title>
+<path fill="none" stroke="black" d="M366.034,-218.24C331.551,-207.168 284.243,-191.977 247.963,-180.328"></path>
+<polygon fill="black" stroke="black" points="248.634,-176.867 238.043,-177.142 246.494,-183.532 248.634,-176.867"></polygon>
+</g>
+<!-- article -->
+<g id="node6" class="node"><title>article</title>
+<ellipse fill="none" stroke="black" cx="303" cy="-90" rx="76.4902" ry="18"></ellipse>
+<text text-anchor="middle" x="303" y="-85.8" font-family="Times,serif" font-size="14.00">Lagerverwaltung</text>
+</g>
+<!-- mobile_gateway&#45;&gt;article -->
+<g id="edge8" class="edge"><title>mobile_gateway-&gt;article</title>
+<path fill="none" stroke="black" d="M465.885,-219.181C485.818,-211.174 506.372,-198.815 518,-180 526.412,-166.39 527.867,-156.595 518,-144 500.898,-122.17 434.789,-108.112 380.34,-99.9997"></path>
+<polygon fill="black" stroke="black" points="380.721,-96.5185 370.324,-98.5536 379.721,-103.447 380.721,-96.5185"></polygon>
+</g>
+<!-- customer -->
+<g id="node7" class="node"><title>customer</title>
+<ellipse fill="none" stroke="black" cx="85" cy="-90" rx="85.0739" ry="18"></ellipse>
+<text text-anchor="middle" x="85" y="-85.8" font-family="Times,serif" font-size="14.00">Kundenverwaltung</text>
+</g>
+<!-- mobile_gateway&#45;&gt;customer -->
+<g id="edge12" class="edge"><title>mobile_gateway-&gt;customer</title>
+<path fill="none" stroke="black" d="M339.298,-222.575C250.941,-209.599 112.485,-188.153 104,-180 87.5829,-164.225 83.6279,-138.01 83.307,-118.106"></path>
+<polygon fill="black" stroke="black" points="86.8069,-118.127 83.4349,-108.083 79.8075,-118.038 86.8069,-118.127"></polygon>
+</g>
+<!-- user -->
+<g id="node8" class="node"><title>user</title>
+<ellipse fill="none" stroke="black" cx="420" cy="-162" rx="89.0002" ry="18"></ellipse>
+<text text-anchor="middle" x="420" y="-157.8" font-family="Times,serif" font-size="14.00">Benutzerverwaltung</text>
+</g>
+<!-- mobile_gateway&#45;&gt;user -->
+<g id="edge10" class="edge"><title>mobile_gateway-&gt;user</title>
+<path fill="none" stroke="black" d="M413.978,-215.697C414.859,-207.983 415.919,-198.712 416.901,-190.112"></path>
+<polygon fill="black" stroke="black" points="420.387,-190.437 418.045,-180.104 413.432,-189.642 420.387,-190.437"></polygon>
+</g>
+<!-- web_gateway&#45;&gt;order -->
+<g id="edge14" class="edge"><title>web_gateway-&gt;order</title>
+<path fill="none" stroke="black" d="M199.27,-215.697C198.498,-207.983 197.571,-198.712 196.711,-190.112"></path>
+<polygon fill="black" stroke="black" points="200.188,-189.706 195.71,-180.104 193.223,-190.403 200.188,-189.706"></polygon>
+</g>
+<!-- web_gateway&#45;&gt;article -->
+<g id="edge16" class="edge"><title>web_gateway-&gt;article</title>
+<path fill="none" stroke="black" d="M237.753,-217.63C254.283,-208.92 272.599,-196.437 284,-180 296.554,-161.901 301.069,-137.12 302.578,-118.302"></path>
+<polygon fill="black" stroke="black" points="306.075,-118.458 303.149,-108.275 299.086,-118.06 306.075,-118.458"></polygon>
+</g>
+<!-- web_gateway&#45;&gt;customer -->
+<g id="edge20" class="edge"><title>web_gateway-&gt;customer</title>
+<path fill="none" stroke="black" d="M136.294,-222.452C111.589,-214.929 85.8212,-202.048 71,-180 58.5905,-161.54 64.2885,-136.124 71.8057,-117.178"></path>
+<polygon fill="black" stroke="black" points="75.0482,-118.498 75.8163,-107.931 68.6262,-115.713 75.0482,-118.498"></polygon>
+</g>
+<!-- web_gateway&#45;&gt;user -->
+<g id="edge18" class="edge"><title>web_gateway-&gt;user</title>
+<path fill="none" stroke="black" d="M245.582,-218.75C280.023,-207.741 327.875,-192.446 364.746,-180.661"></path>
+<polygon fill="black" stroke="black" points="365.891,-183.97 374.351,-177.591 363.76,-177.302 365.891,-183.97"></polygon>
+</g>
+<!-- order&#45;&gt;article -->
+<g id="edge24" class="edge"><title>order-&gt;article</title>
+<path fill="none" stroke="black" d="M219.281,-144.765C234.139,-135.223 253.11,-123.04 269.235,-112.684"></path>
+<polygon fill="black" stroke="black" points="271.333,-115.496 277.856,-107.147 267.551,-109.606 271.333,-115.496"></polygon>
+</g>
+<!-- order&#45;&gt;customer -->
+<g id="edge22" class="edge"><title>order-&gt;customer</title>
+<path fill="none" stroke="black" d="M168.719,-144.765C153.968,-135.291 135.161,-123.214 119.111,-112.906"></path>
+<polygon fill="black" stroke="black" points="120.827,-109.849 110.521,-107.39 117.044,-115.739 120.827,-109.849"></polygon>
+</g>
+<!-- log -->
+<g id="node9" class="node"><title>log</title>
+<ellipse fill="none" stroke="black" cx="250" cy="-18" rx="54.1345" ry="18"></ellipse>
+<text text-anchor="middle" x="250" y="-13.8" font-family="Times,serif" font-size="14.00">Audit trails</text>
+</g>
+<!-- order&#45;&gt;log -->
+<g id="edge26" class="edge"><title>order-&gt;log</title>
+<path fill="none" stroke="black" d="M196.844,-143.763C200.23,-125.454 206.753,-95.9098 217,-72 221.056,-62.5353 226.647,-52.7966 232.074,-44.2905"></path>
+<polygon fill="black" stroke="black" points="235.002,-46.2074 237.599,-35.9357 229.163,-42.346 235.002,-46.2074"></polygon>
+</g>
+<!-- article&#45;&gt;log -->
+<g id="edge30" class="edge"><title>article-&gt;log</title>
+<path fill="none" stroke="black" d="M290.17,-72.055C283.79,-63.6287 275.955,-53.2798 268.903,-43.9663"></path>
+<polygon fill="black" stroke="black" points="271.539,-41.6489 262.712,-35.789 265.958,-45.8744 271.539,-41.6489"></polygon>
+</g>
+<!-- customer&#45;&gt;log -->
+<g id="edge28" class="edge"><title>customer-&gt;log</title>
+<path fill="none" stroke="black" d="M121.21,-73.6382C146.894,-62.7418 181.429,-48.0906 208.272,-36.7029"></path>
+<polygon fill="black" stroke="black" points="209.943,-39.7957 217.782,-32.6681 207.21,-33.3516 209.943,-39.7957"></polygon>
+</g>
+<!-- user&#45;&gt;log -->
+<g id="edge32" class="edge"><title>user-&gt;log</title>
+<path fill="none" stroke="black" d="M418.096,-143.669C415.046,-123.883 407.295,-91.7146 388,-72 366.496,-50.0285 334.901,-37.0144 307.367,-29.3858"></path>
+<polygon fill="black" stroke="black" points="307.991,-25.9319 297.433,-26.8123 306.236,-32.7083 307.991,-25.9319"></polygon>
+</g>
+</g>
+</svg>
