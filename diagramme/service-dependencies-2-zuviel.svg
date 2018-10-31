@@ -1,0 +1,76 @@
+<svg width="740pt" height="156pt" viewBox="0.00 0.00 740.00 156.27" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph1" class="graph" transform="scale(1 1) rotate(0) translate(4 152.274)">
+<title>ServiceDependencies</title>
+<polygon fill="white" stroke="white" points="-4,5 -4,-152.274 737,-152.274 737,5 -4,5"></polygon>
+<!-- order -->
+<g id="node1" class="node"><title>order</title>
+<ellipse fill="none" stroke="black" cx="82" cy="-61.2737" rx="81.0956" ry="18"></ellipse>
+<text text-anchor="middle" x="82" y="-57.0737" font-family="Times,serif" font-size="14.00">Bestellverwaltung</text>
+</g>
+<!-- article -->
+<g id="node2" class="node"><title>article</title>
+<ellipse fill="none" stroke="black" cx="285" cy="-130.274" rx="76.9869" ry="18"></ellipse>
+<text text-anchor="middle" x="285" y="-126.074" font-family="Times,serif" font-size="14.00">Lagerverwaltung</text>
+</g>
+<!-- order&#45;&gt;article -->
+<g id="edge4" class="edge"><title>order-&gt;article</title>
+<path fill="none" stroke="black" d="M127.11,-76.416C157.691,-86.9138 198.57,-100.947 230.934,-112.057"></path>
+<polygon fill="black" stroke="black" points="230.089,-115.467 240.684,-115.404 232.362,-108.847 230.089,-115.467"></polygon>
+</g>
+<!-- customer -->
+<g id="node3" class="node"><title>customer</title>
+<ellipse fill="none" stroke="black" cx="285" cy="-38.2737" rx="85.0986" ry="18"></ellipse>
+<text text-anchor="middle" x="285" y="-34.0737" font-family="Times,serif" font-size="14.00">Kundenverwaltung</text>
+</g>
+<!-- order&#45;&gt;customer -->
+<g id="edge2" class="edge"><title>order-&gt;customer</title>
+<path fill="none" stroke="black" d="M154.714,-53.0675C169.279,-51.4009 184.725,-49.6335 199.68,-47.9222"></path>
+<polygon fill="black" stroke="black" points="200.401,-51.3626 209.938,-46.7484 199.605,-44.408 200.401,-51.3626"></polygon>
+</g>
+<!-- user -->
+<g id="node4" class="node"><title>user</title>
+<ellipse fill="none" stroke="black" cx="496" cy="-84.2737" rx="89.1665" ry="18"></ellipse>
+<text text-anchor="middle" x="496" y="-80.0737" font-family="Times,serif" font-size="14.00">Benutzerverwaltung</text>
+</g>
+<!-- order&#45;&gt;user -->
+<g id="edge6" class="edge"><title>order-&gt;user</title>
+<path fill="none" stroke="black" d="M160.978,-65.6268C228.712,-69.4081 327.039,-74.8972 399.48,-78.9412"></path>
+<polygon fill="black" stroke="black" points="399.344,-82.439 409.524,-79.5019 399.735,-75.4499 399.344,-82.439"></polygon>
+</g>
+<!-- log -->
+<g id="node5" class="node"><title>log</title>
+<ellipse fill="none" stroke="black" cx="677" cy="-61.2737" rx="54.51" ry="18"></ellipse>
+<text text-anchor="middle" x="677" y="-57.0737" font-family="Times,serif" font-size="14.00">Audit trails</text>
+</g>
+<!-- order&#45;&gt;log -->
+<g id="edge12" class="edge"><title>order-&gt;log</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M112.694,-44.6C135.713,-32.6761 168.837,-17.6533 200,-11.2737 353.673,20.1863 539.54,-21.9395 626.559,-46.2329"></path>
+<polygon fill="black" stroke="black" points="625.847,-49.6688 636.422,-49.029 627.756,-42.9342 625.847,-49.6688"></polygon>
+</g>
+<!-- article&#45;&gt;user -->
+<g id="edge10" class="edge"><title>article-&gt;user</title>
+<path fill="none" stroke="black" d="M341.734,-118.007C367.366,-112.365 398.044,-105.613 425.197,-99.6371"></path>
+<polygon fill="black" stroke="black" points="426.011,-103.042 435.025,-97.4739 424.506,-96.2053 426.011,-103.042"></polygon>
+</g>
+<!-- article&#45;&gt;log -->
+<g id="edge16" class="edge"><title>article-&gt;log</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M359.999,-134.548C421.695,-136.006 511.256,-133.186 586,-111.274 606.696,-105.206 627.875,-93.7516 644.485,-83.3353"></path>
+<polygon fill="black" stroke="black" points="646.712,-86.0636 653.211,-77.6961 642.913,-80.1845 646.712,-86.0636"></polygon>
+</g>
+<!-- customer&#45;&gt;user -->
+<g id="edge8" class="edge"><title>customer-&gt;user</title>
+<path fill="none" stroke="black" d="M344.496,-51.1484C369.553,-56.6633 399.019,-63.1486 425.205,-68.912"></path>
+<polygon fill="black" stroke="black" points="424.546,-72.3506 435.064,-71.082 426.05,-65.5143 424.546,-72.3506"></polygon>
+</g>
+<!-- customer&#45;&gt;log -->
+<g id="edge14" class="edge"><title>customer-&gt;log</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M367.282,-43.0672C440.176,-47.3661 545.659,-53.5869 612.514,-57.5296"></path>
+<polygon fill="black" stroke="black" points="612.713,-61.0473 622.902,-58.1422 613.125,-54.0595 612.713,-61.0473"></polygon>
+</g>
+<!-- user&#45;&gt;log -->
+<g id="edge18" class="edge"><title>user-&gt;log</title>
+<path fill="none" stroke="black" stroke-dasharray="1,5" d="M571.616,-74.6861C586.283,-72.8016 601.498,-70.8466 615.626,-69.0312"></path>
+<polygon fill="black" stroke="black" points="616.226,-72.483 625.698,-67.737 615.334,-65.54 616.226,-72.483"></polygon>
+</g>
+</g>
+</svg>

@@ -1,4 +1,4 @@
-digraph G {
+digraph ServiceDependencies {
   rankdir=LR;
 
   order[label="Bestellverwaltung"];
@@ -9,9 +9,9 @@ digraph G {
 
   order -> customer
   order -> article
-  order -> log
 
-  customer -> log
-  article -> log
-  user -> log
+  order -> log [style = dotted]
+  customer -> log [style = dotted]
+  article -> log [style = dotted]
+  user -> log [style = dotted]
 }
