@@ -95,6 +95,13 @@
       "arguments": {}
     },
 	{
+      "name": "ch.hslu.wipro.micros.OrderReply",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {}
+    },
+	{
       "name": "ch.hslu.wipro.micros.Audit",
       "vhost": "/",
       "durable": false,
@@ -173,6 +180,14 @@
       "destination": "ch.hslu.wipro.micros.Audit",
       "destination_type": "queue",
       "routing_key": "*",
+      "arguments": {}
+    },
+	{
+      "source": "ch.hslu.wipro.micros.Order",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.OrderReply",
+      "destination_type": "queue",
+      "routing_key": "reply",
       "arguments": {}
     }
   ]
