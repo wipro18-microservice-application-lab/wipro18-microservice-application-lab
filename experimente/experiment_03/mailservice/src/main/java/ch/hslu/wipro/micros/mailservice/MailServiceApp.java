@@ -1,7 +1,7 @@
 package ch.hslu.wipro.micros.customermanagement;
 
 import ch.hslu.wipro.micros.common.RabbitMqErrors;
-import ch.hslu.wipro.micros.common.RabbitMqFactory;
+import ch.hslu.wipro.micros.common.RabbitMqUtils;
 import ch.hslu.wipro.micros.common.discovery.DiscoveryService;
 import ch.hslu.wipro.micros.common.discovery.DomainType;
 import ch.hslu.wipro.micros.common.discovery.QueueType;
@@ -21,7 +21,7 @@ public class CustomerManagerApp {
         DiscoveryService orderConnection = new DiscoveryService(StrategyFactory.discoverByUrl(), domain);
         Optional<String> optionalQueue = orderConnection.getQueueForSubject(QueueType.COMMAND);
 
-        optionalQueue.ifPresent(queue -> RabbitMqFactory.createChannel().ifPresent(channel -> {
+        optionalQueue.ifPresent(queue -> RabbitMqUtils.createChannel().ifPresent(channel -> {
             try {
                 channel.basicConsume(queue, false, new OrderCommandConsumer(channel));
 

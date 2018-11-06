@@ -1,15 +1,17 @@
 package ch.hslu.wipro.micros.salesmanagement.saga;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
-import ch.hslu.wipro.micros.common.RabbitMqErrors;
+import ch.hslu.wipro.micros.common.RabbitMqUtils;
 import ch.hslu.wipro.micros.common.RoutingKey;
 import ch.hslu.wipro.micros.common.command.CommandFactory;
+import ch.hslu.wipro.micros.common.discovery.ConnectionInfo;
+import ch.hslu.wipro.micros.common.discovery.ConnectionInfoBuilder;
 import ch.hslu.wipro.micros.common.discovery.DiscoveryService;
-import ch.hslu.wipro.micros.common.discovery.DomainType;
-import ch.hslu.wipro.micros.common.discovery.QueueType;
 import ch.hslu.wipro.micros.common.discovery.StrategyFactory;
 import ch.hslu.wipro.micros.salesmanagement.OrderCallbackListener;
-import ch.hslu.wipro.micros.salesmanagement.consumer.OrderResponseConsumer;
+import ch.hslu.wipro.micros.salesmanagement.config.ConfigConsts;
+import ch.hslu.wipro.micros.salesmanagement.config.ConfigUtils;
+import ch.hslu.wipro.micros.salesmanagement.consumer.OrderEventConsumer;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -17,12 +19,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 
 public class OrderEligibilityState implements OrderSagaState, OrderCallbackListener {
     private static final Logger logger = LogManager.getLogger(OrderEligibilityState.class);
+    private final ConfigUtils configUtils = new ConfigUtils(ConfigConsts.CONFIG_FILE);
     private OrderSagaContext context;
-    private int eligibilityCheckCount = 0;
     private Channel channel;
 
     public OrderEligibilityState() throws IOException, TimeoutException {
@@ -33,45 +36,39 @@ public class OrderEligibilityState implements OrderSagaState, OrderCallbackListe
     }
 
     @Override
-    public void process(OrderSagaContext context) {
+    public void process(OrderSagaContext context) throws IOException {
         this.context = context;
-        DiscoveryService orderConnection = new DiscoveryService(StrategyFactory.discoverByUrl(), DomainType.ORDER);
-        sendCheckOrderCommand();
 
-        orderConnection.getQueueForSubject(QueueType.REPLY).ifPresent(queue -> {
-            try {
-                channel.basicConsume(queue, true, new OrderResponseConsumer(channel, this));
-            } catch (IOException e) {
-                logger.error(RabbitMqErrors.getIOExceptionMessage());
-                logger.error(e.getMessage());
-            }
-        });
+        ConnectionInfo connectionInfo = new ConnectionInfoBuilder()
+                .withExchange(configUtils.getExchange())
+                .atCommandQueue(configUtils.getCommandQueue())
+                .atEventQueue(configUtils.getEventQueue())
+                .build();
+
+        DiscoveryService discoveryService = new DiscoveryService(StrategyFactory.discoverByUrl());
+        discoveryService.register(configUtils.getDomain(), connectionInfo);
+
+        publishCheckOrderCommand();
+        channel.basicConsume(configUtils.getEventQueue(), false,
+                new OrderEventConsumer(channel, this));
     }
 
     @Override
-    public void onResponseEvent() {
-        eligibilityCheckCount++;
-        logger.info("received acknowledgement");
-        if (eligibilityCheckCount >= 2 && context.getState() instanceof OrderEligibilityState) {
-            context.setState(new OrderPaymentState());
-        }
+    public void onValidOrder() {
+        context.setState(new OrderPaymentState());
+        context.process();
     }
 
-    private void sendCheckOrderCommand() {
-        DiscoveryService articleConnection = new DiscoveryService(StrategyFactory.discoverByUrl(), DomainType.ARTICLE);
-        DiscoveryService customerConnection = new DiscoveryService(StrategyFactory.discoverByUrl(), DomainType.CUSTOMER);
-
+    private void publishCheckOrderCommand() throws IOException {
         String jsonCheckOrderCommand = CommandFactory.getCheckOrderCommandAsJson(context.getOrderDto());
+        final String correlationId = UUID.randomUUID().toString();
 
-        try {
-            channel.basicPublish(articleConnection.getExchange(), RoutingKey.COMMAND,
-                    RabbitMqConstants.jsonMimeType, jsonCheckOrderCommand.getBytes("UTF-8"));
+        channel.basicPublish(
+                configUtils.getExchange(),
+                RoutingKey.COMMAND,
+                RabbitMqUtils.getPropertiesForReplyChannel(correlationId, configUtils.getEventQueue()),
+                jsonCheckOrderCommand.getBytes(RabbitMqConstants.DEFAULT_CHAR_SET));
 
-            channel.basicPublish(customerConnection.getExchange(), RoutingKey.COMMAND,
-                    RabbitMqConstants.jsonMimeType, jsonCheckOrderCommand.getBytes("UTF-8"));
-        } catch (IOException e) {
-            logger.error(RabbitMqErrors.getIOExceptionMessage());
-            logger.error(e.getMessage());
-        }
+        logger.info("published CheckOrderCommand on exchange");
     }
 }

@@ -10,6 +10,10 @@ class Discovery(Resource):
         exchange, queues = get_connection_info(name)
         return jsonify(exchange=exchange, queues=queues)
 
+    def put(self, name):
+        request.form['data']
+
+
 
 app = Flask(__name__)
 api = Api(app)
