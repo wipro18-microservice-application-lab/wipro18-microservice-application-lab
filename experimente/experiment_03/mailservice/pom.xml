@@ -9,13 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ch.hslu.wipro.micros.customermanagement</groupId>
-    <artifactId>customermanagement</artifactId>
+    <groupId>ch.hslu.wipro.micros.mailservice</groupId>
+    <artifactId>mailservice</artifactId>
     <packaging>jar</packaging>
-    <name>customermanagement</name>
+    <name>mailservice</name>
 
     <properties>
-        <jar.start.class>ch.hslu.wipro.micros.customermanagement.CustomerManagerApp</jar.start.class>
+        <jar.start.class>ch.hslu.wipro.micros.mailservice.MailServiceApp</jar.start.class>
     </properties>
 
     <dependencies>

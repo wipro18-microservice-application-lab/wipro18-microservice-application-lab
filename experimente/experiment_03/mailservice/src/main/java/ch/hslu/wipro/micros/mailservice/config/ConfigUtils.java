@@ -1,4 +1,4 @@
-package ch.hslu.wipro.micros.warehousemanagement.config;
+package ch.hslu.wipro.micros.mailservice.config;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

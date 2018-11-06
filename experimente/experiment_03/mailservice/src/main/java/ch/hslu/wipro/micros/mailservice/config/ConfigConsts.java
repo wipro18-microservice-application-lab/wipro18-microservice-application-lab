@@ -1,5 +1,5 @@
-package ch.hslu.wipro.micros.warehousemanagement.config;
+package ch.hslu.wipro.micros.mailservice.config;
 
 public class ConfigConsts {
-    public static final String CONFIG_FILE  = "config.properties";
+    public static final String CONFIG_FILE = "config.properties";
 }
