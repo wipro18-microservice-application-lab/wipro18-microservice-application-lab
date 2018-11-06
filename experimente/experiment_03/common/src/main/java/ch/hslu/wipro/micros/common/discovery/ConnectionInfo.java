@@ -1,24 +1,31 @@
 package ch.hslu.wipro.micros.common.discovery;
 
-import java.util.List;
-
 public class ConnectionInfo {
     private String exchange;
-    private List<String> queues;
+    private String commandQueue;
+    private String eventQueue;
 
     public String getExchange() {
         return exchange;
     }
 
-    public void setExchange(String exchange) {
+    void setExchange(String exchange) {
         this.exchange = exchange;
     }
 
-    public List<String> getQueues() {
-        return queues;
+    public String getCommandQueue() {
+        return commandQueue;
     }
 
-    public void setQueues(List<String> queues) {
-        this.queues = queues;
+    void setCommandQueue(String commandQueue) {
+        this.commandQueue = commandQueue;
+    }
+
+    public String getEventQueue() {
+        return eventQueue;
+    }
+
+    void setEventQueue(String eventQueue) {
+        this.eventQueue = eventQueue;
     }
 }
