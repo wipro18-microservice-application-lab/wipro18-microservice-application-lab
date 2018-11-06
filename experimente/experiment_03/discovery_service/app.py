@@ -1,24 +1,28 @@
-from flask import Flask, jsonify
-from flask_restful import Api, Resource
+from flask import Flask, request, jsonify
+from flask_restful import Api, Resource, abort
 
-from parse_json import get_connection_info
+register = {}
 
 
 class Discovery(Resource):
 
-    def get(self, name):
-        exchange, queues = get_connection_info(name)
-        return jsonify(exchange=exchange, queues=queues)
+    @staticmethod
+    def get(domain):
+        if domain in register:
+            return jsonify(register[domain])
+        else:
+            return abort(404)
 
-    def put(self, name):
-        request.form['data']
+    @staticmethod
+    def put(domain):
+        register[domain] = request.get_json()
 
+        return jsonify(domain)
 
 
 app = Flask(__name__)
 api = Api(app)
-api.add_resource(Discovery, '/<string:name>')
-
+api.add_resource(Discovery, '/<string:domain>')
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
