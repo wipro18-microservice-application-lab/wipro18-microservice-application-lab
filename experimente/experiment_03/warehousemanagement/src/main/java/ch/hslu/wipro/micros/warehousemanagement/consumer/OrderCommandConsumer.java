@@ -1,4 +1,4 @@
-package ch.hslu.wipro.micros.common.consumer;
+package ch.hslu.wipro.micros.warehousemanagement.consumer;
 
 import ch.hslu.wipro.micros.common.RabbitMqConstants;
 import ch.hslu.wipro.micros.common.RabbitMqErrors;
