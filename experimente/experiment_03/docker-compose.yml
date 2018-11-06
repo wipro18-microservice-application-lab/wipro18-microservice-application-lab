@@ -10,7 +10,13 @@ services:
     hostname: rabbitmq
   discovery:
     build:
-      context: ./discovery_server
+      context: ./discovery_service
     ports:
     - "5000:5000"
-    hostname: discovery_server
+    hostname: discovery_service
+  hospital:
+    build:
+      context: ./hospital_service
+    ports:
+    - "5001:5001"
+    hostname: hospital_service
