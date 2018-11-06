@@ -1,0 +1,246 @@
+{
+  "users": [
+    {
+      "name": "guest",
+      "password": "guest",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "parameters": [],
+  "policies": [],
+  "exchanges": [
+    {
+      "name": "ch.hslu.wipro.micros.Article",
+      "vhost": "/",
+      "type": "direct",
+      "durable": false,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "ch.hslu.wipro.micros.Customer",
+      "vhost": "/",
+      "type": "direct",
+      "durable": false,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "ch.hslu.wipro.micros.Order",
+      "vhost": "/",
+      "type": "direct",
+      "durable": false,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    },
+    {
+      "name": "ch.hslu.wipro.micros.DeadLetter",
+      "vhost": "/",
+      "type": "fanout",
+      "durable": false,
+      "auto_delete": false,
+      "internal": false,
+      "arguments": {}
+    }
+  ],
+  "queues": [
+    {
+      "name": "ch.hslu.wipro.micros.ArticleCommand",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {
+        "x-dead-letter-exchange": "ch.hslu.wipro.micros.DeadLetter",
+        "x-dead-letter-routing-key": "",
+        "x-message-ttl": 10
+      }
+    },
+    {
+      "name": "ch.hslu.wipro.micros.ArticleEvent",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {
+        "x-dead-letter-exchange": "ch.hslu.wipro.micros.DeadLetter",
+        "x-dead-letter-routing-key": "",
+        "x-message-ttl": 10
+      }
+    },
+    {
+      "name": "ch.hslu.wipro.micros.CustomerCommand",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {
+        "x-dead-letter-exchange": "ch.hslu.wipro.micros.DeadLetter",
+        "x-dead-letter-routing-key": "",
+        "x-message-ttl": 10
+      }
+    },
+    {
+      "name": "ch.hslu.wipro.micros.CustomerEvent",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {
+        "x-dead-letter-exchange": "ch.hslu.wipro.micros.DeadLetter",
+        "x-dead-letter-routing-key": "",
+        "x-message-ttl": 10
+      }
+    },
+    {
+      "name": "ch.hslu.wipro.micros.OrderCommand",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {
+        "x-dead-letter-exchange": "ch.hslu.wipro.micros.DeadLetter",
+        "x-dead-letter-routing-key": "",
+        "x-message-ttl": 10
+      }
+    },
+    {
+      "name": "ch.hslu.wipro.micros.OrderEvent",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {
+        "x-dead-letter-exchange": "ch.hslu.wipro.micros.DeadLetter",
+        "x-dead-letter-routing-key": "",
+        "x-message-ttl": 10
+      }
+    },
+    {
+      "name": "ch.hslu.wipro.micros.OrderReply",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {
+        "x-dead-letter-exchange": "ch.hslu.wipro.micros.DeadLetter",
+        "x-dead-letter-routing-key": "",
+        "x-message-ttl": 10
+      }
+    },
+    {
+      "name": "ch.hslu.wipro.micros.Audit",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {}
+    },
+    {
+      "name": "ch.hslu.wipro.micros.DeadLetter",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
+  "bindings": [
+    {
+      "source": "ch.hslu.wipro.micros.Article",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.ArticleCommand",
+      "destination_type": "queue",
+      "routing_key": "cmd",
+      "arguments": {}
+    },
+    {
+      "source": "ch.hslu.wipro.micros.Article",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.ArticleEvent",
+      "destination_type": "queue",
+      "routing_key": "event",
+      "arguments": {}
+    },
+    {
+      "source": "ch.hslu.wipro.micros.Article",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.Audit",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    },
+    {
+      "source": "ch.hslu.wipro.micros.Customer",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.CustomerCommand",
+      "destination_type": "queue",
+      "routing_key": "cmd",
+      "arguments": {}
+    },
+    {
+      "source": "ch.hslu.wipro.micros.Customer",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.CustomerEvent",
+      "destination_type": "queue",
+      "routing_key": "event",
+      "arguments": {}
+    },
+    {
+      "source": "ch.hslu.wipro.micros.Customer",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.Audit",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    },
+    {
+      "source": "ch.hslu.wipro.micros.Order",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.OrderCommand",
+      "destination_type": "queue",
+      "routing_key": "cmd",
+      "arguments": {}
+    },
+    {
+      "source": "ch.hslu.wipro.micros.Order",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.OrderEvent",
+      "destination_type": "queue",
+      "routing_key": "event",
+      "arguments": {}
+    },
+    {
+      "source": "ch.hslu.wipro.micros.Order",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.Audit",
+      "destination_type": "queue",
+      "routing_key": "*",
+      "arguments": {}
+    },
+    {
+      "source": "ch.hslu.wipro.micros.Order",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.OrderReply",
+      "destination_type": "queue",
+      "routing_key": "reply",
+      "arguments": {}
+    },
+    {
+      "source": "ch.hslu.wipro.micros.DeadLetter",
+      "vhost": "/",
+      "destination": "ch.hslu.wipro.micros.DeadLetter",
+      "destination_type": "queue",
+      "routing_key": "",
+      "arguments": {}
+    }
+  ]
+}
