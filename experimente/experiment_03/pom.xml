@@ -9,7 +9,7 @@
         <module>common</module>
         <module>warehousemanagement</module>
         <module>salesmanagement</module>
-        <module>customermanagement</module>
+        <module>mailservice</module>
     </modules>
     <name>experiment_03</name>
 
