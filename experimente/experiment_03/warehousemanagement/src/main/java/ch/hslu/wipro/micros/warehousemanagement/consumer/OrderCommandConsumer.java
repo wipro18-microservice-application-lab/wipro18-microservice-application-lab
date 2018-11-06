@@ -41,6 +41,8 @@ public class OrderCommandConsumer extends DefaultConsumer {
                             properties.getReplyTo(),
                             replyProps,
                             jsonOrderConfirmedEvent.getBytes(RabbitMqConstants.DEFAULT_CHAR_SET));
+
+                    logger.info("order confirmed!");
                 }
             } catch (IOException e) {
                 logger.error(RabbitMqErrors.getIOExceptionMessage());
