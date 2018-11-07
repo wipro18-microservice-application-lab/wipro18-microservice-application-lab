@@ -42,11 +42,15 @@ public class OrderCommandConsumer extends DefaultConsumer {
                             replyProps,
                             jsonOrderConfirmedEvent.getBytes(RabbitMqConstants.DEFAULT_CHAR_SET));
 
+                    super.getChannel().basicAck(envelope.getDeliveryTag(), false);
+
                     logger.info("order confirmed!");
                 }
             } catch (IOException e) {
                 logger.error(RabbitMqErrors.getIOExceptionMessage());
             }
         });
+
+        super.getChannel().basicNack(envelope.getDeliveryTag(), false, true);
     }
 }

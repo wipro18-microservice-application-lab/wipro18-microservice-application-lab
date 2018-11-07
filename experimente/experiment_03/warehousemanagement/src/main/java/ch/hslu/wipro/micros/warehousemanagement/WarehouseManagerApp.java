@@ -54,7 +54,7 @@ public class WarehouseManagerApp {
                     .withHost(RabbitMqConstants.HOST_NAME)
                     .build();
 
-            channel.basicConsume(connectionInfo.getCommandQueue(), true, new OrderCommandConsumer(channel));
+            channel.basicConsume(connectionInfo.getCommandQueue(), false, new OrderCommandConsumer(channel));
 
         } catch (IOException | TimeoutException e) {
             logger.error(RabbitMqErrors.getIOExceptionMessage());
