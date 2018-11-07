@@ -53,7 +53,7 @@ public class MailServiceApp {
                     .withHost(RabbitMqConstants.HOST_NAME)
                     .build();
 
-            channel.basicConsume(connectionInfo.getEventQueue(), true,
+            channel.basicConsume(connectionInfo.getEventQueue(), false,
                     new OrderEventConsumer(channel));
 
         } catch (IOException | TimeoutException e) {
