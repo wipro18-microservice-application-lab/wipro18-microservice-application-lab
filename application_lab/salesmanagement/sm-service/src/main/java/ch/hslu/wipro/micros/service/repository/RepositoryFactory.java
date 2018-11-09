@@ -1,5 +1,8 @@
 package ch.hslu.wipro.micros.service.repository;
 
+import ch.hslu.wipro.micros.repository.OrderRepository;
+import ch.hslu.wipro.micros.repository.OrderRepositoryMongo;
+import ch.hslu.wipro.micros.repository.OrderRepositoryVolatile;
 import ch.hslu.wipro.micros.service.config.ConfigConsts;
 import ch.hslu.wipro.micros.service.config.ConfigService;
 
@@ -7,16 +10,16 @@ public class RepositoryFactory {
     private static ConfigService configService = new ConfigService();
 
     public static RepositoryService getRepository() {
-        RepositoryService repositoryService;
+        OrderRepository orderRepository;
 
         switch (configService.getRepositoryStrategy()) {
             case "mongo_db":
-                repositoryService = new RepositoryServiceMongo();
+                orderRepository = new OrderRepositoryMongo();
                 break;
             default:
-                repositoryService = new RepositoryServiceDefault();
+                orderRepository = new OrderRepositoryVolatile();
         }
 
-        return repositoryService;
+        return new RepositoryService(orderRepository);
     }
 }
