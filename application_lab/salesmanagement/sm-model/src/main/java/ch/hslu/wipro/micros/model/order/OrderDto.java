@@ -4,37 +4,28 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 public class OrderDto {
-    private final String correlationId;
     private int customerId;
-    private Map<Integer, Integer> amountToArticleMap;
+    private Map<Integer, Integer> amountToArticle;
     private BigDecimal totalPrice;
-
-    OrderDto(String correlationId) {
-        this.correlationId = correlationId;
-    }
 
     void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
 
-    void setAmountToArticleMap(Map<Integer, Integer> amountToArticleMap) {
-        this.amountToArticleMap = amountToArticleMap;
+    void setAmountToArticle(Map<Integer, Integer> amountToArticle) {
+        this.amountToArticle = amountToArticle;
     }
 
     void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 
-    public String getCorrelationId() {
-        return correlationId;
-    }
-
     public int getCustomerId() {
         return customerId;
     }
 
-    public Map<Integer, Integer> getAmountToArticleMap() {
-        return amountToArticleMap;
+    public Map<Integer, Integer> getAmountToArticle() {
+        return amountToArticle;
     }
 
     public BigDecimal getTotalPrice() {

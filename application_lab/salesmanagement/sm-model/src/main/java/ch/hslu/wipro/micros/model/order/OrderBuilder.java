@@ -4,15 +4,9 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 public class OrderBuilder {
-    private String correlationId;
     private int customerId;
     private Map<Integer, Integer> amountToArticleMap;
     private BigDecimal totalPrice;
-
-    public OrderBuilder withCorrelationId(String correlationId) {
-        this.correlationId = correlationId;
-        return this;
-    }
 
     public OrderBuilder atCustomer(int customerId) {
         this.customerId = customerId;
@@ -30,9 +24,9 @@ public class OrderBuilder {
     }
 
     public OrderDto build() {
-        OrderDto orderDto = new OrderDto(correlationId);
+        OrderDto orderDto = new OrderDto();
         orderDto.setCustomerId(customerId);
-        orderDto.setAmountToArticleMap(amountToArticleMap);
+        orderDto.setAmountToArticle(amountToArticleMap);
         orderDto.setTotalPrice(totalPrice);
 
         return orderDto;
