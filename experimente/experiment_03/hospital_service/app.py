@@ -31,6 +31,8 @@ def hospital():
     for line in f:
         messages.append(line)
 
+    f.close()
+
     return jsonify(messages)
 
 
