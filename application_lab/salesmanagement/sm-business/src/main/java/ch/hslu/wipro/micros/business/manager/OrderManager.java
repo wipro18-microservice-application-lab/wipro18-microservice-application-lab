@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public class OrderManager {
-    private ConfigService configService = new ConfigService();
     private final Channel channel;
+    private ConfigService configService = new ConfigService();
 
     public OrderManager() throws IOException, TimeoutException {
         this.channel = new ChannelBuilder()
@@ -30,8 +30,10 @@ public class OrderManager {
     }
 
     public void handleIncomingOrders() throws IOException {
+        boolean autoAck = false;
+
         channel.basicConsume(configService.getOrderCommandQueue(),
-                false,
+                autoAck,
                 new OrderConsumer(channel));
     }
 }

@@ -1,14 +1,21 @@
 package ch.hslu.wipro.micros.business.consumer;
 
-import static com.rabbitmq.client.AMQP.BasicProperties;
+import ch.hslu.wipro.micros.business.saga.OrderCreateState;
+import ch.hslu.wipro.micros.business.saga.OrderSaga;
+import ch.hslu.wipro.micros.business.saga.OrderSagaBuilder;
+import ch.hslu.wipro.micros.service.convertion.OrderCreateCommandConverter;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+
+import static com.rabbitmq.client.AMQP.BasicProperties;
 
 public class OrderConsumer extends DefaultConsumer {
+    private static final Logger logger = LogManager.getLogger(OrderConsumer.class);
 
     public OrderConsumer(Channel channel) {
         super(channel);
@@ -18,16 +25,16 @@ public class OrderConsumer extends DefaultConsumer {
     public void handleDelivery(String consumerTag, Envelope envelope,
                                BasicProperties properties, byte[] body) throws IOException {
 
-        String route = "";
-        BasicProperties basicProperties = new BasicProperties
-                .Builder()
-                .correlationId(properties.getCorrelationId())
+        logger.info("handle incoming order with correlation id: {}", properties.getCorrelationId());
+
+        OrderSaga orderSaga = new OrderSagaBuilder()
+                .withStateSequence(new OrderCreateState())
+                .withProperties(properties)
+                .atDeliveryTag(envelope.getDeliveryTag())
+                .atOrder(OrderCreateCommandConverter.fromBytes(body))
+                .overChannel(super.getChannel())
                 .build();
 
-        super.getChannel().basicPublish(
-                route,
-                properties.getReplyTo(),
-                basicProperties,
-                "ORDER COMPLETED".getBytes(StandardCharsets.UTF_8));
+        orderSaga.process();
     }
 }

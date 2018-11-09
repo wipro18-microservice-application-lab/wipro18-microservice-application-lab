@@ -29,7 +29,7 @@ public class OrderSagaBuilderTest {
     @Test
     public void testOrderSagaBuilderState() {
         OrderSaga orderSaga = new OrderSagaBuilder()
-                .withStartState(ORDER_SAGA_STATE)
+                .withStateSequence(ORDER_SAGA_STATE)
                 .build();
 
         assertEquals(ORDER_SAGA_STATE, orderSaga.getState());
@@ -39,7 +39,7 @@ public class OrderSagaBuilderTest {
     public void testOrderSagaBuilderCorrelationId() {
         OrderSaga orderSaga = new OrderSagaBuilder()
                 .atOrder(ORDER)
-                .withStartState(ORDER_SAGA_STATE)
+                .withStateSequence(ORDER_SAGA_STATE)
                 .build();
 
         assertNotNull(orderSaga.getContext().getCorrelationId());
