@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 public class SalesService {
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
     public String healthCheck() {
         return "running";
     }
