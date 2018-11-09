@@ -1,19 +1,20 @@
 import pika
 
 DISCOVERY_EXCHANGE = 'ch.hslu.wipro.micros.Discovery'
-REGISTER_EVENT_QUEUE = 'ch.hslu.wipro.micros.discovery.RegisterEventQueue'
-DISCOVERY_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.DiscoverCommandQueue'
+REGISTER_EVENT_QUEUE = 'ch.hslu.wipro.micros.discovery.RegisterCommand'
+DISCOVERY_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.DiscoverCommand'
+HOST = 'localhost'
 
 
-patients = []
+registered_services = []
 
 
 def registered_event_consumer(ch, method, properties, body):
-    patients.append(body)
+    registered_services.append(body)
 
 
-def listen_for_register_events():
-    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+def listen_for_register_commands():
+    connection = pika.BlockingConnection(pika.ConnectionParameters(HOST))
     channel = connection.channel()
 
     channel.basic_consume(registered_event_consumer,
@@ -24,4 +25,4 @@ def listen_for_register_events():
 
 
 if __name__ == '__main__':
-    listen_for_register_events()
+    listen_for_register_commands()
