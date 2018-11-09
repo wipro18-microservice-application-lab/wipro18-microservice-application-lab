@@ -7,17 +7,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OrderRepositoryVolatile implements OrderRepository {
-    private Map<Integer, OrderDto> orderDtoMap = new HashMap<>();
+    private Map<String, OrderDto> orderDtoMap = new HashMap<>();
 
     @Override
-    public OrderDto get(int id) {
+    public OrderDto get(String correlationId) {
         OrderDto defaultOrder = new OrderBuilder().build();
 
         return orderDtoMap.entrySet()
                 .stream()
-                .filter(o -> o.getKey() == id)
+                .filter(o -> o.getKey().equals(correlationId))
                 .map(Map.Entry::getValue)
                 .findFirst()
                 .orElse(defaultOrder);
+    }
+
+    @Override
+    public void set(String correlationId, OrderDto orderDto) {
+        orderDtoMap.put(correlationId, orderDto);
     }
 }
