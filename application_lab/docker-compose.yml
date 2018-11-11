@@ -8,3 +8,9 @@ services:
     - "7000:15672"
     - "5672:5672"
     hostname: rabbitmq
+  client:
+    build:
+      context: ./client
+    ports:
+    - "7001:80"
+    hostname: client
