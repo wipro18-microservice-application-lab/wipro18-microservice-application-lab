@@ -9,4 +9,12 @@ public class CommandFactory {
         command.setOrderDTO(orderDTO);
         return command;
     }
+
+    public static SalesCommand createCreateArticleCommand(OrderDTO orderDTO) {
+        String label = "article.command.inventory";
+        SalesCommand command = new SalesCommand();
+        command.setLabel(label);
+        command.setOrderDTO(orderDTO);
+        return command;
+    }
 }
