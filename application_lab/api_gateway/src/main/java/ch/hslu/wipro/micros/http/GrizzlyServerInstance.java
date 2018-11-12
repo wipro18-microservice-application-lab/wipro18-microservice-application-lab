@@ -16,6 +16,7 @@ public class GrizzlyServerInstance {
         server = null;
         resourceConfig = new ResourceConfig()
                 .register(MoxyJsonFeature.class)
+                .register(CORSResponseFilter.class)
                 .packages(serviceResourcePackage);
     }
 
