@@ -2,14 +2,10 @@ package ch.hslu.wipro.micros.service.warehouse;
 
 import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
-import ch.hslu.wipro.micros.rabbit.RabbitMqClient;
 import ch.hslu.wipro.micros.service.CommandFactory;
-import ch.hslu.wipro.micros.service.sales.OrderDTO;
-import ch.hslu.wipro.micros.service.sales.SalesCommand;
 import com.google.gson.Gson;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
