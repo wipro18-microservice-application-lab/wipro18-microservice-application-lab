@@ -6,15 +6,15 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * Test class for {@link OrderJsonConverter}
+ * Test class for {@link GsonConverter}
  */
-public class OrderJsonConverterTest {
+public class GsonConverterTest {
 
-    JsonConverter<OrderDTO> orderDTOJsonConverter;
+    private JsonConverter orderJsonConverter;
 
     @Before
     public void before() {
-        orderDTOJsonConverter = new OrderJsonConverter();
+        orderJsonConverter = new GsonConverter();
     }
 
     @Test
@@ -22,7 +22,7 @@ public class OrderJsonConverterTest {
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setTotalPrice(1000.0);
         orderDTO.setCustomerId(22);
-        String result = orderDTOJsonConverter.toJsonString(orderDTO);
+        String result = orderJsonConverter.toJsonString(orderDTO);
         Assert.assertEquals("{\"customerId\":22,\"totalPrice\":1000.0}", result);
     }
 }

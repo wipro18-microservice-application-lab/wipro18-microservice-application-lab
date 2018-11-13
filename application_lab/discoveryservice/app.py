@@ -3,8 +3,8 @@ from threading import Thread
 import pika
 
 DISCOVERY_EXCHANGE = 'ch.hslu.wipro.micros.Discovery'
-REGISTER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.RegisterCommand'
-DISCOVER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.DiscoverCommand'
+REGISTER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.RegisterEventQueue'
+DISCOVER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.DiscoverCommandQueue'
 HOST = 'localhost'
 
 
