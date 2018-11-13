@@ -16,4 +16,12 @@ public class CommandFactory {
         command.setPayload(orderDTO);
         return command;
     }
+
+    public static Command<String> createGetAllArticleCommand() {
+        Command<String> command = new Command<>();
+        String routingKey = "article.command.get";
+        command.setRoutingKey(routingKey);
+        command.setPayload("all");
+        return command;
+    }
 }
