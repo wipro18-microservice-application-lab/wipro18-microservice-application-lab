@@ -3,10 +3,15 @@ package ch.hslu.wipro.micros.service;
 import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.service.sales.OrderDTO;
 
+/**
+ * This class represents a factory to create message broker commands.
+ */
 public class CommandFactory {
 
+    /**
+     * Private constructor.
+     */
     private CommandFactory() {
-
     }
 
     public static Command<OrderDTO> createOrderCreateCommand(OrderDTO orderDTO) {
