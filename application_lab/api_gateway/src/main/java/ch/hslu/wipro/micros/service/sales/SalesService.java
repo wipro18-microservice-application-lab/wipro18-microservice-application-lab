@@ -9,11 +9,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.Optional;
 
-@Path("/sales")
+@Path("sales")
 public class SalesService {
 
     @GET
-    @Path("/health")
+    @Path("health")
     @Produces(MediaType.TEXT_PLAIN)
     public String healthCheck() {
         return "running";

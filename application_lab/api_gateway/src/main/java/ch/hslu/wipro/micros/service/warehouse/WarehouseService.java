@@ -13,11 +13,11 @@ import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 
-@Path("/warehouse")
+@Path("warehouse")
 public class WarehouseService {
 
     @GET
-    @Path("/health")
+    @Path("health")
     @Produces(MediaType.TEXT_PLAIN)
     public String healthCheck() {
         return "running";
