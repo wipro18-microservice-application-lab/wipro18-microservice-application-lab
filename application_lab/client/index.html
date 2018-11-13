@@ -4,16 +4,22 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="static/imgs/poly-rabbit.png">
     
-    <link href="theme/mui.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/custom.css" rel="stylesheet" type="text/css" />
-    <link href="css/sidemenu.css" rel="stylesheet" type="text/css" />
+    <link href="static/theme/mui.min.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/sidemenu.css" rel="stylesheet" type="text/css" />
 	
-    <script src="theme/mui.min.js"></script>
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/mui-webcomponents.min.js"></script>
-    <script src="js/dynamic-content.js"></script>
-    <script src="js/sidemenu.js"></script>
+    <script src="static/theme/mui.min.js"></script>
+    <script src="static/js/jquery-2.1.4.min.js"></script>
+    <script src="static/js/mui-webcomponents.min.js"></script>
+    <script src="globals.js"></script>
+    <script src="utils/content-loader.js"></script>
+    <script src="utils/sidemenu-init.js"></script>
+
+    <script src="services/health-check.js"></script>
+    <script src="services/sales-manager.js"></script>
+    <script src="services/warehouse-manager.js"></script>
   </head>
   <body>
     <div id="sidedrawer" class="mui--no-user-select">
@@ -24,13 +30,15 @@
 	</header>
 	<div id="content-wrapper">
 		<div id="content" class="mui-container-fluid">
-			
+			<!-- dynamic -->
 		</div>
 	</div>
 	<footer id="footer">
 	  <div class="mui-container-fluid">
 		<br>
-		Made with ♥ by <a href="https://www.muicss.com">MUI</a>
+		WIPRO 2018 <a href="https://gitlab.enterpriselab.ch/tbjauner/wipro18-microservice-application-lab">
+          Microservice Application Lab
+      </a>
 	  </div>
 	</footer>
   </body>

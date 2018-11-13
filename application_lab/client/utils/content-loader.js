@@ -1,7 +1,7 @@
 jQuery(function($) {
 	$( "#header" ).load( "components/appbar.html" );
 	$( "#sidedrawer" ).load( "components/sidemenu.html" );
-	$( "#content" ).load( "pages/login.html" );
+	$( "#content" ).load( "pages/landing_page.html" );
 });
 
 function loadPage(pageName) {

@@ -1,3 +1,7 @@
+<div id="warehouse-health" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
 <table class="mui-table mui-table--bordered">
   <thead>
     <tr>
@@ -19,3 +23,10 @@
     </tr>
   </tbody>
 </table>
+
+<script>
+    jQuery(function($) {
+        checkHealth('warehouse-health', WAREHOUSE_HEALTH_URL);
+        loadInventory();
+    });
+</script>
