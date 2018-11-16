@@ -5,7 +5,9 @@ import pika
 DISCOVERY_EXCHANGE = 'ch.hslu.wipro.micros.Discovery'
 REGISTER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.RegisterCommand'
 DISCOVER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.DiscoverCommand'
-HOST = 'localhost'
+
+CREDENTIALS = pika.PlainCredentials('guest', 'guest')
+HOST = 'rabbitmq'
 
 
 registered_services = []
@@ -16,7 +18,7 @@ def register_command_consumer(ch, method, properties, body):
 
 
 def listen_for_register_commands():
-    connection = pika.BlockingConnection(pika.ConnectionParameters(HOST))
+    connection = pika.BlockingConnection(pika.ConnectionParameters(HOST, 5672, '/', CREDENTIALS))
     channel = connection.channel()
 
     channel.basic_consume(register_command_consumer,
