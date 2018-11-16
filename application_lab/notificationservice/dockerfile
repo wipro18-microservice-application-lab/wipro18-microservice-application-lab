@@ -1,0 +1,11 @@
+FROM golang:latest
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY . .
+
+RUN go get github.com/streadway/amqp
+RUN go build -o notificationservice .
+
+CMD ["/app/notificationservice"]

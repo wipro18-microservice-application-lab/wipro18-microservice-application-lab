@@ -8,9 +8,17 @@ services:
     - "7000:15672"
     - "5672:5672"
     hostname: rabbitmq
+  sales:
+    build:
+      context: ./salesmanagement
+    hostname: sales
   client:
     build:
       context: ./client
     ports:
     - "7001:80"
     hostname: client
+  notification:
+    build:
+      context: ./notificationservice
+    hostname: notification
