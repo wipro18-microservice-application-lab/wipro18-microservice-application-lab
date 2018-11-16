@@ -3,17 +3,11 @@ from threading import Thread
 import pika
 
 DISCOVERY_EXCHANGE = 'ch.hslu.wipro.micros.Discovery'
-<<<<<<< HEAD
 REGISTER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.RegisterCommand'
 DISCOVER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.DiscoverCommand'
 
 CREDENTIALS = pika.PlainCredentials('guest', 'guest')
 HOST = 'rabbitmq'
-=======
-REGISTER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.RegisterEventQueue'
-DISCOVER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.DiscoverCommandQueue'
-HOST = 'localhost'
->>>>>>> 259879ae9961d5076e83538e72b97c5a2e23b3e2
 
 
 registered_services = []
