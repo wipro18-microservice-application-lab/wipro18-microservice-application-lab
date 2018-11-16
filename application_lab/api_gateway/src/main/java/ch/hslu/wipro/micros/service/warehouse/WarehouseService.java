@@ -27,14 +27,6 @@ public class WarehouseService {
         return "running";
     }
 
-<<<<<<< HEAD
-    @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response createOrder(Object object) {
-
-        return Response.status(201).entity("[{\"id\":\"ec7445cb-44f0-4f6d-95d1-295c9a506f40\",\"name\":\"Samsung Galaxy A6\",\"description\":\"Smartphone\",\"price\":500.0}]\n").build();
-=======
     @GET
     @Path("allArticles")
     @Produces(MediaType.APPLICATION_JSON)
@@ -73,6 +65,5 @@ public class WarehouseService {
         articles.add(articleDTO2);
 
         return new Gson().toJson(articles);
->>>>>>> 259879ae9961d5076e83538e72b97c5a2e23b3e2
     }
 }
