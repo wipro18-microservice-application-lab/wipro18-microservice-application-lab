@@ -1,6 +1,8 @@
+import time
 from threading import Thread
 
 import pika
+from pika import exceptions
 
 DISCOVERY_EXCHANGE = 'ch.hslu.wipro.micros.Discovery'
 REGISTER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.RegisterCommand'
@@ -8,7 +10,6 @@ DISCOVER_COMMAND_QUEUE = 'ch.hslu.wipro.micros.discovery.DiscoverCommand'
 
 CREDENTIALS = pika.PlainCredentials('guest', 'guest')
 HOST = 'rabbitmq'
-
 
 registered_services = []
 
@@ -47,7 +48,7 @@ def discover_command_consumer(ch, method, properties, body):
 
 
 def listen_for_discover_commands():
-    connection = pika.BlockingConnection(pika.ConnectionParameters(HOST))
+    connection = pika.BlockingConnection(pika.ConnectionParameters(HOST, 5672, '/', CREDENTIALS))
     channel = connection.channel()
 
     channel.basic_consume(discover_command_consumer,
@@ -57,6 +58,24 @@ def listen_for_discover_commands():
     channel.start_consuming()
 
 
+def test_rabbitmq_connection_blocking(sleep_time):
+
+    while True:
+        time.sleep(sleep_time)
+
+        try:
+            connection = pika.BlockingConnection(pika.ConnectionParameters(HOST, 5672, '/', CREDENTIALS))
+            channel = connection.channel()
+
+            break
+        except (pika.exceptions.AMQPChannelError, pika.exceptions.AMQPConnectionError):
+            print("Connection was closed, retrying...")
+
+    return channel
+
+
 if __name__ == '__main__':
+    test_rabbitmq_connection_blocking(sleep_time=5)
+
     Thread(target=listen_for_register_commands).start()
     Thread(target=listen_for_discover_commands).start()
