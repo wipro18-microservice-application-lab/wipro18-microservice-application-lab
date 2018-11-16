@@ -5,13 +5,9 @@ import ch.hslu.wipro.micros.rabbit.RabbitClient;
 import ch.hslu.wipro.micros.service.CommandFactory;
 import com.google.gson.Gson;
 
-<<<<<<< HEAD
-import javax.ws.rs.*;
-=======
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
->>>>>>> 259879ae9961d5076e83538e72b97c5a2e23b3e2
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -46,6 +42,7 @@ public class WarehouseService {
     /**
      * TO DELETE
      * Generates pseudo data for rest testing.
+     *
      * @return
      */
     private String generatePseudoData() {
