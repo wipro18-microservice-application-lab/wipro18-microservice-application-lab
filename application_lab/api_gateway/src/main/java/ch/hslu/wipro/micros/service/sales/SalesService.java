@@ -1,36 +1,39 @@
 package ch.hslu.wipro.micros.service.sales;
 
-import ch.hslu.wipro.micros.rabbit.RabbitMqClient;
+import ch.hslu.wipro.micros.rabbit.Command;
+import ch.hslu.wipro.micros.rabbit.RabbitClient;
+import ch.hslu.wipro.micros.service.CommandFactory;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
+import java.util.Optional;
 
-@Path("/sales")
+@Path("sales")
 public class SalesService {
 
     @GET
-    @Path("/health")
+    @Path("health")
     @Produces(MediaType.TEXT_PLAIN)
     public String healthCheck() {
         return "running";
     }
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createOrder(OrderDTO orderDTO) {
-        SalesCommand command = CommandFactory.createCreateOrderCommand(orderDTO); // Todo Interfaces
+        Command<OrderDTO> command = CommandFactory.createOrderCreateCommand(orderDTO);
+        String rabbitAnswer = null;
         try {
-            RabbitMqClient client = new RabbitMqClient();
-            client.call(command, "ch.hslu.wipro.micros.Order"); //Todo From discovery
+            RabbitClient client = new RabbitClient();
+            rabbitAnswer = client.call(command, "ch.hslu.wipro.micros.Order"); //Todo From discovery
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Response.status(201).entity("order created - customer.id: "+orderDTO.getCustomerId()).build();
+
+        String jsonString = Optional.ofNullable(rabbitAnswer).orElse("{error}");
+
+        return Response.ok(jsonString, MediaType.APPLICATION_JSON).build();
     }
 }

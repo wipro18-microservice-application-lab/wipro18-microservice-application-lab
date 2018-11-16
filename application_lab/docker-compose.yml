@@ -5,20 +5,36 @@ services:
     build:
       context: ./rabbitmq
     ports:
-    - "7000:15672"
-    - "5672:5672"
+      - "7000:15672"
+      - "5672:5672"
     hostname: rabbitmq
+    
+  discovery:
+    build:
+      context: ./discoveryservice
+    depends_on:
+      - "rabbitmq"  
+    hostname: discovery
+    
   sales:
     build:
       context: ./salesmanagement
+    depends_on:
+      - "discovery"
     hostname: sales
+    
   client:
     build:
       context: ./client
     ports:
-    - "7001:80"
+      - "7001:80"
+    depends_on:
+      - "discovery"
     hostname: client
+    
   notification:
     build:
       context: ./notificationservice
+    depends_on:
+      - "discovery"
     hostname: notification
