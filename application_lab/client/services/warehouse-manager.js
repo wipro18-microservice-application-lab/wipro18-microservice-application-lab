@@ -5,8 +5,8 @@ function loadInventory() {
             'Content-Type': 'application/json'
         },
         type: 'POST',
-        url: WAREHOUSE_URL,
-        data: JSON.stringify("article.command.inventory"),
+        url: SALES_URL,
+        data: JSON.stringify({"customerId":11,"amountToArticle":{},"totalPrice":30.0}),
         contentType: "application/json; charset=utf-8",
         traditional: true,
         success: function (data) {
