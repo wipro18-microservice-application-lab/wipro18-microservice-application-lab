@@ -1,6 +1,7 @@
-# Salesmanagement| Routing Key / Topic              | Beschreibung                                           | Inputdaten                                                                        | Outputdaten                          |
-|----------------------------------|--------------------------------------------------------|-----------------------------------------------------------------------------------|--------------------------------------|
-| Order.command.create             | Erstellung einer neuen Bestellung                      | {"customerId":Integer,"amountToArticle":Map,"totalPrice":Double, "Status":String} | {"orderId":Integer, "result":String} |
-| Order.command.getAll             | Liefert eine Liste von Bestellungen                    | {}                                                                                | {"orders":List}                      |
-| Order.command.getAllByCustomerId | Liefert eine Liste mit allen Bestellungen eines Kunden | {"customerId":Integer}                                                            | {"orders":List}                      |
-| Order.command.updateStatus       | Verändert einen Status einer Bestellung                | {"orderId": Integer, "Status":String}                                             | {"result":String}                    |
+# Salesmanagement
+| Routing Key / Topic              | Inputdaten                                                                        | Outputdaten                          |
+| :------------------------------: | :-------------------------------------------------------------------------------: | :----------------------------------: |
+| Order.command.create             | {"customerId":Integer,"amountToArticle":Map,"totalPrice":Double, "Status":String} | {"orderId":Integer, "result":String} |
+| Order.command.getAll             | {}                                                                                | {"orders":List}                      |
+| Order.command.getAllByCustomerId | {"customerId":Integer}                                                            | {"orders":List}                      |
+| Order.command.updateStatus       | {"orderId": Integer, "Status":String}                                             | {"result":String}                    |
