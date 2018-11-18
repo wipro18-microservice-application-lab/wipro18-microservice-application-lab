@@ -2,9 +2,9 @@ package ch.hslu.wipro.micros.service;
 
 public class StaticMessageRepository {
 
-    private static MessageRepository messageRepository = new MessageRepository();
+    private static MessageRepository messageRepository = null;
 
-    public static void prepareRepository() {
+    private static void prepareRepository() {
         MessageDomain orderDomain = new MessageDomain();
         orderDomain.addCommand("order.command.create");
         MessageDomain articleDomain = new MessageDomain();
@@ -15,6 +15,10 @@ public class StaticMessageRepository {
     }
 
     public static MessageRepository getMessageRepository() {
+        if (messageRepository == null) {
+            messageRepository = new MessageRepository();
+            prepareRepository();
+        }
         return messageRepository;
     }
 }
