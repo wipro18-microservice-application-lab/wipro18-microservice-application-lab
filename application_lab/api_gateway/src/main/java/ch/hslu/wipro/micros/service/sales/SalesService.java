@@ -39,6 +39,25 @@ public class SalesService {
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
     }
 
+    @Path("customer/{customer}")
+    @GET
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllOrdersByCustomerId(@PathParam("customer") long id) {
+        Command<CustomerIdDTO> command = CommandFactory.createGetAllByCustomerIdCommand(null);
+        String answer = callMessageBroker(command);
+        return Response.ok(answer, MediaType.APPLICATION_JSON).build();
+    }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateOrderStatus(UpdateOrderDTO dto) {
+        Command<UpdateOrderDTO> command = CommandFactory.createUpdateOrderStatusCommand(dto);
+        String answer = callMessageBroker(command);
+        return Response.ok(answer, MediaType.APPLICATION_JSON).build();
+    }
+
     private String callMessageBroker(Command<?> command) {
         String answer = null;
         try {
