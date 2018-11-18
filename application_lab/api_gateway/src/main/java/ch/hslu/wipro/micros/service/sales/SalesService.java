@@ -1,6 +1,7 @@
 package ch.hslu.wipro.micros.service.sales;
 
 import ch.hslu.wipro.micros.rabbit.Command;
+import ch.hslu.wipro.micros.rabbit.MessageBroker;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
 import ch.hslu.wipro.micros.service.CommandFactory;
 
@@ -26,7 +27,7 @@ public class SalesService {
         Command<OrderDTO> command = CommandFactory.createOrderCreateCommand(orderDTO);
         String rabbitAnswer = null;
         try {
-            RabbitClient client = new RabbitClient();
+            MessageBroker client = new RabbitClient();
             rabbitAnswer = client.call(command, "ch.hslu.wipro.micros.Order"); //Todo From discovery
         } catch (Exception e) {
             e.printStackTrace();

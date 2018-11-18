@@ -7,6 +7,7 @@ import ch.hslu.wipro.micros.service.sales.OrderDTO;
  * This class represents a factory to create message broker commands.
  */
 public class CommandFactory {
+    private static MessageRepository messageRepository = StaticMessageRepository.getMessageRepository();
 
     /**
      * Private constructor.
@@ -17,6 +18,7 @@ public class CommandFactory {
     public static Command<OrderDTO> createOrderCreateCommand(OrderDTO orderDTO) {
         Command<OrderDTO> command = new Command<>();
         String routingKey = "order.command.create";
+        routingKey = messageRepository.getDomain("order").getCommand("create");
         command.setRoutingKey(routingKey);
         command.setPayload(orderDTO);
         return command;
