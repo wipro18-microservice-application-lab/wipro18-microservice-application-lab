@@ -15,8 +15,6 @@ import java.util.Optional;
 
 @Path("sales")
 public class SalesService {
-    private static MessageRepository REPOSITORY = StaticMessageRepository.getMessageRepository();
-
     @GET
     @Path("health")
     @Produces(MediaType.TEXT_PLAIN)
@@ -28,18 +26,27 @@ public class SalesService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createOrder(OrderDTO orderDTO) {
-        MessageDomain domain = REPOSITORY.getDomain("order");
         Command<OrderDTO> command = CommandFactory.createOrderCreateCommand(orderDTO);
-        String rabbitAnswer = null;
+        String answer = callMessageBroker(command);
+        return Response.ok(answer, MediaType.APPLICATION_JSON).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllOrders() {
+        Command<String> command = CommandFactory.createGetAllOrdersCommand();
+        String answer = callMessageBroker(command);
+        return Response.ok(answer, MediaType.APPLICATION_JSON).build();
+    }
+
+    private String callMessageBroker(Command<?> command) {
+        String answer = null;
         try {
             MessageBroker client = new RabbitClient();
-            rabbitAnswer = client.call(command, domain.getExchange());
+            answer = client.call(command);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        String jsonString = Optional.ofNullable(rabbitAnswer).orElse("{error}");
-
-        return Response.ok(jsonString, MediaType.APPLICATION_JSON).build();
+        return Optional.ofNullable(answer).orElse("{error}");
     }
 }

@@ -4,5 +4,5 @@ import java.io.IOException;
 
 public interface MessageBroker {
 
-    String call(Command command, String exchange) throws IOException, InterruptedException;
+    String call(Command command) throws IOException, InterruptedException;
 }

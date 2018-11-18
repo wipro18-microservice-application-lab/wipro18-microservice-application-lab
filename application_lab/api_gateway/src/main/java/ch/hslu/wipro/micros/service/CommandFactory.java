@@ -16,10 +16,20 @@ public class CommandFactory {
     }
 
     public static Command<OrderDTO> createOrderCreateCommand(OrderDTO orderDTO) {
+        MessageDomain domain = messageRepository.getDomain("order");
         Command<OrderDTO> command = new Command<>();
-        String routingKey = messageRepository.getDomain("order").getCommand("create");
-        command.setRoutingKey(routingKey);
+        command.setRoutingKey(domain.getCommand("create"));
         command.setPayload(orderDTO);
+        command.setToExchange(domain.getExchange());
+        return command;
+    }
+
+    public static Command<String> createGetAllOrdersCommand() {
+        MessageDomain domain = messageRepository.getDomain("order");
+        Command<String> command = new Command<>();
+        command.setRoutingKey(domain.getCommand("getAll"));
+        command.setPayload("");
+        command.setToExchange(domain.getExchange());
         return command;
     }
 
@@ -30,4 +40,5 @@ public class CommandFactory {
         command.setPayload("");
         return command;
     }
+
 }

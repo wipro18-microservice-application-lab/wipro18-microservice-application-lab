@@ -8,7 +8,7 @@ public class MessageRepositoryTest {
     @Test
     public void testGetDomain() {
         MessageRepository repository = new MessageRepository();
-        MessageDomain domain = new MessageDomain();
+        MessageDomain domain = new MessageDomain("test");
         repository.addDomain("test", domain);
         Assert.assertNotNull(repository.getDomain("test"));
     }

@@ -27,7 +27,7 @@ public class RabbitClient implements MessageBroker {
     }
 
     @Override
-    public String call(Command command, String exchange) throws IOException, InterruptedException {
+    public String call(Command command) throws IOException, InterruptedException {
         final String corrId = UUID.randomUUID().toString();
         String replyQueueName = channel.queueDeclare().getQueue();
         AMQP.BasicProperties props = new AMQP.BasicProperties
@@ -37,7 +37,7 @@ public class RabbitClient implements MessageBroker {
                 .build();
 
         byte[] message = payloadToJson(command);
-        channel.basicPublish(exchange, command.getRoutingKey(), props, message);
+        channel.basicPublish(command.getToExchange(), command.getRoutingKey(), props, message);
 
         final BlockingQueue<String> response = new ArrayBlockingQueue<String>(1);
 
