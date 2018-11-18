@@ -7,10 +7,12 @@ public class MessageDomain {
 
     private List<String> commands;
     private List<String> events;
+    private String exchange;
 
-    public MessageDomain() {
+    public MessageDomain(String exchange) {
         commands = new ArrayList<>();
         events = new ArrayList<>();
+        this.exchange = exchange;
     }
 
     public void addCommand(String command) {
@@ -26,5 +28,9 @@ public class MessageDomain {
                 .filter(command -> command.contains(pattern))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("No command for pattern: "+pattern+" found"));
+    }
+
+    public String getExchange() {
+        return exchange;
     }
 }

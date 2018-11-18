@@ -17,8 +17,7 @@ public class CommandFactory {
 
     public static Command<OrderDTO> createOrderCreateCommand(OrderDTO orderDTO) {
         Command<OrderDTO> command = new Command<>();
-        String routingKey = "order.command.create";
-        routingKey = messageRepository.getDomain("order").getCommand("create");
+        String routingKey = messageRepository.getDomain("order").getCommand("create");
         command.setRoutingKey(routingKey);
         command.setPayload(orderDTO);
         return command;
@@ -26,9 +25,9 @@ public class CommandFactory {
 
     public static Command<String> createGetAllArticleCommand() {
         Command<String> command = new Command<>();
-        String routingKey = "article.command.get";
+        String routingKey = messageRepository.getDomain("article").getCommand("getAll");
         command.setRoutingKey(routingKey);
-        command.setPayload("all");
+        command.setPayload("");
         return command;
     }
 }

@@ -4,6 +4,9 @@ import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.rabbit.MessageBroker;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
 import ch.hslu.wipro.micros.service.CommandFactory;
+import ch.hslu.wipro.micros.service.MessageDomain;
+import ch.hslu.wipro.micros.service.MessageRepository;
+import ch.hslu.wipro.micros.service.StaticMessageRepository;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -12,6 +15,7 @@ import java.util.Optional;
 
 @Path("sales")
 public class SalesService {
+    private static MessageRepository REPOSITORY = StaticMessageRepository.getMessageRepository();
 
     @GET
     @Path("health")
@@ -24,11 +28,12 @@ public class SalesService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createOrder(OrderDTO orderDTO) {
+        MessageDomain domain = REPOSITORY.getDomain("order");
         Command<OrderDTO> command = CommandFactory.createOrderCreateCommand(orderDTO);
         String rabbitAnswer = null;
         try {
             MessageBroker client = new RabbitClient();
-            rabbitAnswer = client.call(command, "ch.hslu.wipro.micros.Order"); //Todo From discovery
+            rabbitAnswer = client.call(command, domain.getExchange());
         } catch (Exception e) {
             e.printStackTrace();
         }
