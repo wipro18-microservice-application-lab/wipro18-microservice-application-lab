@@ -3,7 +3,6 @@ package ch.hslu.wipro.micros.http;
 import ch.hslu.wipro.micros.util.GsonProvider;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
-import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 
 import java.net.URI;
@@ -18,6 +17,7 @@ public class GrizzlyServerInstance {
 
     /**
      * Creates a new GrizzlyServerInstance object. This method loads all webservice classes from the given package.
+     *
      * @param serviceResourcePackage package with webservice classes
      */
     public GrizzlyServerInstance(String serviceResourcePackage) {

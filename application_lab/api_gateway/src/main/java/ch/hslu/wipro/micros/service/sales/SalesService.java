@@ -4,11 +4,6 @@ import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.rabbit.MessageBroker;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
 import ch.hslu.wipro.micros.service.CommandFactory;
-import ch.hslu.wipro.micros.service.MessageDomain;
-import ch.hslu.wipro.micros.service.MessageRepository;
-import ch.hslu.wipro.micros.service.StaticMessageRepository;
-import com.google.gson.Gson;
-import org.eclipse.persistence.annotations.Converter;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -26,6 +21,8 @@ public class SalesService {
 
     @POST
     public Response createOrder(OrderDTO orderDTO) {
+        System.out.println(orderDTO.getAmountToArticle());
+
         Command<OrderDTO> command = CommandFactory.createOrderCreateCommand(orderDTO);
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
