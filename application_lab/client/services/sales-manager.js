@@ -1,4 +1,4 @@
-function loadInventory() {
+function createOrder(orderDto) {
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -6,7 +6,7 @@ function loadInventory() {
         },
         type: 'POST',
         url: SALES_URL,
-        data: JSON.stringify({"customerId":11,"amountToArticle":{},"totalPrice":30.0}),
+        data: JSON.stringify(orderDto),
         contentType: "application/json; charset=utf-8",
         traditional: true,
         success: function (data) {

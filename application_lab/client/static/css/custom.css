@@ -122,6 +122,10 @@ button {
     text-decoration: none;
 }
 
+.mui-panel {
+    font-family: Consolas;
+}
+
 /**
  * Footer CSS
  */

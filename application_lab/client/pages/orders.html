@@ -2,6 +2,31 @@
     <!-- dynamic -->
 </div>
 
+<table class="mui-table mui-table--bordered">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>Apple</td>
+        <td>An apple is a sweet, edible fruit produced by an apple tree (Malus pumila). Apple trees are cultivated worldwide, and are the most widely grown species in the genus Malus.</td>
+        <td>1.20</td>
+        <td><button class="mui-btn mui-btn--flat mui-btn--primary" onclick="addArticle(0, 1.20)">Add</button></td>
+    </tr>
+    <tr>
+        <td>Carrot</td>
+        <td>The carrot (Daucus carota subsp. sativus) is a root vegetable, usually orange in colour, though purple, black, red, white, and yellow cultivars exist.</td>
+        <td>0.80</td>
+        <td><button class="mui-btn mui-btn--flat mui-btn--primary" onclick="addArticle(1, 0.80)">Add</button></td>
+    </tr>
+    </tbody>
+</table>
+
 <script>
     jQuery(function($) {
         checkHealth('sales-health', SALES_HEALTH_URL);
