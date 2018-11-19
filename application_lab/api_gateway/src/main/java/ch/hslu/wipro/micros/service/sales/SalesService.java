@@ -4,6 +4,8 @@ import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.rabbit.MessageBroker;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
 import ch.hslu.wipro.micros.service.CommandFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -12,6 +14,8 @@ import java.util.Optional;
 
 @Path("sales")
 public class SalesService {
+    private static Logger LOGGER = LogManager.getLogger();
+
     @GET
     @Path("health")
     @Produces(MediaType.TEXT_PLAIN)
@@ -23,8 +27,7 @@ public class SalesService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createOrder(OrderDTO orderDTO) {
-        System.out.println(orderDTO.getAmountToArticle());
-
+        LOGGER.info("create order: customer: "+orderDTO.getCustomerId()+", articles: "+orderDTO.getAmountToArticle());
         Command<OrderDTO> command = CommandFactory.createOrderCreateCommand(orderDTO);
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
