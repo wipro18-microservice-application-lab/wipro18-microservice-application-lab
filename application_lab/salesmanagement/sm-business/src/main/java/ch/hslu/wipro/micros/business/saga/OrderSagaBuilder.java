@@ -1,11 +1,13 @@
 package ch.hslu.wipro.micros.business.saga;
 
 import ch.hslu.wipro.micros.model.order.OrderDto;
+import ch.hslu.wipro.micros.service.convertion.JsonConverter;
 import com.rabbitmq.client.Channel;
 
 import static com.rabbitmq.client.AMQP.BasicProperties;
 
 public class OrderSagaBuilder {
+    private JsonConverter jsonConverter;
     private BasicProperties properties;
     private OrderSagaContext context;
     private OrderSagaState state;
@@ -14,6 +16,11 @@ public class OrderSagaBuilder {
 
     public OrderSagaBuilder() {
         this.context = new OrderSagaContext();
+    }
+
+    public OrderSagaBuilder withJsonConverter(JsonConverter jsonConverter) {
+        this.jsonConverter = jsonConverter;
+        return this;
     }
 
     public OrderSagaBuilder withStateSequence(OrderSagaState state) {
@@ -42,6 +49,7 @@ public class OrderSagaBuilder {
     }
 
     public OrderSaga build() {
+        context.setJsonConverter(jsonConverter);
         context.setChannel(channel);
         context.setProperties(properties);
         context.setDeliveryTag(deliveryTag);

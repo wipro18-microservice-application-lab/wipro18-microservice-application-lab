@@ -1,6 +1,8 @@
 package ch.hslu.wipro.micros.business;
 
-import ch.hslu.wipro.micros.business.manager.OrderManager;
+import ch.hslu.wipro.micros.business.manager.CommandManager;
+import ch.hslu.wipro.micros.business.manager.OrderCreateCommandManager;
+import ch.hslu.wipro.micros.business.manager.OrderGetAllCommandManager;
 import ch.hslu.wipro.micros.service.config.ErrorService;
 import ch.hslu.wipro.micros.service.discovery.DiscoveryService;
 import org.apache.logging.log4j.LogManager;
@@ -40,10 +42,14 @@ public class SalesManagementApp {
     }
 
     private static void startOderManager() {
+        logger.info("order manager handling incoming commands");
+
         try {
-            logger.info("order manager handling incoming orders");
-            OrderManager orderManager = new OrderManager();
-            orderManager.setup().handleIncomingOrders();
+            CommandManager orderCreateCommandManager = new OrderCreateCommandManager();
+            orderCreateCommandManager.setup().handleIncomingCommands();
+
+            CommandManager orderGetAllCommandManager = new OrderGetAllCommandManager();
+            orderGetAllCommandManager.setup().handleIncomingCommands();
         } catch (IOException | TimeoutException e) {
             errorService.logConnectionError(SalesManagementApp.class);
         }

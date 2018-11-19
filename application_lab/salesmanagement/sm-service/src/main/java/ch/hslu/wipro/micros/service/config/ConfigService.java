@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import static com.rabbitmq.client.AMQP.BasicProperties;
 
@@ -68,15 +69,26 @@ public class ConfigService {
                 .build();
     }
 
-    public String getOrderCommandQueue() {
-        return properties.getProperty("queue");
+    public String getOrderCreateCommandQueue() {
+        return properties.getProperty("create_command_queue");
+    }
+
+    public String getOrderGetAllCommandQueue() {
+        return properties.getProperty("get_all_command_queue");
     }
 
     public String getOrderExchange() {
         return properties.getProperty("exchange");
     }
 
-    public String getRoutingKey() {
-        return properties.getProperty("routing");
+    public String getRoutingKeyFor(String topic) {
+        String property = properties.getProperty("topics");
+        String[] routingTopics = property.split(";");
+
+        List<String> result = Arrays.stream(routingTopics)
+                .filter(i -> i.contains(topic))
+                .collect(Collectors.toList());
+
+        return result.get(0);
     }
 }

@@ -4,11 +4,11 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 public class OrderBuilder {
-    private int customerId;
+    private long customerId;
     private Map<Integer, Integer> amountToArticleMap;
     private BigDecimal totalPrice;
 
-    public OrderBuilder atCustomer(int customerId) {
+    public OrderBuilder atCustomer(long customerId) {
         this.customerId = customerId;
         return this;
     }

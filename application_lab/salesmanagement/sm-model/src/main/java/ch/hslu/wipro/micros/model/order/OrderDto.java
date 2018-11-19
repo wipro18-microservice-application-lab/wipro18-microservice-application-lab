@@ -4,11 +4,16 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 public class OrderDto {
-    private int customerId;
+    private long orderId;
+    private long customerId;
     private Map<Integer, Integer> amountToArticle;
     private BigDecimal totalPrice;
 
-    void setCustomerId(int customerId) {
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
+    }
+
+    void setCustomerId(long customerId) {
         this.customerId = customerId;
     }
 
@@ -20,7 +25,11 @@ public class OrderDto {
         this.totalPrice = totalPrice;
     }
 
-    public int getCustomerId() {
+    public long getOrderId() {
+        return orderId;
+    }
+
+    public long getCustomerId() {
         return customerId;
     }
 

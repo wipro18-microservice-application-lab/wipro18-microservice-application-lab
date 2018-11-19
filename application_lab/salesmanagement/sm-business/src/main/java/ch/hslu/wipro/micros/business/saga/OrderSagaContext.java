@@ -1,6 +1,7 @@
 package ch.hslu.wipro.micros.business.saga;
 
 import ch.hslu.wipro.micros.model.order.OrderDto;
+import ch.hslu.wipro.micros.service.convertion.JsonConverter;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 
@@ -8,6 +9,7 @@ class OrderSagaContext {
     private OrderDto order;
     private AMQP.BasicProperties properties;
     private Channel channel;
+    private JsonConverter jsonConverter;
     private long deliveryTag;
 
     void setOrder(OrderDto order) {
@@ -26,6 +28,10 @@ class OrderSagaContext {
         this.deliveryTag = deliveryTag;
     }
 
+    void setJsonConverter(JsonConverter jsonConverter) {
+        this.jsonConverter = jsonConverter;
+    }
+
     OrderDto getOrder() {
         return order;
     }
@@ -42,7 +48,11 @@ class OrderSagaContext {
         return properties.getReplyTo();
     }
 
-    public long getDeliveryTag() {
+    long getDeliveryTag() {
         return deliveryTag;
+    }
+
+    public JsonConverter getJsonConverter() {
+        return jsonConverter;
     }
 }

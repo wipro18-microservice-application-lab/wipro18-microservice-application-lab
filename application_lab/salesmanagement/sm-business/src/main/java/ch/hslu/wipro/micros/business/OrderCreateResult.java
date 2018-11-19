@@ -1,5 +1,5 @@
 package ch.hslu.wipro.micros.business;
 
-public class OrderCreateMessages {
+public class OrderCreateResult {
     public static final String SUCCESSFUL = "ORDER SUCCESSFUL";
 }

@@ -2,7 +2,12 @@ package ch.hslu.wipro.micros.repository;
 
 import ch.hslu.wipro.micros.model.order.OrderDto;
 
+import java.util.List;
+
 public interface OrderRepository {
-    OrderDto get(String correlationId);
-    void set(String correlationId, OrderDto orderDto);
+    OrderDto get(Long orderId);
+
+    void set(OrderDto orderDto);
+
+    List<OrderDto> getAll();
 }

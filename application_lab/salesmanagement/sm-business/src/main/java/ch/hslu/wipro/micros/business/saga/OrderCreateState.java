@@ -6,7 +6,7 @@ public class OrderCreateState implements OrderSagaState {
 
     @Override
     public void process(OrderSaga saga) throws IOException {
-        saga.setState(new OrderEligibleState());
+        saga.setState(new OrderCreateEligibleState());
         saga.process();
     }
 }

@@ -6,7 +6,7 @@ import ch.hslu.wipro.micros.service.repository.RepositoryService;
 
 import java.io.IOException;
 
-public class OrderPersistState implements OrderSagaState {
+public class OrderCreatePersistState implements OrderSagaState {
 
     @Override
     public void process(OrderSaga saga) throws IOException {
@@ -14,9 +14,9 @@ public class OrderPersistState implements OrderSagaState {
         OrderDto order = saga.getContext().getOrder();
 
         RepositoryService repositoryService = RepositoryFactory.getRepository();
-        repositoryService.setOrder(correlationId, order);
+        repositoryService.setOrder(order);
 
-        saga.setState(new OrderCompleteState());
+        saga.setState(new OrderCreateCompleteState());
         saga.process();
     }
 }
