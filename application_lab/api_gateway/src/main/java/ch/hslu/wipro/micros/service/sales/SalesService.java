@@ -7,6 +7,8 @@ import ch.hslu.wipro.micros.service.CommandFactory;
 import ch.hslu.wipro.micros.service.MessageDomain;
 import ch.hslu.wipro.micros.service.MessageRepository;
 import ch.hslu.wipro.micros.service.StaticMessageRepository;
+import com.google.gson.Gson;
+import org.eclipse.persistence.annotations.Converter;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -23,8 +25,6 @@ public class SalesService {
     }
 
     @POST
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response createOrder(OrderDTO orderDTO) {
         Command<OrderDTO> command = CommandFactory.createOrderCreateCommand(orderDTO);
         String answer = callMessageBroker(command);
@@ -42,7 +42,6 @@ public class SalesService {
     @Path("customer/{customer}")
     @GET
     @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response getAllOrdersByCustomerId(@PathParam("customer") long id) {
         Command<CustomerIdDTO> command = CommandFactory.createGetAllByCustomerIdCommand(null);
         String answer = callMessageBroker(command);
@@ -50,8 +49,6 @@ public class SalesService {
     }
 
     @PUT
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
     public Response updateOrderStatus(UpdateOrderDTO dto) {
         Command<UpdateOrderDTO> command = CommandFactory.createUpdateOrderStatusCommand(dto);
         String answer = callMessageBroker(command);

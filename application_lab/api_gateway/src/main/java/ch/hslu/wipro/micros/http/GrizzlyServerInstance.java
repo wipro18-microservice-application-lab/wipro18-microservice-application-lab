@@ -1,5 +1,6 @@
 package ch.hslu.wipro.micros.http;
 
+import ch.hslu.wipro.micros.util.GsonProvider;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.moxy.json.MoxyJsonFeature;
@@ -22,7 +23,7 @@ public class GrizzlyServerInstance {
     public GrizzlyServerInstance(String serviceResourcePackage) {
         server = null;
         resourceConfig = new ResourceConfig()
-                .register(MoxyJsonFeature.class)
+                .register(GsonProvider.class)
                 .register(CORSResponseFilter.class)
                 .packages(serviceResourcePackage);
     }
