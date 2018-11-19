@@ -20,6 +20,8 @@ public class SalesService {
     }
 
     @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response createOrder(OrderDTO orderDTO) {
         System.out.println(orderDTO.getAmountToArticle());
 
@@ -46,6 +48,8 @@ public class SalesService {
     }
 
     @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
     public Response updateOrderStatus(UpdateOrderDTO dto) {
         Command<UpdateOrderDTO> command = CommandFactory.createUpdateOrderStatusCommand(dto);
         String answer = callMessageBroker(command);
