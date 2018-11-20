@@ -2,7 +2,6 @@ package ch.hslu.wipro.micros.service.warehouse;
 
 import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
-import ch.hslu.wipro.micros.service.CommandFactory;
 import com.google.gson.Gson;
 
 import javax.ws.rs.GET;
@@ -27,7 +26,7 @@ public class WarehouseService {
     @Path("allArticles")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllArticles() {
-        Command command = CommandFactory.createGetAllArticleCommand();
+        Command command = ArticleCommandFactory.createGetAllArticleCommand();
         String rabbitAnswer = null;
         try {
             RabbitClient client = new RabbitClient();

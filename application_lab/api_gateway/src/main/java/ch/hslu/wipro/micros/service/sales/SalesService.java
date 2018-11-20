@@ -3,7 +3,6 @@ package ch.hslu.wipro.micros.service.sales;
 import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.rabbit.MessageBroker;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
-import ch.hslu.wipro.micros.service.CommandFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +27,7 @@ public class SalesService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createOrder(OrderDTO orderDTO) {
         LOGGER.info("create order: customer: "+orderDTO.getCustomerId()+", articles: "+orderDTO.getAmountToArticle());
-        Command<OrderDTO> command = CommandFactory.createOrderCreateCommand(orderDTO);
+        Command<OrderDTO> command = SalesCommandFactory.createOrderCreateCommand(orderDTO);
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
     }
@@ -36,7 +35,7 @@ public class SalesService {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllOrders() {
-        Command<String> command = CommandFactory.createGetAllOrdersCommand();
+        Command<String> command = SalesCommandFactory.createGetAllOrdersCommand();
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
     }
@@ -45,7 +44,7 @@ public class SalesService {
     @GET
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response getAllOrdersByCustomerId(@PathParam("customer") long id) {
-        Command<CustomerIdDTO> command = CommandFactory.createGetAllByCustomerIdCommand(null);
+        Command<CustomerIdDTO> command = SalesCommandFactory.createGetAllByCustomerIdCommand(null);
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
     }
@@ -54,7 +53,7 @@ public class SalesService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateOrderStatus(UpdateOrderDTO dto) {
-        Command<UpdateOrderDTO> command = CommandFactory.createUpdateOrderStatusCommand(dto);
+        Command<UpdateOrderDTO> command = SalesCommandFactory.createUpdateOrderStatusCommand(dto);
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
     }
