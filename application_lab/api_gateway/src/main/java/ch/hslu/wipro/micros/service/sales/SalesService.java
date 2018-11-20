@@ -2,6 +2,7 @@ package ch.hslu.wipro.micros.service.sales;
 
 import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.rabbit.MessageBroker;
+import ch.hslu.wipro.micros.rabbit.MessageBrokerFactory;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
 import ch.hslu.wipro.micros.service.sales.dtos.CustomerIdDTO;
 import ch.hslu.wipro.micros.service.sales.dtos.OrderDTO;
@@ -64,7 +65,7 @@ public class SalesService {
     private String callMessageBroker(Command<?> command) {
         String answer = null;
         try {
-            MessageBroker client = new RabbitClient();
+            MessageBroker client = MessageBrokerFactory.createMessageBrokerClient();
             answer = client.call(command);
         } catch (Exception e) {
             e.printStackTrace();
