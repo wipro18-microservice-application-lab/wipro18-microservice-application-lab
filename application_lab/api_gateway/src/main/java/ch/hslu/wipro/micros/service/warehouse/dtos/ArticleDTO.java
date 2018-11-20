@@ -1,4 +1,4 @@
-package ch.hslu.wipro.micros.service.warehouse;
+package ch.hslu.wipro.micros.service.warehouse.dtos;
 
 public class ArticleDTO {
 

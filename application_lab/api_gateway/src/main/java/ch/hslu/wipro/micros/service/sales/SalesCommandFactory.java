@@ -2,6 +2,9 @@ package ch.hslu.wipro.micros.service.sales;
 
 import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.service.MessageManager;
+import ch.hslu.wipro.micros.service.sales.dtos.CustomerIdDTO;
+import ch.hslu.wipro.micros.service.sales.dtos.OrderDTO;
+import ch.hslu.wipro.micros.service.sales.dtos.UpdateOrderDTO;
 
 public class SalesCommandFactory {
 

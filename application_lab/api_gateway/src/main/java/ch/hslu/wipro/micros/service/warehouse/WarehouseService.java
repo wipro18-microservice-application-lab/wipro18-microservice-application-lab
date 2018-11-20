@@ -2,6 +2,7 @@ package ch.hslu.wipro.micros.service.warehouse;
 
 import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
+import ch.hslu.wipro.micros.service.warehouse.dtos.ArticleDTO;
 import com.google.gson.Gson;
 
 import javax.ws.rs.GET;

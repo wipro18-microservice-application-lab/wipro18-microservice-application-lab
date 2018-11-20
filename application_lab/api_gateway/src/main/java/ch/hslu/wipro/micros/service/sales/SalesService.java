@@ -3,6 +3,9 @@ package ch.hslu.wipro.micros.service.sales;
 import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.rabbit.MessageBroker;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
+import ch.hslu.wipro.micros.service.sales.dtos.CustomerIdDTO;
+import ch.hslu.wipro.micros.service.sales.dtos.OrderDTO;
+import ch.hslu.wipro.micros.service.sales.dtos.UpdateOrderDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
