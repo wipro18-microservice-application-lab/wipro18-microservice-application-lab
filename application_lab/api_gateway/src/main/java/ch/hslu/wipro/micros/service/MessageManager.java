@@ -19,7 +19,7 @@ public abstract class MessageManager implements MessageDomain {
     }
 
     @Override
-    public String getCommandKey(String pattern) {
+    public String getCommandKey(String pattern) throws IllegalArgumentException{
         return commandKeys.stream()
                 .filter(command -> command.contains(pattern))
                 .findFirst()
