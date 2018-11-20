@@ -6,11 +6,11 @@ import ch.hslu.wipro.micros.service.sales.dtos.CustomerIdDTO;
 import ch.hslu.wipro.micros.service.sales.dtos.OrderDTO;
 import ch.hslu.wipro.micros.service.sales.dtos.UpdateOrderDTO;
 
-public class SalesCommandFactory {
+public class OrderCommandFactory {
 
-    private static MessageManager messageManager = SalesMessageDomainFactory.getMessageManager();
+    private static MessageManager messageManager = OrderMessageDomainFactory.getMessageManager();
 
-    private SalesCommandFactory() {
+    private OrderCommandFactory() {
 
     }
 

@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 /**
- * This class 
+ * This class represents a factory for MessageBrokers.
  */
 public class MessageBrokerFactory {
 

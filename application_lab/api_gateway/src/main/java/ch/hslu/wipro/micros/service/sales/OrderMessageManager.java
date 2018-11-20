@@ -2,9 +2,9 @@ package ch.hslu.wipro.micros.service.sales;
 
 import ch.hslu.wipro.micros.service.MessageManager;
 
-public class SalesMessageManager extends MessageManager {
+public class OrderMessageManager extends MessageManager {
 
-    public SalesMessageManager() {
+    public OrderMessageManager() {
         super();
     }
 
