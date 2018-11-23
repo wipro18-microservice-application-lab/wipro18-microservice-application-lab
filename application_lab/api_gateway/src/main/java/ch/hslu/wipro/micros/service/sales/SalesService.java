@@ -47,7 +47,10 @@ public class SalesService {
     @GET
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response getAllOrdersByCustomerId(@PathParam("customer") long id) {
-        Command<CustomerIdDTO> command = OrderCommandFactory.createGetAllByCustomerIdCommand(null);
+        LOGGER.info("get all orders by customer id " + id);
+        CustomerIdDTO dto = new CustomerIdDTO();
+        dto.setCustomerId(id);
+        Command<CustomerIdDTO> command = OrderCommandFactory.createGetAllByCustomerIdCommand(dto);
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
     }
