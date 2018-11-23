@@ -4,6 +4,7 @@ import (
 	"github.com/streadway/amqp"
 	"log"
 	"net/smtp"
+	"time"
 )
 
 var (
@@ -91,6 +92,8 @@ func send(body string) {
 }
 
 func main() {
+	time.Sleep(360 * time.Second)
+
 	conn, err := amqp.Dial("amqp://guest:guest@" + host + ":5672/")
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
