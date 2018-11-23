@@ -40,6 +40,11 @@ public class OrderCreateCompleteState implements OrderSagaState {
                 replyProperties,
                 operationResult.getBytes(StandardCharsets.UTF_8));
 
+        channel.basicPublish("ch.hslu.wipro.micros.Order",
+                "order.event.complete",
+                new BasicProperties(),
+                "Hello World!".getBytes(StandardCharsets.UTF_8));
+
         boolean acknowledgeAll = false;
         channel.basicAck(saga.getContext().getCommand().getDeliveryTag(), acknowledgeAll);
     }
