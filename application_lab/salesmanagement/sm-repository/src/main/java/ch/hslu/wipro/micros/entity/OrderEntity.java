@@ -1,16 +1,17 @@
-package ch.hslu.wipro.micros.model.order;
+package ch.hslu.wipro.micros.entity;
 
 import java.math.BigDecimal;
 import java.util.Map;
-import java.util.Objects;
 
-public class OrderDto {
+public class OrderEntity {
     private long orderId;
     private long customerId;
     private Map<Integer, Integer> amountToArticle;
     private BigDecimal totalPrice;
 
-    void setOrderId(long orderId) {
+    OrderEntity() {}
+
+    public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
 
@@ -40,23 +41,5 @@ public class OrderDto {
 
     public BigDecimal getTotalPrice() {
         return totalPrice;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        OrderDto that = (OrderDto) o;
-        return Objects.equals(orderId, that.orderId) &&
-                Objects.equals(customerId, that.customerId) &&
-                Objects.equals(amountToArticle, that.amountToArticle) &&
-                Objects.equals(totalPrice, that.totalPrice);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(
-                orderId, customerId, amountToArticle, totalPrice
-        );
     }
 }

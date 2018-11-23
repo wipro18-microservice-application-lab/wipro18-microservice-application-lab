@@ -1,12 +1,13 @@
 package ch.hslu.wipro.micros.business.saga;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-
-import ch.hslu.wipro.micros.business.OrderCreateResult;
+import ch.hslu.wipro.micros.business.converter.JsonConverterFactory;
 import ch.hslu.wipro.micros.business.result.OrderCreateCommandResult;
 import ch.hslu.wipro.micros.business.result.OrderCreateCommandResultBuilder;
+import ch.hslu.wipro.micros.business.result.OrderCreateResult;
 import com.rabbitmq.client.Channel;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import static com.rabbitmq.client.AMQP.BasicProperties;
 
@@ -15,16 +16,18 @@ public class OrderCreateCompleteState implements OrderSagaState {
     @Override
     public void process(OrderSaga saga) throws IOException {
         Channel channel = saga.getContext().getChannel();
-        String correlationId = saga.getContext().getCorrelationId();
-        String replyToQueue = saga.getContext().getReplyToQueue();
+        String correlationId = saga.getContext().getCommand().getCorrelationId();
+        String replyToQueue = saga.getContext().getCommand().getReplyTo();
         String replyRoutingKey = "";
 
         OrderCreateCommandResult orderCreateCommandResult = new OrderCreateCommandResultBuilder()
-                .withOrder(saga.getContext().getOrder())
+                .withOrder(saga.getContext().getCommand().getPayload())
                 .withResult(OrderCreateResult.SUCCESSFUL)
                 .build();
 
-        String operationResult = saga.getContext().getJsonConverter().toJson(orderCreateCommandResult);
+        String operationResult = new JsonConverterFactory<OrderCreateCommandResult>()
+                .get()
+                .toJson(orderCreateCommandResult);
 
         BasicProperties replyProperties = new BasicProperties
                 .Builder()
@@ -38,6 +41,6 @@ public class OrderCreateCompleteState implements OrderSagaState {
                 operationResult.getBytes(StandardCharsets.UTF_8));
 
         boolean acknowledgeAll = false;
-        channel.basicAck(saga.getContext().getDeliveryTag(), acknowledgeAll);
+        channel.basicAck(saga.getContext().getCommand().getDeliveryTag(), acknowledgeAll);
     }
 }

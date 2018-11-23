@@ -10,8 +10,9 @@ public class OrderSaga {
     private OrderSagaContext context;
     private OrderSagaState state;
 
-    OrderSaga(OrderSagaContext context) {
+    public OrderSaga(OrderSagaContext context, OrderSagaState state) {
         this.context = context;
+        this.state = state;
     }
 
     void setState(OrderSagaState state) {
@@ -19,7 +20,7 @@ public class OrderSaga {
         this.state = state;
 
         logger.info("state changed for {} from {} to {}",
-                context.getCorrelationId(),
+                context.getCommand().getCorrelationId(),
                 oldState,
                 state);
     }
@@ -28,11 +29,11 @@ public class OrderSaga {
         try {
             state.process(this);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("lost connection to rabbitmq");
         }
     }
 
-    public OrderSagaContext getContext() {
+    OrderSagaContext getContext() {
         return context;
     }
 
