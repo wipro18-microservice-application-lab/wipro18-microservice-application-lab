@@ -1,6 +1,6 @@
 package ch.hslu.wipro.micros.util;
 
-import ch.hslu.wipro.micros.service.sales.OrderDTO;
+import ch.hslu.wipro.micros.service.sales.dtos.OrderDTO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

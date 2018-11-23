@@ -1,4 +1,4 @@
-package ch.hslu.wipro.micros.util;
+package ch.hslu.wipro.micros.http;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

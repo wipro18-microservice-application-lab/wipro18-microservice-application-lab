@@ -18,12 +18,12 @@ public class RabbitClient implements MessageBroker {
     private Channel channel;
     private JsonConverter converter;
 
-    public RabbitClient() throws IOException, TimeoutException {
+    public RabbitClient(JsonConverter converter) throws IOException, TimeoutException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost(HOST);
         connection = factory.newConnection();
         channel = connection.createChannel();
-        converter = new GsonConverter();
+        this.converter = converter;
     }
 
     @Override

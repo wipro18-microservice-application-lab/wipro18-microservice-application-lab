@@ -1,4 +1,4 @@
-package ch.hslu.wipro.micros.service.sales;
+package ch.hslu.wipro.micros.service.sales.dtos;
 
 public class UpdateOrderDTO {
     private long orderId;

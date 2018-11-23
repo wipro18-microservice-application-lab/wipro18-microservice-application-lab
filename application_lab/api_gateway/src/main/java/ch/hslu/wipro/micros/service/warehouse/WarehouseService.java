@@ -1,7 +1,10 @@
 package ch.hslu.wipro.micros.service.warehouse;
 
 import ch.hslu.wipro.micros.rabbit.Command;
+import ch.hslu.wipro.micros.rabbit.MessageBroker;
+import ch.hslu.wipro.micros.rabbit.MessageBrokerFactory;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
+import ch.hslu.wipro.micros.service.warehouse.dtos.ArticleDTO;
 import com.google.gson.Gson;
 
 import javax.ws.rs.GET;
@@ -29,7 +32,7 @@ public class WarehouseService {
         Command command = ArticleCommandFactory.createGetAllArticleCommand();
         String rabbitAnswer = null;
         try {
-            RabbitClient client = new RabbitClient();
+            MessageBroker client = MessageBrokerFactory.createMessageBrokerClient();
             //rabbitAnswer = client.call(command, "ch.hslu.wipro.micros.Article"); //Todo make rabbit call
         } catch (Exception e) {
             e.printStackTrace();
