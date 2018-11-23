@@ -10,4 +10,6 @@ public interface OrderRepository {
     void set(OrderDto orderDto);
 
     List<OrderDto> getAll();
+
+    List<OrderDto> getAllByCustomerId(long customerId);
 }

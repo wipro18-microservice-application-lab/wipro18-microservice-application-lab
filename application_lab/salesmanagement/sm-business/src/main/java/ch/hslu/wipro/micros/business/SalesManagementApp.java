@@ -1,57 +1,27 @@
 package ch.hslu.wipro.micros.business;
 
-import ch.hslu.wipro.micros.business.manager.CommandManager;
-import ch.hslu.wipro.micros.business.manager.OrderCreateCommandManager;
-import ch.hslu.wipro.micros.business.manager.OrderGetAllCommandManager;
-import ch.hslu.wipro.micros.service.config.ErrorService;
-import ch.hslu.wipro.micros.service.discovery.DiscoveryService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import ch.hslu.wipro.micros.business.rabbitmq.ChannelBuilder;
+import ch.hslu.wipro.micros.business.rabbitmq.RabbitMqConnector;
+import ch.hslu.wipro.micros.business.rabbitmq.config.RabbitMqConfig;
+import ch.hslu.wipro.micros.business.rabbitmq.manager.CommandManager;
+import ch.hslu.wipro.micros.business.rabbitmq.topic.Topic;
+import com.nurkiewicz.asyncretry.RetryExecutor;
+import com.rabbitmq.client.DefaultConsumer;
 
-import java.io.IOException;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.Map;
 
 public class SalesManagementApp {
-    private static final Logger logger = LogManager.getLogger(SalesManagementApp.class);
-    private static final ErrorService errorService = new ErrorService();
-    private static ScheduledExecutorService connectionService;
+    private static final RabbitMqConfig rabbitMqConfig = new RabbitMqConfig();
+    private static final RetryExecutor rabbitMqExecutor = RabbitMqConnector.getExecutor();
 
     public static void main(String[] args) {
-        Runnable runnable = () -> {
-            try {
-                logger.info("registering sales manager on discovery service");
-                DiscoveryService discoveryService = new DiscoveryService();
-                discoveryService.register();
+        Map<Topic, Class<? extends DefaultConsumer>> supportedCommandTopicMap = new CommandTopicsConsumerMap().getAsList();
+        CommandManager commandManager = new CommandManager(supportedCommandTopicMap);
 
-                startOderManager();
-                connectionService.shutdown();
-            } catch (IOException | TimeoutException e) {
-                errorService.logConnectionError(SalesManagementApp.class);
-            }
-        };
-
-        connectionService = Executors.newSingleThreadScheduledExecutor();
-        connectionService.scheduleAtFixedRate(
-                runnable,
-                10,
-                5,
-                TimeUnit.SECONDS);
-    }
-
-    private static void startOderManager() {
-        logger.info("order manager handling incoming commands");
-
-        try {
-            CommandManager orderCreateCommandManager = new OrderCreateCommandManager();
-            orderCreateCommandManager.setup().handleIncomingCommands();
-
-            CommandManager orderGetAllCommandManager = new OrderGetAllCommandManager();
-            orderGetAllCommandManager.setup().handleIncomingCommands();
-        } catch (IOException | TimeoutException e) {
-            errorService.logConnectionError(SalesManagementApp.class);
-        }
+        rabbitMqExecutor
+                .getWithRetry(() -> new ChannelBuilder()
+                        .withHost(rabbitMqConfig.getHost())
+                        .build())
+                .thenRun(commandManager);
     }
 }

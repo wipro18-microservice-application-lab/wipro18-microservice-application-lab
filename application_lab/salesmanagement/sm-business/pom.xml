@@ -31,6 +31,11 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.nurkiewicz.asyncretry</groupId>
+            <artifactId>asyncretry</artifactId>
+            <version>0.0.5</version>
+        </dependency>
     </dependencies>
 
     <build>
