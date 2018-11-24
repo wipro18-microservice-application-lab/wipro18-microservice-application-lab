@@ -1,4 +1,4 @@
-function createOrder(orderDto) {
+function orderCreateCommand(orderDto) {
     $.ajax({
         headers: {
             'Accept': 'application/json',
@@ -12,5 +12,31 @@ function createOrder(orderDto) {
         success: function (data) {
             console.log(data);
         }
+    });
+}
+
+function orderGetAllCommand() {
+    $.get(SALES_URL , function(response) {
+        response.forEach(function(order) {
+            $('#all-orders').find('> tbody:last-child')
+                .append('<tr>' +
+                    `<td>${order.orderId}</td>` +
+                    `<td>${order.customerId}</td>` +
+                    `<td>${JSON.stringify(order.amountToArticle)}</td>` +
+                    `<td>${order.totalPrice}</tr>`);
+        });
+    });
+}
+
+function orderGetAllByCustomerIdCommand(customerId) {
+    $.get(SALES_URL + '/customer/' + customerId, function(response) {
+        response.forEach(function(order) {
+            $('#all-customer-orders').find('> tbody:last-child')
+                .append('<tr>' +
+                    `<td>${order.orderId}</td>` +
+                    `<td>${order.customerId}</td>` +
+                    `<td>${JSON.stringify(order.amountToArticle)}</td>` +
+                    `<td>${order.totalPrice}</tr>`);
+        });
     });
 }

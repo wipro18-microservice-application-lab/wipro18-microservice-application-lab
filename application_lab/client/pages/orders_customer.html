@@ -1,0 +1,48 @@
+<div id="sales-health" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<h1>Get Orders By Customer ID</h1>
+
+<form class="mui-form">
+    <div class="mui-textfield">
+        <input id="customerIdInput" type="text">
+        <label>Customer ID</label>
+    </div>
+</form>
+
+<div id="customer" class="mui-panel">
+    <!-- dynamic -->
+</div>
+<button class="mui-btn mui-btn--primary" onclick="orderGetAllByCustomerIdCommand(customerId)">Order</button>
+
+<table id="all-customer-orders" class="mui-table mui-table--bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Customer ID</th>
+        <th>Items</th>
+        <th>Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- dynamic -->
+    </tbody>
+</table>
+
+<script>
+    var customerId = '';
+    var customerDto = {customerId: customerId};
+
+    jQuery(function($) {
+        checkHealth('sales-health', SALES_HEALTH_URL);
+        $('#customer').text(JSON.stringify(customerDto));
+    });
+
+    $( '#customerIdInput' ).change(function() {
+        customerId = $('#customerIdInput').val();
+        customerDto.customerId = customerId;
+
+        $('#customer').text(JSON.stringify(customerDto));
+    });
+</script>
