@@ -35,7 +35,7 @@ public class CommandTopicsConsumerMap {
         handledTopics.put(orderCommandUpdateStatus, OrderCreateCommandConsumer.class);
     }
 
-    public Map<Topic, Class<? extends DefaultConsumer>> getAsList() {
+    public Map<Topic, Class<? extends DefaultConsumer>> getAsMap() {
         return handledTopics;
     }
 }
