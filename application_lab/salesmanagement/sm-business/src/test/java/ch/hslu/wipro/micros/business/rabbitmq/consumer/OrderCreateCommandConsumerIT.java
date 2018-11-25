@@ -14,32 +14,38 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.Assert.assertEquals;
 
-public class OrderUpdateStatusCommandConsumerIT {
-    private static final String OLD_STATUS = "old status";
-    private static final String NEW_STATUS = "new status";
-
+public class OrderCreateCommandConsumerIT {
     private static final String exchangeName = "test.exchange";
     private static final String routingKey = "test.update.order.status";
 
     private OrderRepositoryService orderRepositoryService;
-    private OrderDto orderDto;
+    private static OrderDto createOrderDto;
     private Channel channel;
 
     @Before
     public void setUp() throws Exception {
-        orderDto = new OrderDtoBuilder()
-                .atStatus(OLD_STATUS)
+        Map<Integer, Integer> amountToArticle = new HashMap<>();
+        amountToArticle.put(1, 5);
+        amountToArticle.put(2, 4);
+        amountToArticle.put(3, 1);
+
+        createOrderDto = new OrderDtoBuilder()
+                .atCustomer(42)
+                .atTotalPrice(BigDecimal.valueOf(420L))
+                .mapAmountToArticle(amountToArticle)
+                .atStatus("open")
                 .build();
 
         orderRepositoryService = new OrderRepositoryService();
-        long orderDtoId = orderRepositoryService.setOrder(orderDto);
-        orderDto.setOrderId(orderDtoId);
 
         ConnectionFactory factory = new MockConnectionFactory();
         try (Connection conn = factory.newConnection()) {
@@ -49,22 +55,18 @@ public class OrderUpdateStatusCommandConsumerIT {
 
     @Test
     public void handleDelivery() throws IOException, TimeoutException, InterruptedException {
-        OrderUpdateDto orderUpdateDto = new OrderUpdateDto();
-        orderUpdateDto.setOrderId(orderDto.getOrderId());
-        orderUpdateDto.setStatus(NEW_STATUS);
-
         /* Setup OrderUpdateStatusCommand Consumer to listen to messages */
         channel.exchangeDeclare(exchangeName, "direct");
         String queueName = channel.queueDeclare().getQueue();
         channel.queueBind(queueName, exchangeName, routingKey);
 
-        OrderUpdateStatusCommandConsumer orderUpdateStatusCommandConsumer =
-                new OrderUpdateStatusCommandConsumer(channel);
+        OrderCreateCommandConsumer orderCreateCommandConsumer =
+                new OrderCreateCommandConsumer(channel);
 
-        channel.basicConsume(queueName, false, orderUpdateStatusCommandConsumer);
+        channel.basicConsume(queueName, false, orderCreateCommandConsumer);
 
         /* Send an update dto message to be consumed */
-        String orderUpdateJson = new JsonConverterFactory<OrderUpdateDto>().get().toJson(orderUpdateDto);
+        String createOrderJson = new JsonConverterFactory<OrderDto>().get().toJson(createOrderDto);
 
         AMQP.BasicProperties replyProperties = new AMQP.BasicProperties
                 .Builder()
@@ -75,11 +77,11 @@ public class OrderUpdateStatusCommandConsumerIT {
         channel.basicPublish(
                 exchangeName,
                 routingKey, replyProperties,
-                orderUpdateJson.getBytes(StandardCharsets.UTF_8));
+                createOrderJson.getBytes(StandardCharsets.UTF_8));
 
-        TimeUnit.MILLISECONDS.sleep(1500L);
+        TimeUnit.MILLISECONDS.sleep(500L);
 
-        OrderDto updatedOrderDto = orderRepositoryService.getOrder(orderDto.getOrderId());
-        assertEquals(NEW_STATUS, updatedOrderDto.getStatus());
+        OrderDto retrievedOrderDto = orderRepositoryService.getOrder(0L);
+        assertEquals(createOrderDto, retrievedOrderDto);
     }
 }

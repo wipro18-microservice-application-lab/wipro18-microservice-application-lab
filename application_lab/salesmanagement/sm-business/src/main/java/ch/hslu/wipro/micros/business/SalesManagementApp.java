@@ -16,13 +16,15 @@ public class SalesManagementApp {
     private static final RetryExecutor rabbitMqExecutor = RabbitMqConnector.getExecutor();
 
     public static void main(String[] args) {
-        Map<Topic, Class<? extends DefaultConsumer>> supportedCommandTopicMap = new CommandTopicsConsumerMap().getAsMap();
+        Map<Topic, Class<? extends DefaultConsumer>> supportedCommandTopicMap = new CommandTopicsConsumerMap()
+                .getAsMap();
+
         CommandManager commandManager = new CommandManager(supportedCommandTopicMap);
 
         rabbitMqExecutor
                 .getWithRetry(() -> new ChannelBuilder()
                         .withHost(rabbitMqConfig.getHost())
                         .build())
-                .thenRun(commandManager);
+                .thenAccept(commandManager::startWithChannel);
     }
 }

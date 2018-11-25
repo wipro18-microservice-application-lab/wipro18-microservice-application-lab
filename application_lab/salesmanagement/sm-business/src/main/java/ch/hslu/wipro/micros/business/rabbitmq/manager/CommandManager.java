@@ -1,6 +1,5 @@
 package ch.hslu.wipro.micros.business.rabbitmq.manager;
 
-import ch.hslu.wipro.micros.business.rabbitmq.ChannelBuilder;
 import ch.hslu.wipro.micros.business.rabbitmq.config.RabbitMqConfig;
 import ch.hslu.wipro.micros.business.rabbitmq.topic.Topic;
 import com.rabbitmq.client.BuiltinExchangeType;
@@ -11,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Map;
 
-public class CommandManager implements Runnable {
+public class CommandManager {
     private static final Logger logger = LogManager.getLogger(CommandManager.class);
     private static final RabbitMqConfig rabbitMqConfig = new RabbitMqConfig();
     private final Map<Topic, Class<? extends DefaultConsumer>> handledTopics;
@@ -20,16 +19,11 @@ public class CommandManager implements Runnable {
         this.handledTopics = handledTopics;
     }
 
-    @Override
-    public void run() {
+    public void startWithChannel(Channel channel) {
         boolean noAutoAck = false;
 
         handledTopics.forEach((topic, consumer) -> {
             try {
-                Channel channel = new ChannelBuilder()
-                        .withHost(rabbitMqConfig.getHost())
-                        .build();
-
                 channel.exchangeDeclare(rabbitMqConfig.getDomainExchange(), BuiltinExchangeType.TOPIC);
                 channel.queueDeclare(topic.getQueueName(), false, false, false, null);
                 channel.queueBind(topic.getQueueName(),
