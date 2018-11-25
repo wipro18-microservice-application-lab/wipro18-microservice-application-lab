@@ -5,18 +5,21 @@ import ch.hslu.wipro.micros.rabbit.MessageBroker;
 import ch.hslu.wipro.micros.rabbit.MessageBrokerFactory;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
 import ch.hslu.wipro.micros.service.warehouse.dtos.ArticleDTO;
+import ch.hslu.wipro.micros.service.warehouse.dtos.ArticleIdDTO;
 import com.google.gson.Gson;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Path("warehouse")
 public class WarehouseService {
+    private static Logger LOGGER = LogManager.getLogger();
 
     @GET
     @Path("health")
@@ -26,43 +29,33 @@ public class WarehouseService {
     }
 
     @GET
-    @Path("allArticles")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllArticles() {
-        Command command = ArticleCommandFactory.createGetAllArticleCommand();
-        String rabbitAnswer = null;
+        Command<String> command = ArticleCommandFactory.createGetAllArticleCommand();
+        String answer = callMessageBroker(command);
+        return Response.ok(answer, MediaType.APPLICATION_JSON).build();
+    }
+
+    @Path("articles/{article}")
+    @GET
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public Response getById(@PathParam("article") long id) {
+        LOGGER.info("get article by article id " + id);
+        ArticleIdDTO dto = new ArticleIdDTO();
+        dto.setArticleId(id);
+        Command<ArticleIdDTO> command = ArticleCommandFactory.createGetByIdCommand(dto);
+        String answer = callMessageBroker(command);
+        return Response.ok(answer, MediaType.APPLICATION_JSON).build();
+    }
+
+    private String callMessageBroker(Command<?> command) {
+        String answer = null;
         try {
             MessageBroker client = MessageBrokerFactory.createMessageBrokerClient();
-            //rabbitAnswer = client.call(command, "ch.hslu.wipro.micros.Article"); //Todo make rabbit call
+            answer = client.call(command);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //return Response.status(201).entity("[{\"id\":\"ec7445cb-44f0-4f6d-95d1-295c9a506f40\",\"name\":\"Samsung Galaxy A6\",\"description\":\"Smartphone\",\"price\":500.0}]\n").build();
-        return Response.ok(generatePseudoData(), MediaType.APPLICATION_JSON).build(); // Todo replace with rabbits answer
-    }
-
-    /**
-     * TO DELETE
-     * Generates pseudo data for rest testing.
-     *
-     * @return
-     */
-    private String generatePseudoData() {
-        List<ArticleDTO> articles = new ArrayList<>();
-        ArticleDTO articleDTO = new ArticleDTO();
-        articleDTO.setId("1112a");
-        articleDTO.setName("Tablet");
-        articleDTO.setDescription("A tablet.");
-        articleDTO.setPrice(550.0);
-        articles.add(articleDTO);
-
-        ArticleDTO articleDTO2 = new ArticleDTO();
-        articleDTO2.setId("1152a");
-        articleDTO2.setName("Pen");
-        articleDTO2.setDescription("A pen.");
-        articleDTO2.setPrice(1250.0);
-        articles.add(articleDTO2);
-
-        return new Gson().toJson(articles);
+        return Optional.ofNullable(answer).orElse("{error}");
     }
 }
