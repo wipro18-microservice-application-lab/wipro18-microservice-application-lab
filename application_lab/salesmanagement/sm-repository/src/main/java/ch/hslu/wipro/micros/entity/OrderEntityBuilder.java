@@ -4,10 +4,16 @@ import java.math.BigDecimal;
 import java.util.Map;
 
 public class OrderEntityBuilder {
+    private long orderId;
     private long customerId;
     private Map<Integer, Integer> amountToArticleMap;
     private BigDecimal totalPrice;
     private String status;
+
+    public OrderEntityBuilder atOrderId(long orderId) {
+        this.orderId = orderId;
+        return this;
+    }
 
     public OrderEntityBuilder atCustomer(long customerId) {
         this.customerId = customerId;
@@ -31,6 +37,7 @@ public class OrderEntityBuilder {
 
     public OrderEntity build() {
         OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setOrderId(orderId);
         orderEntity.setCustomerId(customerId);
         orderEntity.setAmountToArticle(amountToArticleMap);
         orderEntity.setTotalPrice(totalPrice);

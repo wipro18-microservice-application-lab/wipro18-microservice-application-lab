@@ -98,6 +98,7 @@ public class OrderRepositoryVolatile implements OrderRepository {
 
     private OrderEntity convert(OrderDto orderDto) {
         return new OrderEntityBuilder()
+                .atOrderId(orderDto.getOrderId())
                 .atCustomer(orderDto.getCustomerId())
                 .atTotalPrice(orderDto.getTotalPrice())
                 .mapAmountToArticle(orderDto.getAmountToArticle())

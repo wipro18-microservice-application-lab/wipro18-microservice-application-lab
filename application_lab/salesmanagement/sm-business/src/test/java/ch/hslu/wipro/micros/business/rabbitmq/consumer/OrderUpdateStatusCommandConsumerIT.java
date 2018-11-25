@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -34,10 +35,14 @@ public class OrderUpdateStatusCommandConsumerIT {
     @Before
     public void setUp() throws Exception {
         orderDto = new OrderDtoBuilder()
+                .atCustomer(42L)
+                .atTotalPrice(BigDecimal.valueOf(240))
                 .atStatus(OLD_STATUS)
                 .build();
 
         orderRepositoryService = new OrderRepositoryService();
+        orderRepositoryService.setOrder(new OrderDtoBuilder().build());
+        orderRepositoryService.setOrder(new OrderDtoBuilder().build());
         long orderDtoId = orderRepositoryService.setOrder(orderDto);
         orderDto.setOrderId(orderDtoId);
 
@@ -77,7 +82,7 @@ public class OrderUpdateStatusCommandConsumerIT {
                 routingKey, replyProperties,
                 orderUpdateJson.getBytes(StandardCharsets.UTF_8));
 
-        TimeUnit.MILLISECONDS.sleep(1500L);
+        TimeUnit.MILLISECONDS.sleep(500L);
 
         OrderDto updatedOrderDto = orderRepositoryService.getOrder(orderDto.getOrderId());
         assertEquals(NEW_STATUS, updatedOrderDto.getStatus());
