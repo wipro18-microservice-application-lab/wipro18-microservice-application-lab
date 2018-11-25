@@ -9,8 +9,9 @@ public class OrderDto {
     private long customerId;
     private Map<Integer, Integer> amountToArticle;
     private BigDecimal totalPrice;
+    private String status;
 
-    void setOrderId(long orderId) {
+    public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
 
@@ -24,6 +25,10 @@ public class OrderDto {
 
     void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public long getOrderId() {
@@ -42,6 +47,10 @@ public class OrderDto {
         return totalPrice;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -50,13 +59,14 @@ public class OrderDto {
         return Objects.equals(orderId, that.orderId) &&
                 Objects.equals(customerId, that.customerId) &&
                 Objects.equals(amountToArticle, that.amountToArticle) &&
-                Objects.equals(totalPrice, that.totalPrice);
+                Objects.equals(totalPrice, that.totalPrice) &&
+                Objects.equals(status, that.status);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                orderId, customerId, amountToArticle, totalPrice
+                orderId, customerId, amountToArticle, totalPrice, status
         );
     }
 }

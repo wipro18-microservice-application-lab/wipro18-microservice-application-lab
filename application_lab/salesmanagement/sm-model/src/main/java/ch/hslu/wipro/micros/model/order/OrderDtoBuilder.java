@@ -8,6 +8,7 @@ public class OrderDtoBuilder {
     private long customerId;
     private Map<Integer, Integer> amountToArticleMap;
     private BigDecimal totalPrice;
+    private String status;
 
     public OrderDtoBuilder atOrderId(long orderId) {
         this.orderId = orderId;
@@ -29,12 +30,18 @@ public class OrderDtoBuilder {
         return this;
     }
 
+    public OrderDtoBuilder atStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
     public OrderDto build() {
         OrderDto orderDto = new OrderDto();
         orderDto.setOrderId(orderId);
         orderDto.setCustomerId(customerId);
         orderDto.setAmountToArticle(amountToArticleMap);
         orderDto.setTotalPrice(totalPrice);
+        orderDto.setStatus(status);
 
         return orderDto;
     }

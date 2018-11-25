@@ -1,21 +1,24 @@
 package ch.hslu.wipro.micros.repository;
 
+import ch.hslu.wipro.micros.RepositoryOperation;
 import ch.hslu.wipro.micros.entity.OrderEntity;
 import ch.hslu.wipro.micros.entity.OrderEntityBuilder;
 import ch.hslu.wipro.micros.model.order.OrderDtoBuilder;
 import ch.hslu.wipro.micros.model.order.OrderDto;
+import ch.hslu.wipro.micros.model.order.OrderUpdateDto;
+import ch.hslu.wipro.micros.model.order.OrderUpdateResultDto;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class OrderRepositoryVolatile implements OrderRepository {
-    private final Map<Long, OrderEntity> orderDtoMap = new HashMap<>();
+    private final Map<Long, OrderEntity> orderEntityMap = new HashMap<>();
 
     @Override
     public OrderDto get(Long orderId) {
         OrderEntity defaultOrder = new OrderEntityBuilder().build();
 
-        OrderEntity orderEntity = orderDtoMap.entrySet()
+        OrderEntity orderEntity = orderEntityMap.entrySet()
                 .stream()
                 .filter(o -> o.getKey().equals(orderId))
                 .map(Map.Entry::getValue)
@@ -27,7 +30,7 @@ public class OrderRepositoryVolatile implements OrderRepository {
 
     @Override
     public List<OrderDto> getAll() {
-        List<OrderEntity> orderEntities = new ArrayList<>(orderDtoMap.values());
+        List<OrderEntity> orderEntities = new ArrayList<>(orderEntityMap.values());
 
         List<OrderDto> orderDtos = orderEntities.stream()
                 .map(this::convert)
@@ -38,7 +41,7 @@ public class OrderRepositoryVolatile implements OrderRepository {
 
     @Override
     public List<OrderDto> getAllByCustomerId(long customerId) {
-        List<OrderEntity> orderEntities = orderDtoMap.values()
+        List<OrderEntity> orderEntities = orderEntityMap.values()
                 .stream()
                 .filter(o -> o.getCustomerId() == customerId)
                 .collect(Collectors.toList());
@@ -50,13 +53,37 @@ public class OrderRepositoryVolatile implements OrderRepository {
         return Collections.unmodifiableList(orderDtos);
     }
 
+    private OrderUpdateResultDto update(OrderDto orderDto) {
+        OrderUpdateResultDto orderUpdateResultDto = new OrderUpdateResultDto();
+
+        if (orderEntityMap.containsKey(orderDto.getOrderId())) {
+            orderEntityMap.put(orderDto.getOrderId(), convert(orderDto));
+            orderUpdateResultDto.setResult(RepositoryOperation.SUCCESSFUL);
+        } else {
+            orderUpdateResultDto.setResult(RepositoryOperation.UNKNOWN_ORDER_ID);
+        }
+
+        return orderUpdateResultDto;
+    }
+
     @Override
-    public void set(OrderDto orderDto) {
-        long orderId = orderDtoMap.size() + 1L;
+    public OrderUpdateResultDto updateStatus(OrderUpdateDto updateOrderDto) {
+        OrderDto orderDto = get(updateOrderDto.getOrderId());
+        orderDto.setStatus(updateOrderDto.getStatus());
+
+        return update(orderDto);
+    }
+
+    @Override
+    public long set(OrderDto orderDto) {
+        long orderId = orderEntityMap.size();
+
         OrderEntity orderEntity = convert(orderDto);
         orderEntity.setOrderId(orderId);
 
-        orderDtoMap.put(orderId, orderEntity);
+        orderEntityMap.put(orderId, orderEntity);
+
+        return orderId;
     }
 
     private OrderDto convert(OrderEntity orderEntity) {
@@ -65,6 +92,7 @@ public class OrderRepositoryVolatile implements OrderRepository {
                 .atCustomer(orderEntity.getCustomerId())
                 .atTotalPrice(orderEntity.getTotalPrice())
                 .mapAmountToArticle(orderEntity.getAmountToArticle())
+                .atStatus(orderEntity.getStatus())
                 .build();
     }
 
@@ -73,6 +101,7 @@ public class OrderRepositoryVolatile implements OrderRepository {
                 .atCustomer(orderDto.getCustomerId())
                 .atTotalPrice(orderDto.getTotalPrice())
                 .mapAmountToArticle(orderDto.getAmountToArticle())
+                .atStatus(orderDto.getStatus())
                 .build();
     }
 }

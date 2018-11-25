@@ -10,7 +10,9 @@ public class OrderCreatePersistState implements OrderSagaState {
         OrderDto order = saga.getContext().getCommand().getPayload();
 
         OrderRepositoryService repositoryService = new OrderRepositoryService();
-        repositoryService.setOrder(order);
+        long orderId = repositoryService.setOrder(order);
+
+        order.setOrderId(orderId);
 
         saga.setState(new OrderCreateCompleteState());
         saga.process();

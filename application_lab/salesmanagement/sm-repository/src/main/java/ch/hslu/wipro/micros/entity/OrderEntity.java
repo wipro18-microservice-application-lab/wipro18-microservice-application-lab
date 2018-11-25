@@ -8,6 +8,7 @@ public class OrderEntity {
     private long customerId;
     private Map<Integer, Integer> amountToArticle;
     private BigDecimal totalPrice;
+    private String status;
 
     OrderEntity() {}
 
@@ -27,6 +28,10 @@ public class OrderEntity {
         this.totalPrice = totalPrice;
     }
 
+    void setStatus(String status) {
+        this.status = status;
+    }
+
     public long getOrderId() {
         return orderId;
     }
@@ -41,5 +46,9 @@ public class OrderEntity {
 
     public BigDecimal getTotalPrice() {
         return totalPrice;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

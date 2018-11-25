@@ -7,6 +7,7 @@ public class OrderEntityBuilder {
     private long customerId;
     private Map<Integer, Integer> amountToArticleMap;
     private BigDecimal totalPrice;
+    private String status;
 
     public OrderEntityBuilder atCustomer(long customerId) {
         this.customerId = customerId;
@@ -23,11 +24,17 @@ public class OrderEntityBuilder {
         return this;
     }
 
+    public OrderEntityBuilder atStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
     public OrderEntity build() {
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setCustomerId(customerId);
         orderEntity.setAmountToArticle(amountToArticleMap);
         orderEntity.setTotalPrice(totalPrice);
+        orderEntity.setStatus(status);
 
         return orderEntity;
     }
