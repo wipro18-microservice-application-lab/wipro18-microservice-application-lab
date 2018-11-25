@@ -11,7 +11,6 @@ public class ArticleMessageManager extends MessageManager {
     @Override
     public void prepareMessageDomain() {
         setExchange("ch.hslu.wipro.micros.Article");
-        addCommandKey("article.command.checkQuantity");
         addCommandKey("article.command.getAll");
         addCommandKey("article.command.getById");
     }
