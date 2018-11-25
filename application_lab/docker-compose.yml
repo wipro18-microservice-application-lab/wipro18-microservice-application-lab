@@ -16,21 +16,30 @@ services:
       - "rabbitmq"  
     hostname: discovery
     
+  gateway:
+    build:
+      context: ./api_gateway
+    ports:
+      - "7001:8080"  
+    depends_on:
+      - "discovery"    
+    hostname: gateway
+    
+  client:
+    build:
+      context: ./client
+    ports:
+      - "7002:80"
+    depends_on:
+      - "discovery"
+    hostname: client
+    
   sales:
     build:
       context: ./salesmanagement
     depends_on:
       - "discovery"
     hostname: sales
-    
-  client:
-    build:
-      context: ./client
-    ports:
-      - "7001:80"
-    depends_on:
-      - "discovery"
-    hostname: client
     
   notification:
     build:

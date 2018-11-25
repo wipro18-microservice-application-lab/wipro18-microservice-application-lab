@@ -7,9 +7,7 @@ public class OrderDTO {
     private int customerId;
     private Map<Integer, Integer> amountToArticle;
     private double totalPrice;
-
-    public OrderDTO() {
-    }
+    private String status;
 
     public int getCustomerId() {
         return customerId;
@@ -33,5 +31,13 @@ public class OrderDTO {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
