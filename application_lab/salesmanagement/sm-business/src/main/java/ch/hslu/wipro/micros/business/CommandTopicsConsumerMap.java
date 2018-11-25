@@ -3,6 +3,7 @@ package ch.hslu.wipro.micros.business;
 import ch.hslu.wipro.micros.business.rabbitmq.consumer.OrderCreateCommandConsumer;
 import ch.hslu.wipro.micros.business.rabbitmq.consumer.OrderGetAllByCustomerId;
 import ch.hslu.wipro.micros.business.rabbitmq.consumer.OrderGetAllCommandConsumer;
+import ch.hslu.wipro.micros.business.rabbitmq.consumer.OrderUpdateStatusCommandConsumer;
 import ch.hslu.wipro.micros.business.rabbitmq.topic.Topic;
 import ch.hslu.wipro.micros.business.rabbitmq.topic.TopicBuilder;
 import com.rabbitmq.client.DefaultConsumer;
@@ -32,7 +33,7 @@ class CommandTopicsConsumerMap {
         Topic orderCommandUpdateStatus = new TopicBuilder()
                 .atRoute("order.command.updateStatus")
                 .atQueue("ch.hslu.wipro.micros.OrderUpdateStatus").build();
-        handledTopics.put(orderCommandUpdateStatus, OrderCreateCommandConsumer.class);
+        handledTopics.put(orderCommandUpdateStatus, OrderUpdateStatusCommandConsumer.class);
     }
 
     Map<Topic, Class<? extends DefaultConsumer>> getAsMap() {
