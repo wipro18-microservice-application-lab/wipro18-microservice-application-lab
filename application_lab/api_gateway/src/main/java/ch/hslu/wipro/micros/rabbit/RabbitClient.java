@@ -12,7 +12,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeoutException;
 
 public class RabbitClient implements MessageBroker {
-    private final static String HOST = "localhost"; //todo from config
+    private final static String HOST = "rabbitmq"; //todo from config
 
     private Connection connection;
     private Channel channel;
