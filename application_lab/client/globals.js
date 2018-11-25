@@ -1,5 +1,5 @@
-var SALES_HEALTH_URL = 'http://localhost:8080/gateway/sales/health';
-var SALES_URL = 'http://localhost:8080/gateway/sales';
+let SALES_HEALTH_URL = 'http://localhost:7001/gateway/sales/health';
+let SALES_URL = 'http://localhost:7001/gateway/sales';
 
-var WAREHOUSE_HEALTH_URL = 'http://localhost:8080/gateway/warehouse/health';
-var WAREHOUSE_URL = 'http://localhost:8080/gateway/warehouse';
+let WAREHOUSE_HEALTH_URL = 'http://localhost:7001/gateway/warehouse/health';
+let WAREHOUSE_URL = 'http://localhost:7001/gateway/warehouse';

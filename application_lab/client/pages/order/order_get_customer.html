@@ -11,7 +11,7 @@
     </div>
 </form>
 
-<div id="customer" class="mui-panel">
+<div id="customerDto" class="mui-panel">
     <!-- dynamic -->
 </div>
 <button class="mui-btn mui-btn--primary" onclick="orderGetAllByCustomerIdCommand(customerId)">Order</button>
@@ -23,6 +23,7 @@
         <th>Customer ID</th>
         <th>Items</th>
         <th>Total</th>
+        <th>Status</th>
     </tr>
     </thead>
     <tbody>
@@ -32,17 +33,17 @@
 
 <script>
     var customerId = '';
-    var customerDto = {customerId: customerId};
+    let customerDto = {customerId: customerId};
 
     jQuery(function($) {
         checkHealth('sales-health', SALES_HEALTH_URL);
-        $('#customer').text(JSON.stringify(customerDto));
+        $('#customerDto').text(JSON.stringify(customerDto));
     });
 
     $( '#customerIdInput' ).change(function() {
         customerId = $('#customerIdInput').val();
         customerDto.customerId = customerId;
 
-        $('#customer').text(JSON.stringify(customerDto));
+        $('#customerDto').text(JSON.stringify(customerDto));
     });
 </script>

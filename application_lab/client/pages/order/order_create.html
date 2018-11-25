@@ -3,6 +3,13 @@
 </div>
 
 <h1>Demo Articles</h1>
+<form class="mui-form">
+    <div class="mui-textfield">
+        <input id="orderCreateCustomerIdInput" type="text">
+        <label>Customer ID</label>
+    </div>
+</form>
+
 <table class="mui-table mui-table--bordered">
     <thead>
         <tr>
@@ -29,17 +36,24 @@
 </table>
 
 <h1>OrderDto as Json</h1>
-<div id="order" class="mui-panel">
+<div id="orderDto" class="mui-panel">
     <!-- dynamic -->
 </div>
 <button class="mui-btn mui-btn--primary" onclick="orderCreateCommand(orderDto)">Order</button>
 
 <script>
-    var orderDto = {customerId:42, amountToArticle:{}, totalPrice:0};
+    var orderDto = {customerId:0, amountToArticle:{}, totalPrice:0, status: 'open'};
 
     jQuery(function($) {
         checkHealth('sales-health', SALES_HEALTH_URL);
-        $('#order').text(JSON.stringify(orderDto));
+        $('#orderDto').text(JSON.stringify(orderDto));
+    });
+
+    $( '#orderCreateCustomerIdInput' ).change(function() {
+        customerId = $('#orderCreateCustomerIdInput').val();
+        orderDto.customerId = customerId;
+
+        $('#orderDto').text(JSON.stringify(orderDto));
     });
 
     function addArticle(id, price) {
@@ -48,8 +62,10 @@
         } else {
             orderDto.amountToArticle[id] = orderDto.amountToArticle[id] + 1;
         }
-        orderDto.totalPrice = orderDto.totalPrice + price;
 
-        $('#order').text(JSON.stringify(orderDto));
+        let newPrice = Number.parseFloat(orderDto.totalPrice) + Number.parseFloat(price);
+        orderDto.totalPrice = Number.parseFloat(newPrice).toFixed(2);
+
+        $('#orderDto').text(JSON.stringify(orderDto));
     }
 </script>

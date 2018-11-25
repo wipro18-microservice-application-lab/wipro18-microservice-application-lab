@@ -1,0 +1,51 @@
+<div id="sales-health" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<h1>Update Order Status</h1>
+
+<form class="mui-form">
+    <div class="mui-textfield">
+        <input id="orderIdInput" type="text">
+        <label>Order ID</label>
+    </div>
+    <div class="mui-select">
+        <select id="orderStatusInput">
+            <option>open</option>
+            <option>payed</option>
+            <option>delivered</option>
+        </select>
+        <label>New Status</label>
+    </div>
+</form>
+
+<div id="orderUpdateDto" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<button class="mui-btn mui-btn--primary" onclick="orderUpdateStatusCommand(orderUpdateDto)">Update</button>
+
+<script>
+    let orderId = '';
+    let status = '';
+    var orderUpdateDto = {orderId: orderId, status: status};
+
+    jQuery(function($) {
+        checkHealth('sales-health', SALES_HEALTH_URL);
+        $('#orderUpdateDto').text(JSON.stringify(orderUpdateDto));
+    });
+
+    $( '#orderIdInput' ).change(function() {
+        orderId = $('#orderIdInput').val();
+        orderUpdateDto.orderId = orderId;
+
+        $('#orderUpdateDto').text(JSON.stringify(orderUpdateDto));
+    });
+
+    $( '#orderStatusInput' ).change(function() {
+        status = $('#orderStatusInput').val();
+        orderUpdateDto.status = status;
+
+        $('#orderUpdateDto').text(JSON.stringify(orderUpdateDto));
+    });
+</script>
