@@ -4,11 +4,6 @@ public class UpdateOrderDTO {
     private long orderId;
     private String status;
 
-    public UpdateOrderDTO() {
-        orderId = 0L;
-        status = null;
-    }
-
     public long getOrderId() {
         return orderId;
     }
