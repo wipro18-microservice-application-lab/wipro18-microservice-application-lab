@@ -35,7 +35,7 @@ public class JsonConverterTest {
     public void toJson() {
         String json = jsonConverter.toJson(orderDto);
         String expectedJson =
-                "{\"orderId\":0,\"customerId\":530,\"amountToArticle\":{\"1\":1,\"2\":2,\"3\":3},\"totalPrice\":1.5}";
+                "{\"orderId\":0,\"customerId\":530,\"amountToArticle\":{\"1\":1,\"2\":2,\"3\":3},\"totalPrice\":1.5,\"status\":null}";
 
         assertEquals(expectedJson, json);
     }
