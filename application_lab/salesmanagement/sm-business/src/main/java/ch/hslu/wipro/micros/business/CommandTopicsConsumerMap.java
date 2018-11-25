@@ -10,10 +10,10 @@ import com.rabbitmq.client.DefaultConsumer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CommandTopicsConsumerMap {
+class CommandTopicsConsumerMap {
     private final Map<Topic, Class<? extends DefaultConsumer>> handledTopics = new HashMap<>();
 
-    public CommandTopicsConsumerMap() {
+    CommandTopicsConsumerMap() {
         Topic orderCommandCreate = new TopicBuilder()
                 .atRoute("order.command.create")
                 .atQueue("ch.hslu.wipro.micros.OrderCreateCommand").build();
@@ -35,7 +35,7 @@ public class CommandTopicsConsumerMap {
         handledTopics.put(orderCommandUpdateStatus, OrderCreateCommandConsumer.class);
     }
 
-    public Map<Topic, Class<? extends DefaultConsumer>> getAsMap() {
+    Map<Topic, Class<? extends DefaultConsumer>> getAsMap() {
         return handledTopics;
     }
 }

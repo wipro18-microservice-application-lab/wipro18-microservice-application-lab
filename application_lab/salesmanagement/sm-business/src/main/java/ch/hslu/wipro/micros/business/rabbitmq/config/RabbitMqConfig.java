@@ -10,7 +10,7 @@ import java.util.Properties;
 public class RabbitMqConfig {
     private static final Logger logger = LogManager.getLogger(RabbitMqConfig.class);
     private static final String configFile = "rabbitmq.properties";
-    private Properties properties = new Properties();
+    private final Properties properties = new Properties();
 
     public RabbitMqConfig() {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(configFile);

@@ -1,10 +1,9 @@
 package ch.hslu.wipro.micros.business.rabbitmq.consumer;
 
+import ch.hslu.wipro.micros.business.converter.JsonConverter;
 import ch.hslu.wipro.micros.business.converter.JsonConverterFactory;
 import ch.hslu.wipro.micros.business.rabbitmq.command.Command;
 import ch.hslu.wipro.micros.business.rabbitmq.command.CommandBuilder;
-import ch.hslu.wipro.micros.business.converter.GsonConverter;
-import ch.hslu.wipro.micros.business.converter.JsonConverter;
 import ch.hslu.wipro.micros.business.saga.OrderCreateState;
 import ch.hslu.wipro.micros.business.saga.OrderSaga;
 import ch.hslu.wipro.micros.business.saga.OrderSagaContext;
@@ -16,10 +15,9 @@ import com.rabbitmq.client.Envelope;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
-
 import static com.rabbitmq.client.AMQP.BasicProperties;
 
+@SuppressWarnings("unchecked")
 public class OrderCreateCommandConsumer extends DefaultConsumer {
     private static final Logger logger = LogManager.getLogger(OrderCreateCommandConsumer.class);
 
@@ -29,7 +27,7 @@ public class OrderCreateCommandConsumer extends DefaultConsumer {
 
     @Override
     public void handleDelivery(String consumerTag, Envelope envelope,
-                               BasicProperties properties, byte[] body) throws IOException {
+                               BasicProperties properties, byte[] body) {
 
         logger.info("handle incoming OrderCreateCommand with correlation id: {}", properties.getCorrelationId());
 

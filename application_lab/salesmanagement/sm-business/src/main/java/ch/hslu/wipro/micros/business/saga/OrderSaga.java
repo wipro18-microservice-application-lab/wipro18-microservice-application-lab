@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class OrderSaga {
     private static final Logger logger = LogManager.getLogger(OrderSaga.class);
-    private OrderSagaContext context;
+    private final OrderSagaContext context;
     private OrderSagaState state;
 
     public OrderSaga(OrderSagaContext context, OrderSagaState state) {

@@ -1,7 +1,7 @@
 package ch.hslu.wipro.micros.business.rabbitmq.command;
 
 public class CommandBuilder<T> {
-    private String routingKey;
+    private final String routingKey;
     private T payload;
     private String replyTo;
     private String correlationId;

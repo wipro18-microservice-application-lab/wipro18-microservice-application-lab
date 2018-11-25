@@ -10,6 +10,7 @@ import com.rabbitmq.client.DefaultConsumer;
 
 import java.util.Map;
 
+@SuppressWarnings("WeakerAccess")
 public class SalesManagementApp {
     private static final RabbitMqConfig rabbitMqConfig = new RabbitMqConfig();
     private static final RetryExecutor rabbitMqExecutor = RabbitMqConnector.getExecutor();

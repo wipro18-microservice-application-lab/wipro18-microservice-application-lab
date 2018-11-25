@@ -12,7 +12,7 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 public class JsonConverterTest {
-    private JsonConverter<OrderDto> jsonConverter = new GsonConverter<>();
+    private final JsonConverter<OrderDto> jsonConverter = new GsonConverter<>();
     private static final BigDecimal TOTAL_PRICE = BigDecimal.valueOf(1.50);
     private static final long CUSTOMER_ID = 530L;
     private OrderDto orderDto;

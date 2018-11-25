@@ -3,12 +3,10 @@ package ch.hslu.wipro.micros.business.saga;
 import ch.hslu.wipro.micros.model.order.OrderDto;
 import ch.hslu.wipro.micros.service.repository.OrderRepositoryService;
 
-import java.io.IOException;
-
 public class OrderCreatePersistState implements OrderSagaState {
 
     @Override
-    public void process(OrderSaga saga) throws IOException {
+    public void process(OrderSaga saga) {
         OrderDto order = saga.getContext().getCommand().getPayload();
 
         OrderRepositoryService repositoryService = new OrderRepositoryService();

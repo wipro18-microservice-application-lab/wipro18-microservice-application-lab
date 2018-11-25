@@ -9,7 +9,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class OrderRepositoryVolatile implements OrderRepository {
-    private Map<Long, OrderEntity> orderDtoMap = new HashMap<>();
+    private final Map<Long, OrderEntity> orderDtoMap = new HashMap<>();
 
     @Override
     public OrderDto get(Long orderId) {

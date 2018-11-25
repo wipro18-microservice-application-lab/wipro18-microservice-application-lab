@@ -6,7 +6,7 @@ import ch.hslu.wipro.micros.model.order.OrderDto;
 import java.util.List;
 
 public class OrderRepositoryService {
-    private OrderRepository orderRepository = OrderRepositorySingleton.getOrderRepository();
+    private final OrderRepository orderRepository = OrderRepositorySingleton.getOrderRepository();
 
     public OrderDto getOrder(Long orderId) {
         return orderRepository.get(orderId);
