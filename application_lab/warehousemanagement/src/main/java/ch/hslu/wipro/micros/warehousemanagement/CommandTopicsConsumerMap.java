@@ -1,6 +1,7 @@
 package ch.hslu.wipro.micros.warehousemanagement;
 
 import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleCheckQuantityCommandConsumer;
+import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleGetAllCommandConsumer;
 import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.topic.Topic;
 import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.topic.TopicBuilder;
 import com.rabbitmq.client.DefaultConsumer;
@@ -20,7 +21,7 @@ public class CommandTopicsConsumerMap {
         Topic orderCommandGetAll = new TopicBuilder()
                 .atRoute("article.command.getAll")
                 .atQueue("ch.hslu.wipro.micros.ArticleGetAllCommand").build();
-        handledTopics.put(orderCommandGetAll, ArticleCheckQuantityCommandConsumer.class);
+        handledTopics.put(orderCommandGetAll, ArticleGetAllCommandConsumer.class);
 
         Topic orderCommandGetAllByCustomerId = new TopicBuilder()
                 .atRoute("article.command.getById")

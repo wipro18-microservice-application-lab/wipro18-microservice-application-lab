@@ -1,6 +1,7 @@
 package ch.hslu.wipro.micros.warehousemanagement.dto;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public class ArticleDto {
     private long articleId;
@@ -47,5 +48,24 @@ public class ArticleDto {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArticleDto that = (ArticleDto) o;
+        return Objects.equals(articleId, that.articleId) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(price, that.price) &&
+                Objects.equals(quantity, that.quantity);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                articleId, name, description, price, quantity
+        );
     }
 }

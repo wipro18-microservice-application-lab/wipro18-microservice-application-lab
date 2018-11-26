@@ -59,6 +59,6 @@ public class ArticleRepositoryManager {
     }
 
     private int randomInteger(Random r, int rangeMin, int rangeMax) {
-        return rangeMin + (rangeMax - rangeMin) * r.nextInt();
+        return r.nextInt((rangeMax - rangeMin) + 1) + rangeMin;
     }
 }
