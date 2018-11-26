@@ -1,0 +1,47 @@
+<div id="sales-health" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<h1>Check Article Quantity</h1>
+
+<form class="mui-form">
+    <div class="mui-textfield">
+        <input id="articleCheckIdInput" type="text">
+        <label>Article Id</label>
+    </div>
+    <div class="mui-textfield">
+        <input id="articleCheckQuantityInput" type="text">
+        <label>Quantity</label>
+    </div>
+</form>
+
+<div id="articleCheckQuantityDto" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<button class="mui-btn mui-btn--primary" onclick="checkArticleQuantityCommand(articleCheckQuantityDto)">Check</button>
+
+<script>
+    let articleId = '';
+    let quantity = '';
+    var articleCheckQuantityDto = {articleId: articleId, quantity: quantity};
+
+    jQuery(function($) {
+        checkHealth('sales-health', WAREHOUSE_HEALTH_URL);
+        $('#articleCheckQuantityDto').text(JSON.stringify(articleCheckQuantityDto));
+    });
+
+    $( '#articleCheckIdInput' ).change(function() {
+        articleId = $('#articleCheckIdInput').val();
+        articleCheckQuantityDto.articleId = articleId;
+
+        $('#articleCheckQuantityDto').text(JSON.stringify(articleCheckQuantityDto));
+    });
+
+    $( '#articleCheckQuantityInput' ).change(function() {
+        quantity = $('#articleCheckQuantityInput').val();
+        articleCheckQuantityDto.quantity = quantity;
+
+        $('#articleCheckQuantityDto').text(JSON.stringify(articleCheckQuantityDto));
+    });
+</script>

@@ -1,0 +1,26 @@
+<div id="warehouse-health" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<table id="all-articles" class="mui-table mui-table--bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+        <!-- dynamic -->
+    </tbody>
+</table>
+
+<script>
+    jQuery(function($) {
+        checkHealth('warehouse-health', WAREHOUSE_HEALTH_URL);
+        articleGetAllCommand();
+        console.log("hi")
+    });
+</script>
