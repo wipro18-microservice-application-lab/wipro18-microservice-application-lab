@@ -9,6 +9,6 @@ RUN mvn clean install
 FROM openjdk:8-jre-alpine
 WORKDIR /app
 
-COPY --from=build /app/target/warehousemanagement-1.0-SNAPSHOT.jar /app
+COPY --from=build /app/target/warehousemanagement-1.0-SNAPSHOT-jar-with-dependencies.jar /app
 
-CMD java -jar warehousemanagement-1.0-SNAPSHOT.jar
+CMD java -jar warehousemanagement-1.0-SNAPSHOT-jar-with-dependencies.jar
