@@ -14,7 +14,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 
 public class ArticleGetAllByIdCommandConsumer extends DefaultConsumer {
     private static final Logger logger = LogManager.getLogger(ArticleGetAllByIdCommandConsumer.class);

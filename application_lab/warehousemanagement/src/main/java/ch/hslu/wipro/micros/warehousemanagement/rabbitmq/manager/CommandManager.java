@@ -10,8 +10,8 @@ import org.apache.logging.log4j.Logger;
 
 public class CommandManager {
     private static final Logger logger = LogManager.getLogger(CommandManager.class);
-    private RabbitMqConfig rabbitMqConfig = new RabbitMqConfig(RabbitMqConsts.CONFIG_FILE);
-    private CommandTopicsConsumerMap commandTopicsConsumerMap;
+    private final RabbitMqConfig rabbitMqConfig = new RabbitMqConfig(RabbitMqConsts.CONFIG_FILE);
+    private final CommandTopicsConsumerMap commandTopicsConsumerMap;
 
 
     public CommandManager(CommandTopicsConsumerMap commandTopicsConsumerMap) {

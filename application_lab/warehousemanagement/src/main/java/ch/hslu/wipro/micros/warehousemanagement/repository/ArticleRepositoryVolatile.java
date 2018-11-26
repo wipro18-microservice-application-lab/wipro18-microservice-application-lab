@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArticleRepositoryVolatile implements ArticleRepository {
-    private List<ArticleDto> articleDtos = new ArrayList<>();
+    private final List<ArticleDto> articleDtos = new ArrayList<>();
 
     ArticleRepositoryVolatile() {}
 

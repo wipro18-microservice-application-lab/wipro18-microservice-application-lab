@@ -12,7 +12,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -55,7 +54,7 @@ public class ArticleCheckQuantityCommandConsumerIT {
     }
 
     @Test
-    public void testEnoughArticlesInStock() throws IOException, TimeoutException, InterruptedException {
+    public void testEnoughArticlesInStock() throws IOException, InterruptedException {
         /* Send an update dto message to be consumed */
         ArticleCheckQuantityDto articleCheckQuantityDto = new ArticleCheckQuantityDto();
         articleCheckQuantityDto.setArticleId(0);
@@ -94,7 +93,7 @@ public class ArticleCheckQuantityCommandConsumerIT {
     }
 
     @Test
-    public void testNotEnoughArticlesInStock() throws IOException, TimeoutException, InterruptedException {
+    public void testNotEnoughArticlesInStock() throws IOException, InterruptedException {
         /* Send an update dto message to be consumed */
         ArticleCheckQuantityDto articleCheckQuantityDto = new ArticleCheckQuantityDto();
         articleCheckQuantityDto.setArticleId(0);

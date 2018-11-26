@@ -1,22 +1,18 @@
 package ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer;
 
 import ch.hslu.wipro.micros.warehousemanagement.converter.JsonConverterFactory;
-import ch.hslu.wipro.micros.warehousemanagement.dto.ArticleCheckQuantityDto;
 import ch.hslu.wipro.micros.warehousemanagement.dto.ArticleDto;
 import ch.hslu.wipro.micros.warehousemanagement.dto.ArticleIdDto;
 import ch.hslu.wipro.micros.warehousemanagement.repository.ArticleRepository;
 import ch.hslu.wipro.micros.warehousemanagement.repository.ArticleRepositoryManager;
 import ch.hslu.wipro.micros.warehousemanagement.repository.ArticleRepositorySingleton;
 import com.github.fridujo.rabbitmq.mock.MockConnectionFactory;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.rabbitmq.client.*;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;

@@ -1,17 +1,16 @@
 package ch.hslu.wipro.micros.warehousemanagement.repository;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
 public class ArticleRepositoryManagerTest {
     private static final int amountToGenerate = 50;
-    private ArticleRepository articleRepository = ArticleRepositorySingleton.getArticleRepository();
+    private final ArticleRepository articleRepository = ArticleRepositorySingleton.getArticleRepository();
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         if (articleRepository.getAll().size() == 0) {
             ArticleRepositoryManager articleRepositoryManager = new ArticleRepositoryManager(articleRepository);
             articleRepositoryManager.generateRandomInventory(amountToGenerate);
