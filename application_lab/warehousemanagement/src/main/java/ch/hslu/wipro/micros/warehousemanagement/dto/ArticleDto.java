@@ -3,17 +3,18 @@ package ch.hslu.wipro.micros.warehousemanagement.dto;
 import java.math.BigDecimal;
 
 public class ArticleDto {
-    private String id;
+    private long articleId;
     private String name;
     private String description;
     private BigDecimal price;
+    private int quantity;
 
-    public String getId() {
-        return id;
+    public long getArticleId() {
+        return articleId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setArticleId(long articleId) {
+        this.articleId = articleId;
     }
 
     public String getName() {
@@ -38,5 +39,13 @@ public class ArticleDto {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

@@ -1,47 +1,30 @@
 package ch.hslu.wipro.micros.warehousemanagement;
 
-import ch.hslu.wipro.micros.warehousemanagement.config.ConfigConsts;
-import ch.hslu.wipro.micros.warehousemanagement.config.ConfigUtils;
-import ch.hslu.wipro.micros.warehousemanagement.consumer.GetArticleCommandConsumer;
 import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.ChannelBuilder;
-import com.rabbitmq.client.BuiltinExchangeType;
-import com.rabbitmq.client.Channel;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.io.IOException;
-import java.util.concurrent.TimeoutException;
+import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.RabbitMqConnector;
+import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.config.RabbitMqConfig;
+import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.config.RabbitMqConsts;
+import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.manager.CommandManager;
+import ch.hslu.wipro.micros.warehousemanagement.repository.ArticleRepository;
+import ch.hslu.wipro.micros.warehousemanagement.repository.ArticleRepositoryManager;
+import ch.hslu.wipro.micros.warehousemanagement.repository.ArticleRepositorySingleton;
+import com.nurkiewicz.asyncretry.RetryExecutor;
 
 public class WarehouseManagerApp {
-    private static final Logger logger = LogManager.getLogger(WarehouseManagerApp.class);
-    private static ConfigUtils configUtils = new ConfigUtils(ConfigConsts.CONFIG_FILE);
-    private static Channel channel;
+    private static final RabbitMqConfig rabbitMqConfig = new RabbitMqConfig(RabbitMqConsts.CONFIG_FILE);
+    private static final RetryExecutor rabbitMqExecutor = RabbitMqConnector.getExecutor();
 
     public static void main(String[] args) {
+        ArticleRepository articleRepository = ArticleRepositorySingleton.getArticleRepository();
+        ArticleRepositoryManager articleRepositoryManager = new ArticleRepositoryManager(articleRepository);
+        articleRepositoryManager.generateRandomInventory(50);
 
-        try {
-            channel = new ChannelBuilder()
-                    .withHost(configUtils.getHost())
-                    .build();
+        CommandTopicsConsumerMap commandTopicsConsumerMap = new CommandTopicsConsumerMap();
+        CommandManager commandManager = new CommandManager(commandTopicsConsumerMap);
 
-            channel.exchangeDeclare(configUtils.getArticleExchange(), BuiltinExchangeType.TOPIC);
-            channel.queueDeclare(configUtils.getInventoryCommandQueue(), false, false, false, null);
-            channel.queueBind(configUtils.getInventoryCommandQueue(),
-                    configUtils.getArticleExchange(),
-                    configUtils.getInventoryCommandRoutingKey());
-
-            handleIncomingInventoryCommands();
-        } catch (IOException | TimeoutException e) {
-            logger.error("can't connect to rabbitmq");
-        }
-    }
-
-    private static void handleIncomingInventoryCommands() throws IOException {
-        boolean autoAck = false;
-
-        channel.basicConsume(
-                configUtils.getInventoryCommandQueue(),
-                autoAck,
-                new GetArticleCommandConsumer(channel));
+        rabbitMqExecutor.getWithRetry(() -> new ChannelBuilder()
+                .withHost(rabbitMqConfig.getHost())
+                .build())
+                .thenAccept(commandManager::startWithChannel);
     }
 }

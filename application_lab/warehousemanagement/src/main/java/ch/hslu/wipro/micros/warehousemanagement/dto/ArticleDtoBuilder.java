@@ -2,38 +2,45 @@ package ch.hslu.wipro.micros.warehousemanagement.dto;
 
 import java.math.BigDecimal;
 
-public class ArticleBuilder {
-    private String id;
+public class ArticleDtoBuilder {
+    private long articleId;
     private String name;
     private String description;
     private BigDecimal price;
+    private int quantity;
 
-    public ArticleBuilder atId(String id) {
-        this.id = id;
+    public ArticleDtoBuilder atArticleId(long articleId) {
+        this.articleId = articleId;
         return this;
     }
 
-    public ArticleBuilder atName(String name) {
+    public ArticleDtoBuilder atName(String name) {
         this.name = name;
         return this;
     }
 
-    public ArticleBuilder atDescription(String description) {
+    public ArticleDtoBuilder atDescription(String description) {
         this.description = description;
         return this;
     }
 
-    public ArticleBuilder atPrice(BigDecimal price) {
+    public ArticleDtoBuilder atPrice(BigDecimal price) {
         this.price = price;
+        return this;
+    }
+
+    public ArticleDtoBuilder atQuantity(int quantity) {
+        this.quantity = quantity;
         return this;
     }
 
     public ArticleDto build() {
         ArticleDto articleDto = new ArticleDto();
-        articleDto.setId(id);
+        articleDto.setArticleId(articleId);
         articleDto.setName(name);
         articleDto.setDescription(description);
         articleDto.setPrice(price);
+        articleDto.setQuantity(quantity);
 
         return articleDto;
     }

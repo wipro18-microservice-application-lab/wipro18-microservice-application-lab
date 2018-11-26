@@ -1,4 +1,4 @@
-package ch.hslu.wipro.micros.warehousemanagement.config;
+package ch.hslu.wipro.micros.warehousemanagement.rabbitmq.config;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class ConfigUtils {
-    private static final Logger logger = LogManager.getLogger(ConfigUtils.class);
+public class RabbitMqConfig {
+    private static final Logger logger = LogManager.getLogger(RabbitMqConfig.class);
     private Properties properties;
 
-    public ConfigUtils(String configFile) {
+    public RabbitMqConfig(String configFile) {
         properties = new Properties();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(configFile);
 
@@ -29,13 +29,5 @@ public class ConfigUtils {
 
     public String getArticleExchange() {
         return properties.getProperty("ARTICLE_EXCHANGE");
-    }
-
-    public String getInventoryCommandQueue() {
-        return properties.getProperty("INVENTORY_COMMAND_QUEUE");
-    }
-
-    public String getInventoryCommandRoutingKey() {
-        return properties.getProperty("INVENTORY_COMMAND_ROUTING_KEY");
     }
 }

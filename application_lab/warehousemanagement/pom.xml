@@ -17,6 +17,7 @@
         <mongodb.version>3.4.1</mongodb.version>
         <log4j.version>2.11.0</log4j.version>
         <slf4j-ul.version>1.7.25</slf4j-ul.version>
+        <junit.version>4.12</junit.version>
         <project.build.targetJdk>1.8</project.build.targetJdk>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -59,6 +60,23 @@
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
             <version>${slf4j-ul.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.nurkiewicz.asyncretry</groupId>
+            <artifactId>asyncretry</artifactId>
+            <version>0.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.fridujo</groupId>
+            <artifactId>rabbitmq-mock</artifactId>
+            <version>1.0.8</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
