@@ -1,0 +1,50 @@
+<div id="warehouse-health" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<h1>Get Article By ID</h1>
+
+<form class="mui-form">
+    <div class="mui-textfield">
+        <input id="articleIdInput" type="text">
+        <label>Customer ID</label>
+    </div>
+</form>
+
+<div id="articleIdDto" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<button class="mui-btn mui-btn--primary" onclick="articleGetByIdCommand(articleIdDto)">Retrieve</button>
+
+<table id="article-by-id" class="mui-table mui-table--bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- dynamic -->
+    </tbody>
+</table>
+
+<script>
+    var articleId = '';
+    let articleIdDto = {articleId: articleId};
+
+    jQuery(function($) {
+        checkHealth('warehouse-health', WAREHOUSE_HEALTH_URL);
+        $('#articleIdDto').text(JSON.stringify(articleIdDto));
+    });
+
+    $( '#articleIdInput' ).change(function() {
+        articleId = $('#articleIdInput').val();
+        articleIdDto.articleId = articleId;
+
+        $('#articleIdDto').text(JSON.stringify(articleIdDto));
+    });
+</script>
