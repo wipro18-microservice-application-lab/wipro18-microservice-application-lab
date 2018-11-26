@@ -63,7 +63,6 @@ public class ArticleCheckQuantityCommandConsumerIT {
 
         String orderUpdateJson = new JsonConverterFactory<ArticleCheckQuantityDto>()
                 .get().toJson(articleCheckQuantityDto);
-        System.out.println(orderUpdateJson);
 
         AMQP.BasicProperties replyProperties = new AMQP.BasicProperties
                 .Builder()
@@ -103,7 +102,6 @@ public class ArticleCheckQuantityCommandConsumerIT {
 
         String orderUpdateJson = new JsonConverterFactory<ArticleCheckQuantityDto>()
                 .get().toJson(articleCheckQuantityDto);
-        System.out.println(orderUpdateJson);
 
         AMQP.BasicProperties replyProperties = new AMQP.BasicProperties
                 .Builder()
