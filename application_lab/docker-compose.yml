@@ -41,6 +41,13 @@ services:
       - "discovery"
     hostname: sales
     
+  warehouse:
+    build:
+      context: ./warehousemanagement
+    depends_on:
+      - "discovery"
+    hostname: warehouse
+    
   notification:
     build:
       context: ./notificationservice
