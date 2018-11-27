@@ -31,9 +31,18 @@ function articleGetAllCommand() {
     });
 }
 
-function articleGetByIdCommand(articleId) {
-    $.get(WAREHOUSE_URL + '/articles/' + articleId, function(response) {
-        response.forEach(function(articleDto) {
+function articleGetByIdCommand(articleIdDto) {
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: 'GET',
+        url: WAREHOUSE_URL,
+        data: JSON.stringify(articleIdDto),
+        contentType: "application/json; charset=utf-8",
+        traditional: true,
+        success: function (articleDto) {
             $('#article-by-id').find('> tbody:last-child')
                 .append(
                     '<tr>' +
@@ -43,6 +52,6 @@ function articleGetByIdCommand(articleId) {
                     `<td>${articleDto.price}</td>` +
                     `<td>${articleDto.quantity}</td>` +
                     '</tr>');
-        });
+        }
     });
 }
