@@ -17,6 +17,7 @@ public class ArticleCommandFactory {
         String routingKey = messageManager.getCommandKey("getAll");
         command.setRoutingKey(routingKey);
         command.setPayload("");
+        command.setToExchange(messageManager.getExchange());
         return command;
     }
 
@@ -25,6 +26,7 @@ public class ArticleCommandFactory {
         String routingKey = messageManager.getCommandKey("getById");
         command.setRoutingKey(routingKey);
         command.setPayload(dto);
+        command.setToExchange(messageManager.getExchange());
         return command;
     }
 }
