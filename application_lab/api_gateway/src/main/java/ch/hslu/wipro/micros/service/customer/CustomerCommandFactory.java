@@ -11,7 +11,7 @@ public class CustomerCommandFactory {
 
     }
 
-    public static Command<String> createGetAllCommand() {
+    public static Command<String> createGetAllCustomersCommand() {
         Command<String> command = new Command<>();
         command.setRoutingKey(messageManager.getCommandKey("getAll"));
         command.setPayload("");
