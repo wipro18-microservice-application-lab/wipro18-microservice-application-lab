@@ -9,6 +9,6 @@ public class CustomerMessageManager extends MessageManager {
         setExchange("ch.hslu.wipro.micros.Customer");
         addCommandKey("customer.command.create");
         addCommandKey("customer.command.getAll");
-        addCommandKey("customer.command.getById");
+        addCommandKey("customer.command.getById"); //todo check command naming
     }
 }
