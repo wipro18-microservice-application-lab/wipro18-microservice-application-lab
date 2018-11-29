@@ -10,5 +10,6 @@ public class CustomerMessageManager extends MessageManager {
         addCommandKey("customer.command.create");
         addCommandKey("customer.command.getAll");
         addCommandKey("customer.command.getById"); //todo check command naming
+        addCommandKey("customer.command.getReminderByCustomerId");
     }
 }
