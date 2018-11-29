@@ -15,7 +15,7 @@ public class OrderSaga {
         this.state = state;
     }
 
-    void setState(OrderSagaState state) {
+    public void setState(OrderSagaState state) {
         OrderSagaState oldState = this.state;
         this.state = state;
 

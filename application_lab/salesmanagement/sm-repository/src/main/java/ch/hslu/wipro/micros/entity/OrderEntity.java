@@ -6,7 +6,7 @@ import java.util.Map;
 public class OrderEntity {
     private long orderId;
     private long customerId;
-    private Map<Integer, Integer> amountToArticle;
+    private Map<Integer, Long> amountToArticle;
     private BigDecimal totalPrice;
     private String status;
 
@@ -20,7 +20,7 @@ public class OrderEntity {
         this.customerId = customerId;
     }
 
-    void setAmountToArticle(Map<Integer, Integer> amountToArticle) {
+    void setAmountToArticle(Map<Integer, Long> amountToArticle) {
         this.amountToArticle = amountToArticle;
     }
 
@@ -40,7 +40,7 @@ public class OrderEntity {
         return customerId;
     }
 
-    public Map<Integer, Integer> getAmountToArticle() {
+    public Map<Integer, Long> getAmountToArticle() {
         return amountToArticle;
     }
 

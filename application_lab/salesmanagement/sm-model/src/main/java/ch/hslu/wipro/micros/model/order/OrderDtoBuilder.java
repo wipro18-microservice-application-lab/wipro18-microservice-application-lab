@@ -6,7 +6,7 @@ import java.util.Map;
 public class OrderDtoBuilder {
     private long orderId;
     private long customerId;
-    private Map<Integer, Integer> amountToArticleMap;
+    private Map<Integer, Long> amountToArticleMap;
     private BigDecimal totalPrice;
     private String status;
 
@@ -20,7 +20,7 @@ public class OrderDtoBuilder {
         return this;
     }
 
-    public OrderDtoBuilder mapAmountToArticle(Map<Integer, Integer> amountToArticleMap) {
+    public OrderDtoBuilder mapAmountToArticle(Map<Integer, Long> amountToArticleMap) {
         this.amountToArticleMap = amountToArticleMap;
         return this;
     }
