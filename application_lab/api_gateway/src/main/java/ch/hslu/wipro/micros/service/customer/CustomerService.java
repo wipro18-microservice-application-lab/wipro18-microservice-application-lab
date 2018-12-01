@@ -3,7 +3,8 @@ package ch.hslu.wipro.micros.service.customer;
 import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.rabbit.MessageBroker;
 import ch.hslu.wipro.micros.rabbit.MessageBrokerFactory;
-import ch.hslu.wipro.micros.service.customer.dto.CustomerIByIdDTO;
+import ch.hslu.wipro.micros.service.customer.dto.CustomerCreateDTO;
+import ch.hslu.wipro.micros.service.customer.dto.CustomerByIdDTO;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,9 +37,31 @@ public class CustomerService {
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     public Response getById(@PathParam("customer") long id) {
         LOGGER.info("get customer by customer id " + id);
-        CustomerIByIdDTO dto = new CustomerIByIdDTO();
+        CustomerByIdDTO dto = new CustomerByIdDTO();
         dto.setId(id);
-        Command<CustomerIByIdDTO> command = CustomerCommandFactory.createGetByCustomerIdCommand(dto);
+        Command<CustomerByIdDTO> command = CustomerCommandFactory.createGetByCustomerIdCommand(dto);
+        String answer = callMessageBroker(command);
+        return Response.ok(answer, MediaType.APPLICATION_JSON).build();
+    }
+
+    @Path("reminders/{customer}")
+    @GET
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    public Response getReminderById(@PathParam("customer") long id) {
+        LOGGER.info("get reminder by customer id " + id);
+        CustomerByIdDTO dto = new CustomerByIdDTO();
+        dto.setId(id);
+        Command<CustomerByIdDTO> command = CustomerCommandFactory.createGetReminderByIdCommand(dto);
+        String answer = callMessageBroker(command);
+        return Response.ok(answer, MediaType.APPLICATION_JSON).build();
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response createCustomer(CustomerCreateDTO dto) {
+        LOGGER.info("create customer: fullname: "+dto.getFullname());
+        Command<CustomerCreateDTO> command = CustomerCommandFactory.createCreateCustomerCommand(dto);
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
     }

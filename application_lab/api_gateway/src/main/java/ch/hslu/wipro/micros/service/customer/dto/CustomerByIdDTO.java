@@ -1,10 +1,10 @@
 package ch.hslu.wipro.micros.service.customer.dto;
 
-public class CustomerIByIdDTO {
+public class CustomerByIdDTO {
 
     private long id;
 
-    public CustomerIByIdDTO() {
+    public CustomerByIdDTO() {
         id = 0L;
     }
 
