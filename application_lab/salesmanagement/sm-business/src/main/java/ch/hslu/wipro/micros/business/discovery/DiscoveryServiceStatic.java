@@ -8,4 +8,11 @@ public class DiscoveryServiceStatic implements DiscoveryService {
                 .addCommand("checkQuantities", "article.command.checkQuantities")
                 .build();
     }
+
+    public MicroService getCustomerManagement() {
+        return new MicroServiceBuilder()
+                .atExchange("ch.hslu.wipro.micros.Customer")
+                .addCommand("getById", "customer.command.getById")
+                .build();
+    }
 }

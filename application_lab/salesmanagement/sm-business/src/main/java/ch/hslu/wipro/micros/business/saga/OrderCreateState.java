@@ -4,7 +4,7 @@ public class OrderCreateState implements OrderSagaState {
 
     @Override
     public void process(OrderSaga saga) {
-        saga.setState(new OrderCreateEligibleState());
+        saga.setState(new OrderCreateCheckArticleState());
         saga.process();
     }
 }
