@@ -1,10 +1,11 @@
 package ch.hslu.wipro.micros.business.discovery;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MicroServiceBuilder {
     private String exchange;
-    private Map<String, String> commands;
+    private Map<String, String> commands = new HashMap<>();
 
     public MicroServiceBuilder atExchange(String exchange) {
         this.exchange = exchange;

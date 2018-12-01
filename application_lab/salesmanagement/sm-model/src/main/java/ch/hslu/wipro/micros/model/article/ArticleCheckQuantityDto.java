@@ -3,13 +3,13 @@ package ch.hslu.wipro.micros.model.article;
 import java.util.Map;
 
 public class ArticleCheckQuantityDto {
-    private Map<Integer, Long> amountToArticle;
+    private Map<Long, Integer> amountToArticle;
 
-    public Map<Integer, Long> getAmountToArticle() {
+    public Map<Long, Integer> getAmountToArticle() {
         return amountToArticle;
     }
 
-    public void setAmountToArticle(Map<Integer, Long> amountToArticle) {
+    public void setAmountToArticle(Map<Long, Integer> amountToArticle) {
         this.amountToArticle = amountToArticle;
     }
 }

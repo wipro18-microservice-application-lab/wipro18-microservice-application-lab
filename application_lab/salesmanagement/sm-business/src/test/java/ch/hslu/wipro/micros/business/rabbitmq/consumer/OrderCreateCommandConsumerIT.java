@@ -33,10 +33,10 @@ public class OrderCreateCommandConsumerIT {
 
     @Before
     public void setUp() throws Exception {
-        Map<Integer, Integer> amountToArticle = new HashMap<>();
-        amountToArticle.put(1, 5);
-        amountToArticle.put(2, 4);
-        amountToArticle.put(3, 1);
+        Map<Long, Integer> amountToArticle = new HashMap<>();
+        amountToArticle.put(1L, 5);
+        amountToArticle.put(2L, 4);
+        amountToArticle.put(3L, 1);
 
         createOrderDto = new OrderDtoBuilder()
                 .atCustomer(42)
@@ -54,7 +54,7 @@ public class OrderCreateCommandConsumerIT {
     }
 
     @Test
-    public void handleDelivery() throws IOException, TimeoutException, InterruptedException {
+    public void handleDelivery() throws IOException, InterruptedException {
         /* Setup OrderUpdateStatusCommand Consumer to listen to messages */
         channel.exchangeDeclare(exchangeName, "direct");
         String queueName = channel.queueDeclare().getQueue();

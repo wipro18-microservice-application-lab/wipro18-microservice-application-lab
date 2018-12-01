@@ -5,7 +5,7 @@ public class DiscoveryServiceStatic implements DiscoveryService {
     public MicroService getWarehouseManagement() {
         return new MicroServiceBuilder()
                 .atExchange("ch.hslu.wipro.micros.Article")
-                .addCommand("checkQuantity", "article.command.checkQuantity")
+                .addCommand("checkQuantities", "article.command.checkQuantities")
                 .build();
     }
 }

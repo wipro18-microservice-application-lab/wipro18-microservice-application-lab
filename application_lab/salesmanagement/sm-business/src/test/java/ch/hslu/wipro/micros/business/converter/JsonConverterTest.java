@@ -19,10 +19,10 @@ public class JsonConverterTest {
 
     @Before
     public void setUp() {
-        Map<Integer, Integer> amountToArticle = new HashMap<>();
-        amountToArticle.put(1, 1);
-        amountToArticle.put(2, 2);
-        amountToArticle.put(3, 3);
+        Map<Long, Integer> amountToArticle = new HashMap<>();
+        amountToArticle.put(1L, 1);
+        amountToArticle.put(2L, 2);
+        amountToArticle.put(3L, 3);
 
         orderDto = new OrderDtoBuilder()
                 .atCustomer(CUSTOMER_ID)

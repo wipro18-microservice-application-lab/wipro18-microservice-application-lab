@@ -21,7 +21,6 @@ public class OrderCreateEligibleState implements OrderSagaState {
         Channel channel = saga.getContext().getChannel();
         String correlationId = UUID.randomUUID().toString();
         String replyToQueue = channel.queueDeclare().getQueue();
-        String replyRoutingKey = "";
 
         OrderDto orderDto = saga.getContext().getCommand().getPayload();
         ArticleCheckQuantityDto articleCheckQuantityDto = new ArticleCheckQuantityDto();
@@ -41,11 +40,11 @@ public class OrderCreateEligibleState implements OrderSagaState {
 
         channel.basicPublish(
                 warehouseService.getExchange(),
-                warehouseService.getCommands("checkQuantity"),
+                warehouseService.getCommands("checkQuantities"),
                 replyProperties,
                 amountToArticleJson.getBytes(StandardCharsets.UTF_8));
 
         boolean noAutoAck = false;
-        channel.basicConsume(replyToQueue, noAutoAck, new ArticleCheckQuantityReplyConsumer());
+        channel.basicConsume(replyToQueue, noAutoAck, new ArticleCheckQuantityReplyConsumer(channel, saga));
     }
 }

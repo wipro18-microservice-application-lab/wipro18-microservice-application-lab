@@ -23,10 +23,10 @@ public class OrderRepositoryServiceTest {
 
     @Before
     public void setUp() throws Exception {
-        Map<Integer, Integer> amountToArticle = new HashMap<>();
-        amountToArticle.put(1, 5);
-        amountToArticle.put(2, 4);
-        amountToArticle.put(3, 1);
+        Map<Long, Integer> amountToArticle = new HashMap<>();
+        amountToArticle.put(1L, 5);
+        amountToArticle.put(2L, 4);
+        amountToArticle.put(3L, 1);
 
         orderDto = new OrderDtoBuilder()
                 .atStatus("Open")

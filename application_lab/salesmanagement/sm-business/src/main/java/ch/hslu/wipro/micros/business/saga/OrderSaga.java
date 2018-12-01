@@ -33,7 +33,7 @@ public class OrderSaga {
         }
     }
 
-    OrderSagaContext getContext() {
+    public OrderSagaContext getContext() {
         return context;
     }
 

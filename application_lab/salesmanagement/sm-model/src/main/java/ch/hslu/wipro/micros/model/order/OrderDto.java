@@ -7,7 +7,7 @@ import java.util.Objects;
 public class OrderDto {
     private long orderId;
     private long customerId;
-    private Map<Integer, Long> amountToArticle;
+    private Map<Long, Integer> amountToArticle;
     private BigDecimal totalPrice;
     private String status;
 
@@ -19,7 +19,7 @@ public class OrderDto {
         this.customerId = customerId;
     }
 
-    void setAmountToArticle(Map<Integer, Long> amountToArticle) {
+    void setAmountToArticle(Map<Long, Integer> amountToArticle) {
         this.amountToArticle = amountToArticle;
     }
 
@@ -39,7 +39,7 @@ public class OrderDto {
         return customerId;
     }
 
-    public Map<Integer, Long> getAmountToArticle() {
+    public Map<Long, Integer> getAmountToArticle() {
         return amountToArticle;
     }
 
