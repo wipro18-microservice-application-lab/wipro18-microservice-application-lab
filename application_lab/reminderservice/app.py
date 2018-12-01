@@ -20,9 +20,9 @@ class ReminderEntry:
         self.issue_date = issue_date
 
     def to_json_str(self):
-        return '{"customerId:"' + self.customer_id \
-               + ',"fee":' + self.fee \
-               + ',"issue_date":' + str(self.issue_date)
+        return json.dumps({"customerId": self.customer_id,
+                           "fee:": self.fee,
+                           "issueDate": self.issue_date})
 
 
 def listen_for_order_events():
@@ -33,7 +33,6 @@ def listen_for_order_events():
     channel.start_consuming()
 
 
-# creates a new timestamp
 def create_timestamp():
     return datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
 
@@ -52,8 +51,15 @@ def listen_for_commands():
     channel.start_consuming()
 
 
+def get_reminders_as_json():
+    reminders_json = []
+    for reminder in reminders:
+        reminders_json.append(reminder.to_json_str())
+    return (json.dumps({"reminders": reminders_json})).replace('\\"',"\"")
+
+
 def callback_command(ch, method, properties, body):
-    all_reminders = reminders
+    all_reminders = get_reminders_as_json()
     reply_properties = pika.BasicProperties(correlation_id=properties.correlation_id)
 
     ch.basic_publish(exchange='',
@@ -61,12 +67,16 @@ def callback_command(ch, method, properties, body):
                      properties=reply_properties,
                      body=all_reminders)
 
-    ch.basic_ack(delivery_tag=method.delivery_tag)
-    print("all reminders",all_reminders)
+    print("all reminders", all_reminders)
 
 
 if __name__ == '__main__':
-    #Thread(target=listen_for_order_events).start()
-    #Thread(target=listen_for_commands).start()
+    Thread(target=listen_for_order_events).start()
+    Thread(target=listen_for_commands).start()
 
-    e = ReminderEntry(1,44,create_timestamp())
+    """e1 = ReminderEntry(0, 100, create_timestamp())
+    e2 = ReminderEntry(1, 120, create_timestamp())
+    reminders.append(e1)
+    reminders.append(e2)
+    print(get_reminders_as_json())"""
+

@@ -13,5 +13,6 @@ public class ArticleMessageManager extends MessageManager {
         setExchange("ch.hslu.wipro.micros.Article");
         addCommandKey("article.command.getAll");
         addCommandKey("article.command.getById");
+        addCommandKey("article.command.checkQuantity");
     }
 }

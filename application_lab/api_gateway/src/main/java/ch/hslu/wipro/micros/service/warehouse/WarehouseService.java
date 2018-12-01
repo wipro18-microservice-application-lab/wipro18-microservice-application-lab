@@ -6,6 +6,7 @@ import ch.hslu.wipro.micros.rabbit.MessageBrokerFactory;
 import ch.hslu.wipro.micros.rabbit.RabbitClient;
 import ch.hslu.wipro.micros.service.warehouse.dtos.ArticleDTO;
 import ch.hslu.wipro.micros.service.warehouse.dtos.ArticleIdDTO;
+import ch.hslu.wipro.micros.service.warehouse.dtos.CheckQuantityDTO;
 import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,6 +45,16 @@ public class WarehouseService {
         ArticleIdDTO dto = new ArticleIdDTO();
         dto.setArticleId(id);
         Command<ArticleIdDTO> command = ArticleCommandFactory.createGetByIdCommand(dto);
+        String answer = callMessageBroker(command);
+        return Response.ok(answer, MediaType.APPLICATION_JSON).build();
+    }
+
+    @Path("quantity")
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response checkQuantity(CheckQuantityDTO dto) {
+        Command<CheckQuantityDTO> command = ArticleCommandFactory.createCheckQuantityCommand(dto);
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
     }
