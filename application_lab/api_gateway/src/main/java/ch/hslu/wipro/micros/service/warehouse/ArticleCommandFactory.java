@@ -3,6 +3,7 @@ package ch.hslu.wipro.micros.service.warehouse;
 import ch.hslu.wipro.micros.rabbit.Command;
 import ch.hslu.wipro.micros.service.MessageManager;
 import ch.hslu.wipro.micros.service.warehouse.dtos.ArticleIdDTO;
+import ch.hslu.wipro.micros.service.warehouse.dtos.CheckQuantityDTO;
 
 public class ArticleCommandFactory {
 
@@ -24,6 +25,15 @@ public class ArticleCommandFactory {
     public static Command<ArticleIdDTO> createGetByIdCommand(ArticleIdDTO dto) {
         Command<ArticleIdDTO> command = new Command<>();
         String routingKey = messageManager.getCommandKey("getById");
+        command.setRoutingKey(routingKey);
+        command.setPayload(dto);
+        command.setToExchange(messageManager.getExchange());
+        return command;
+    }
+
+    public static Command<CheckQuantityDTO> createCheckQuantityCommand(CheckQuantityDTO dto) {
+        Command<CheckQuantityDTO> command = new Command<>();
+        String routingKey = messageManager.getCommandKey("Quantity");
         command.setRoutingKey(routingKey);
         command.setPayload(dto);
         command.setToExchange(messageManager.getExchange());

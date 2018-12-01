@@ -33,7 +33,6 @@ def listen_for_order_events():
     channel.start_consuming()
 
 
-# creates a new timestamp
 def create_timestamp():
     return datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d %H:%M:%S')
 
