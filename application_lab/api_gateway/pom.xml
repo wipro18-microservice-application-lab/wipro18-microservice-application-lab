@@ -99,7 +99,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <customerId>make-assembly</customerId>
+                        <id>make-assembly</id>
                         <phase>package</phase>
                         <goals>
                             <goal>single</goal>
@@ -112,7 +112,7 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <customerId>copy-dependencies</customerId>
+                        <id>copy-dependencies</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
