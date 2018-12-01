@@ -4,13 +4,13 @@ function checkArticleQuantityCommand(articleCheckQuantityDto) {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        type: 'POST',
+        type: 'GET',
         url: WAREHOUSE_URL,
         data: JSON.stringify(articleCheckQuantityDto),
         contentType: "application/json; charset=utf-8",
         traditional: true,
         success: function (data) {
-            console.log(data);
+            console.log("not implemented!");
         }
     });
 }
