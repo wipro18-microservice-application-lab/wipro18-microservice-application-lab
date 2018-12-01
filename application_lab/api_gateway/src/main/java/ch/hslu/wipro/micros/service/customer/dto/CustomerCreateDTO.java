@@ -2,16 +2,16 @@ package ch.hslu.wipro.micros.service.customer.dto;
 
 public class CustomerCreateDTO {
 
-    private String fullname;
+    private String fullName;
     private String address;
     private String email;
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getAddress() {

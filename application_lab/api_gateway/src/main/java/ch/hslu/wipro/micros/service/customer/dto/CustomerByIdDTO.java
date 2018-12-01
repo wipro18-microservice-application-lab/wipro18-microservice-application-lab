@@ -2,17 +2,17 @@ package ch.hslu.wipro.micros.service.customer.dto;
 
 public class CustomerByIdDTO {
 
-    private long id;
+    private long customerId;
 
     public CustomerByIdDTO() {
-        id = 0L;
+        customerId = 0L;
     }
 
-    public long getId() {
-        return id;
+    public long getCustomerId() {
+        return customerId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
     }
 }

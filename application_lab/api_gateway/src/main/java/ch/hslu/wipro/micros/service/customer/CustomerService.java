@@ -38,7 +38,7 @@ public class CustomerService {
     public Response getById(@PathParam("customer") long id) {
         LOGGER.info("get customer by customer id " + id);
         CustomerByIdDTO dto = new CustomerByIdDTO();
-        dto.setId(id);
+        dto.setCustomerId(id);
         Command<CustomerByIdDTO> command = CustomerCommandFactory.createGetByCustomerIdCommand(dto);
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
@@ -50,7 +50,7 @@ public class CustomerService {
     public Response getReminderById(@PathParam("customer") long id) {
         LOGGER.info("get reminder by customer id " + id);
         CustomerByIdDTO dto = new CustomerByIdDTO();
-        dto.setId(id);
+        dto.setCustomerId(id);
         Command<CustomerByIdDTO> command = CustomerCommandFactory.createGetReminderByIdCommand(dto);
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
@@ -60,7 +60,7 @@ public class CustomerService {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createCustomer(CustomerCreateDTO dto) {
-        LOGGER.info("create customer: fullname: "+dto.getFullname());
+        LOGGER.info("create customer: fullname: "+dto.getFullName());
         Command<CustomerCreateDTO> command = CustomerCommandFactory.createCreateCustomerCommand(dto);
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
