@@ -48,6 +48,13 @@ services:
       - "discovery"
     hostname: warehouse
     
+  customer:
+    build:
+      context: ./customermanagement
+    depends_on:
+      - "discovery"
+    hostname: customer
+    
   notification:
     build:
       context: ./notificationservice
