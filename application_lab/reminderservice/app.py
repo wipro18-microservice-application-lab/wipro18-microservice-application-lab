@@ -56,7 +56,7 @@ def get_reminders_as_json():
     reminders_json = []
     for reminder in reminders:
         reminders_json.append(reminder.to_json_str())
-    return json.dumps(reminders_json)
+    return (json.dumps({"reminders": reminders_json})).replace('\\"',"\"")
 
 
 def callback_command(ch, method, properties, body):
@@ -75,10 +75,9 @@ if __name__ == '__main__':
     Thread(target=listen_for_order_events).start()
     Thread(target=listen_for_commands).start()
 
-    """
-    e1 = ReminderEntry(0, 100, create_timestamp())
+    """e1 = ReminderEntry(0, 100, create_timestamp())
     e2 = ReminderEntry(1, 120, create_timestamp())
     reminders.append(e1)
     reminders.append(e2)
-    print(get_reminders_as_json())
-    """
+    print(get_reminders_as_json())"""
+
