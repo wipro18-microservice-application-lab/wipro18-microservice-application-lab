@@ -39,7 +39,19 @@
 <div id="orderDto" class="mui-panel">
     <!-- dynamic -->
 </div>
+
 <button class="mui-btn mui-btn--primary" onclick="orderCreateCommand(orderDto)">Order</button>
+
+<table id="orderCreateResults" class="mui-table mui-table--bordered">
+    <thead>
+    <tr>
+        <th>Results</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- dynamic -->
+    </tbody>
+</table>
 
 <script>
     var orderDto = {customerId:0, amountToArticle:{}, totalPrice:0, status: 'open'};

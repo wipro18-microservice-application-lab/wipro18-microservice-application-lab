@@ -1,16 +1,28 @@
 function checkArticleQuantityCommand(articleCheckQuantityDto) {
+
     $.ajax({
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        type: 'GET',
-        url: WAREHOUSE_URL,
+        type: 'PUT',
+        url: WAREHOUSE_URL + '/quantity',
         data: JSON.stringify(articleCheckQuantityDto),
         contentType: "application/json; charset=utf-8",
         traditional: true,
         success: function (data) {
-            console.log("not implemented!");
+            let row = '';
+            if (data.result === 'enough articles in stock') {
+                row = '<td style="background-color: #C8E6C9">' + `${data.result.toLowerCase()}</td>`
+            } else {
+                row = '<td style="background-color: #FFCDD2">' + `${data.result.toLowerCase()}</td>`
+            }
+
+            $('#checkQuantityResults').find('> tbody:last-child')
+                .append(
+                    '<tr>' +
+                        row +
+                    '</tr>');
         }
     });
 }

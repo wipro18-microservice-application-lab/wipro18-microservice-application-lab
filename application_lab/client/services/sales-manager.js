@@ -10,7 +10,18 @@ function orderCreateCommand(orderDto) {
         contentType: "application/json; charset=utf-8",
         traditional: true,
         success: function (data) {
-            console.log(data);
+            let row = '';
+            if (data.result === 'ORDER SUCCESSFUL') {
+                row = '<td style="background-color: #C8E6C9">' + `${data.result.toLowerCase()}</td>`
+            } else {
+                row = '<td style="background-color: #FFCDD2">' + `${data.result.toLowerCase()}</td>`
+            }
+
+            $('#orderCreateResults').find('> tbody:last-child')
+                .append(
+                    '<tr>' +
+                    row +
+                    '</tr>');
         }
     });
 }
@@ -27,7 +38,18 @@ function orderUpdateStatusCommand(orderUpdateDto) {
         contentType: "application/json; charset=utf-8",
         traditional: true,
         success: function (data) {
-            console.log(data);
+            let row = '';
+            if (data.result === 'successful') {
+                row = '<td style="background-color: #C8E6C9">' + `${data.result.toLowerCase()}</td>`
+            } else {
+                row = '<td style="background-color: #FFCDD2">' + `${data.result.toLowerCase()}</td>`
+            }
+
+            $('#orderUpdateStatusResults').find('> tbody:last-child')
+                .append(
+                    '<tr>' +
+                    row +
+                    '</tr>');
         }
     });
 }
