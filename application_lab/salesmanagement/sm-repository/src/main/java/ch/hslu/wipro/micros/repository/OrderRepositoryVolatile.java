@@ -56,12 +56,8 @@ public class OrderRepositoryVolatile implements OrderRepository {
     private OrderUpdateResultDto update(OrderDto orderDto) {
         OrderUpdateResultDto orderUpdateResultDto = new OrderUpdateResultDto();
 
-        if (orderEntityMap.containsKey(orderDto.getOrderId())) {
-            orderEntityMap.put(orderDto.getOrderId(), convert(orderDto));
-            orderUpdateResultDto.setResult(RepositoryOperation.SUCCESSFUL);
-        } else {
-            orderUpdateResultDto.setResult(RepositoryOperation.UNKNOWN_ORDER_ID);
-        }
+        orderEntityMap.put(orderDto.getOrderId(), convert(orderDto));
+        orderUpdateResultDto.setResult(RepositoryOperation.SUCCESSFUL);
 
         return orderUpdateResultDto;
     }
@@ -69,7 +65,15 @@ public class OrderRepositoryVolatile implements OrderRepository {
     @Override
     public OrderUpdateResultDto updateStatus(OrderUpdateDto updateOrderDto) {
         OrderDto orderDto = get(updateOrderDto.getOrderId());
-        orderDto.setStatus(updateOrderDto.getStatus());
+
+        if (orderEntityMap.containsKey(updateOrderDto.getOrderId())) {
+            orderDto.setStatus(updateOrderDto.getStatus());
+        } else {
+            OrderUpdateResultDto orderUpdateResultDto = new OrderUpdateResultDto();
+            orderUpdateResultDto.setResult(RepositoryOperation.UNKNOWN_ORDER_ID);
+
+            return orderUpdateResultDto;
+        }
 
         return update(orderDto);
     }
