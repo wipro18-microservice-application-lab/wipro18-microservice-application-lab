@@ -4,6 +4,7 @@ import ch.hslu.wipro.micros.business.converter.JsonConverterFactory;
 import ch.hslu.wipro.micros.business.result.OrderCreateCommandResult;
 import ch.hslu.wipro.micros.business.result.OrderCreateCommandResultBuilder;
 import ch.hslu.wipro.micros.business.result.OrderCreateResult;
+import ch.hslu.wipro.micros.model.order.OrderDto;
 import com.rabbitmq.client.Channel;
 
 import java.io.IOException;
@@ -40,10 +41,13 @@ public class OrderCreateCompleteState implements OrderSagaState {
                 replyProperties,
                 operationResult.getBytes(StandardCharsets.UTF_8));
 
+        String orderJson = new JsonConverterFactory<OrderDto>().get()
+                .toJson(saga.getContext().getCommand().getPayload());
+
         channel.basicPublish("ch.hslu.wipro.micros.Order",
                 "order.event.complete",
                 new BasicProperties(),
-                "Hello World!".getBytes(StandardCharsets.UTF_8));
+                orderJson.getBytes(StandardCharsets.UTF_8));
 
         boolean acknowledgeAll = false;
         channel.basicAck(saga.getContext().getCommand().getDeliveryTag(), acknowledgeAll);
