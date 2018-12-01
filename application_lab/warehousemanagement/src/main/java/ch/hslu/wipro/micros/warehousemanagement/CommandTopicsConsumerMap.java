@@ -1,5 +1,6 @@
 package ch.hslu.wipro.micros.warehousemanagement;
 
+import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleCheckQuantitiesCommandConsumer;
 import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleCheckQuantityCommandConsumer;
 import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleGetAllByIdCommandConsumer;
 import ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleGetAllCommandConsumer;
@@ -14,20 +15,25 @@ public class CommandTopicsConsumerMap {
     private final Map<Topic, Class<? extends DefaultConsumer>> handledTopics = new HashMap<>();
 
     public CommandTopicsConsumerMap() {
-        Topic orderCommandCreate = new TopicBuilder()
+        Topic articleCommandCheckQuantity = new TopicBuilder()
                 .atRoute("article.command.checkQuantity")
                 .atQueue("ch.hslu.wipro.micros.ArticleCheckQuantityCommand").build();
-        handledTopics.put(orderCommandCreate, ArticleCheckQuantityCommandConsumer.class);
+        handledTopics.put(articleCommandCheckQuantity, ArticleCheckQuantityCommandConsumer.class);
 
-        Topic orderCommandGetAll = new TopicBuilder()
+        Topic articleCommandCheckQuantities = new TopicBuilder()
+                .atRoute("article.command.checkQuantities")
+                .atQueue("ch.hslu.wipro.micros.ArticleCheckQuantitiesCommand").build();
+        handledTopics.put(articleCommandCheckQuantities, ArticleCheckQuantitiesCommandConsumer.class);
+
+        Topic articleCommandGetAll = new TopicBuilder()
                 .atRoute("article.command.getAll")
                 .atQueue("ch.hslu.wipro.micros.ArticleGetAllCommand").build();
-        handledTopics.put(orderCommandGetAll, ArticleGetAllCommandConsumer.class);
+        handledTopics.put(articleCommandGetAll, ArticleGetAllCommandConsumer.class);
 
-        Topic orderCommandGetAllByCustomerId = new TopicBuilder()
+        Topic articleCommandGetById = new TopicBuilder()
                 .atRoute("article.command.getById")
                 .atQueue("ch.hslu.wipro.micros.ArticleGetByIdCommand").build();
-        handledTopics.put(orderCommandGetAllByCustomerId, ArticleGetAllByIdCommandConsumer.class);
+        handledTopics.put(articleCommandGetById, ArticleGetAllByIdCommandConsumer.class);
     }
 
     public Map<Topic, Class<? extends DefaultConsumer>> getAsMap() {

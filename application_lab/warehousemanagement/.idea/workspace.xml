@@ -2,10 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="476107f8-d44d-40c1-b427-d2656a57aa86" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../api_gateway/src/main/java/ch/hslu/wipro/micros/service/warehouse/WarehouseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../api_gateway/src/main/java/ch/hslu/wipro/micros/service/warehouse/WarehouseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-business/src/main/java/ch/hslu/wipro/micros/business/discovery/MicroServiceBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-business/src/main/java/ch/hslu/wipro/micros/business/discovery/MicroServiceBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-business/src/main/java/ch/hslu/wipro/micros/business/rabbitmq/consumer/ArticleCheckQuantityReplyConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-business/src/main/java/ch/hslu/wipro/micros/business/rabbitmq/consumer/ArticleCheckQuantityReplyConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-business/src/main/java/ch/hslu/wipro/micros/business/saga/OrderCreateEligibleState.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-business/src/main/java/ch/hslu/wipro/micros/business/saga/OrderCreateEligibleState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-business/src/main/java/ch/hslu/wipro/micros/business/saga/OrderSaga.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-business/src/main/java/ch/hslu/wipro/micros/business/saga/OrderSaga.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-business/src/main/resources/rabbitmq.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-business/src/main/resources/rabbitmq.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-business/src/test/java/ch/hslu/wipro/micros/business/converter/JsonConverterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-business/src/test/java/ch/hslu/wipro/micros/business/converter/JsonConverterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-business/src/test/java/ch/hslu/wipro/micros/business/rabbitmq/consumer/OrderCreateCommandConsumerIT.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-business/src/test/java/ch/hslu/wipro/micros/business/rabbitmq/consumer/OrderCreateCommandConsumerIT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-model/src/main/java/ch/hslu/wipro/micros/model/article/ArticleCheckQuantityDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-model/src/main/java/ch/hslu/wipro/micros/model/article/ArticleCheckQuantityDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-model/src/main/java/ch/hslu/wipro/micros/model/order/OrderDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-model/src/main/java/ch/hslu/wipro/micros/model/order/OrderDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-model/src/main/java/ch/hslu/wipro/micros/model/order/OrderDtoBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-model/src/main/java/ch/hslu/wipro/micros/model/order/OrderDtoBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-repository/src/main/java/ch/hslu/wipro/micros/entity/OrderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-repository/src/main/java/ch/hslu/wipro/micros/entity/OrderEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-repository/src/main/java/ch/hslu/wipro/micros/entity/OrderEntityBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-repository/src/main/java/ch/hslu/wipro/micros/entity/OrderEntityBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../salesmanagement/sm-service/src/test/java/ch/hslu/wipro/micros/service/repository/OrderRepositoryServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../salesmanagement/sm-service/src/test/java/ch/hslu/wipro/micros/service/repository/OrderRepositoryServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/config/RabbitMqConsts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/config/RabbitMqConsts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/CommandTopicsConsumerMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/CommandTopicsConsumerMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,47 +28,54 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/warehousemanagement$ArticleCheckQuantitiesCommandConsumerIT_testEnoughArticlesInStock.ic" NAME="ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock Coverage Results" MODIFIED="1543520294744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.*</FILTER>
+    </SUITE>
+  </component>
   <component name="FUSProjectUsageTrigger">
     <session id="1239324578">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="2" />
-          <entry key="java" value="53" />
+          <entry key="class" value="4" />
+          <entry key="java" value="74" />
           <entry key="md" value="1" />
-          <entry key="properties" value="4" />
+          <entry key="properties" value="5" />
           <entry key="xml" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="2" />
-          <entry key="JAVA" value="53" />
+          <entry key="CLASS" value="4" />
+          <entry key="JAVA" value="74" />
           <entry key="Markdown" value="1" />
-          <entry key="Properties" value="4" />
+          <entry key="Properties" value="5" />
           <entry key="XML" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="40" />
-          <entry key="java" value="4751" />
+          <entry key="java" value="6244" />
           <entry key="properties" value="136" />
           <entry key="xml" value="65" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="4751" />
+          <entry key="JAVA" value="6244" />
           <entry key="PLAIN_TEXT" value="40" />
           <entry key="Properties" value="136" />
           <entry key="XML" value="65" />
@@ -68,37 +89,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="106" column="36" lean-forward="true" selection-start-line="106" selection-start-column="36" selection-end-line="106" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/WarehouseManagerApp.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantitiesCommandConsumer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="78" selection-start-line="13" selection-start-column="78" selection-end-line="13" selection-end-column="78" />
+            <state relative-caret-position="2">
+              <caret line="38" column="102" selection-start-line="38" selection-start-column="73" selection-end-line="38" selection-end-column="102" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+            <state relative-caret-position="300">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -107,23 +114,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/config/RabbitMqConsts.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantityResultDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="153">
+              <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+              <folding>
+                <element signature="e#396#397#0" expanded="true" />
+                <element signature="e#425#426#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/config/RabbitMqConfig.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantitiesCommandConsumerIT.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#908#909#0" expanded="true" />
-                <element signature="e#973#974#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1751">
+              <caret line="124" column="1" lean-forward="true" selection-start-line="124" selection-start-column="1" selection-end-line="124" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -131,7 +138,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/manager/CommandManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
+            <state relative-caret-position="119">
               <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -147,8 +154,8 @@
       <list>
         <option value="Interface" />
         <option value="Arquillian JUnit Test Class" />
-        <option value="JUnit4 Test Class" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -181,17 +188,23 @@
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleDto.java" />
         <option value="$PROJECT_DIR$/src/test/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleGetAllCommandConsumerIT.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/CommandTopicsConsumerMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleIdDto.java" />
         <option value="$PROJECT_DIR$/src/test/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantityCommandConsumerIT.java" />
         <option value="$PROJECT_DIR$/src/test/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleGetAllByIdCommandConsumerIT.java" />
         <option value="$PROJECT_DIR$/src/main/resources/rabbitmq.properties" />
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleGetAllByIdCommandConsumer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/manager/CommandManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/config/RabbitMqConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/config/RabbitMqConsts.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/CommandTopicsConsumerMap.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantitiesDto.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantitiesDtoTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantitiesResultDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantitiesCommandConsumer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantitiesCommandConsumerIT.java" />
       </list>
     </option>
   </component>
@@ -201,11 +214,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-10" />
     <option name="y" value="-10" />
-    <option name="width" value="1939" />
-    <option name="height" value="1049" />
+    <option name="width" value="1940" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -213,6 +226,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -245,6 +259,24 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="warehousemanagement" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="warehousemanagement" type="b2602c69:ProjectViewProjectNode" />
+              <item name="warehousemanagement" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="warehousemanagement" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="warehousemanagement" type="b2602c69:ProjectViewProjectNode" />
+              <item name="warehousemanagement" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="warehousemanagement" type="462c0819:PsiDirectoryNode" />
+              <item name="rabbitmq" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="warehousemanagement" type="b2602c69:ProjectViewProjectNode" />
@@ -296,42 +328,47 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543267086901" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543654033114" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer" />
-      <recent name="ch.hslu.wipro.micros.warehousemanagement.repository" />
-    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="ch.hslu.wipro.micros.warehousemanagement.repository" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ch.hslu.wipro.micros.warehousemanagement.dto" />
       <recent name="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer" />
-      <recent name="ch.hslu.wipro.micros.warehousemanagement.rabbitmq" />
-      <recent name="ch.hslu.wipro.micros.warehousemanagement" />
+      <recent name="ch.hslu.wipro.micros.warehousemanagement.repository" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ch.hslu.wipro.micros.warehousemanagement.dto" />
+      <recent name="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer" />
+      <recent name="ch.hslu.wipro.micros.warehousemanagement.rabbitmq" />
+      <recent name="ch.hslu.wipro.micros.warehousemanagement" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\alkazua\IdeaProjects\wipro18-microservice-application-lab\application_lab\warehousemanagement\src\main\java\ch\hslu\wipro\micros\warehousemanagement\repository" />
       <recent name="C:\Users\alkazua\IdeaProjects\wipro18-microservice-application-lab\application_lab\warehousemanagement\src\main\java\ch\hslu\wipro\micros\warehousemanagement" />
       <recent name="C:\Users\alkazua\IdeaProjects\wipro18-microservice-application-lab\application_lab\warehousemanagement\src\main\java\ch\hslu\wipro\micros\warehousemanagement\rabbitmq" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="ch.hslu.wipro.micros.warehousemanagement.dto" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -346,21 +383,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.WarehouseManagerApp">
-    <configuration name="WarehouseManagerApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="ch.hslu.wipro.micros.warehousemanagement.WarehouseManagerApp" />
-      <module name="warehousemanagement" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ch.hslu.wipro.micros.warehousemanagement.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ArticleCheckQuantityCommandConsumerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ArticleCheckQuantitiesCommandConsumerIT">
+    <configuration name="ArticleCheckQuantitiesCommandConsumerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="warehousemanagement" />
       <extension name="coverage">
         <pattern>
@@ -369,12 +393,12 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer" />
-      <option name="MAIN_CLASS_NAME" value="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleCheckQuantityCommandConsumerIT" />
+      <option name="MAIN_CLASS_NAME" value="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleCheckQuantitiesCommandConsumerIT" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArticleGetAllByIdCommandConsumerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="warehousemanagement" />
       <extension name="coverage">
         <pattern>
@@ -383,12 +407,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer" />
-      <option name="MAIN_CLASS_NAME" value="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleGetAllByIdCommandConsumerIT" />
+      <option name="MAIN_CLASS_NAME" value="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleCheckQuantitiesCommandConsumerIT" />
+      <option name="METHOD_NAME" value="testEnoughArticlesInStock" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArticleGetAllCommandConsumerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArticleCheckQuantitiesCommandConsumerIT.testUnknownIdEnoughNotEnoughArticlesInStock" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="warehousemanagement" />
       <extension name="coverage">
         <pattern>
@@ -397,39 +423,59 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer" />
-      <option name="MAIN_CLASS_NAME" value="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleGetAllCommandConsumerIT" />
+      <option name="MAIN_CLASS_NAME" value="ch.hslu.wipro.micros.warehousemanagement.rabbitmq.consumer.ArticleCheckQuantitiesCommandConsumerIT" />
+      <option name="METHOD_NAME" value="testUnknownIdEnoughNotEnoughArticlesInStock" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ArticleRepositoryManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ArticleCheckQuantitiesDtoTest.getAmountToArticleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="warehousemanagement" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ch.hslu.wipro.micros.warehousemanagement.repository.*" />
+          <option name="PATTERN" value="ch.hslu.wipro.micros.warehousemanagement.dto.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="ch.hslu.wipro.micros.warehousemanagement.repository" />
-      <option name="MAIN_CLASS_NAME" value="ch.hslu.wipro.micros.warehousemanagement.repository.ArticleRepositoryManagerTest" />
+      <option name="PACKAGE_NAME" value="ch.hslu.wipro.micros.warehousemanagement.dto" />
+      <option name="MAIN_CLASS_NAME" value="ch.hslu.wipro.micros.warehousemanagement.dto.ArticleCheckQuantitiesDtoTest" />
+      <option name="METHOD_NAME" value="getAmountToArticleTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ArticleCheckQuantitiesDtoTest.setAmountToArticleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="warehousemanagement" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ch.hslu.wipro.micros.warehousemanagement.dto.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ch.hslu.wipro.micros.warehousemanagement.dto" />
+      <option name="MAIN_CLASS_NAME" value="ch.hslu.wipro.micros.warehousemanagement.dto.ArticleCheckQuantitiesDtoTest" />
+      <option name="METHOD_NAME" value="setAmountToArticleTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.WarehouseManagerApp" />
-      <item itemvalue="JUnit.ArticleRepositoryManagerTest" />
-      <item itemvalue="JUnit.ArticleCheckQuantityCommandConsumerIT" />
-      <item itemvalue="JUnit.ArticleGetAllCommandConsumerIT" />
-      <item itemvalue="JUnit.ArticleGetAllByIdCommandConsumerIT" />
+      <item itemvalue="JUnit.ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock" />
+      <item itemvalue="JUnit.ArticleCheckQuantitiesDtoTest.getAmountToArticleTest" />
+      <item itemvalue="JUnit.ArticleCheckQuantitiesDtoTest.setAmountToArticleTest" />
+      <item itemvalue="JUnit.ArticleCheckQuantitiesCommandConsumerIT.testUnknownIdEnoughNotEnoughArticlesInStock" />
+      <item itemvalue="JUnit.ArticleCheckQuantitiesCommandConsumerIT" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ArticleGetAllByIdCommandConsumerIT" />
-        <item itemvalue="Application.WarehouseManagerApp" />
-        <item itemvalue="JUnit.ArticleGetAllCommandConsumerIT" />
-        <item itemvalue="JUnit.ArticleCheckQuantityCommandConsumerIT" />
-        <item itemvalue="JUnit.ArticleRepositoryManagerTest" />
+        <item itemvalue="JUnit.ArticleCheckQuantitiesCommandConsumerIT" />
+        <item itemvalue="JUnit.ArticleCheckQuantitiesCommandConsumerIT.testUnknownIdEnoughNotEnoughArticlesInStock" />
+        <item itemvalue="JUnit.ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock" />
+        <item itemvalue="JUnit.ArticleCheckQuantitiesDtoTest.getAmountToArticleTest" />
+        <item itemvalue="JUnit.ArticleCheckQuantitiesDtoTest.setAmountToArticleTest" />
       </list>
     </recent_temporary>
   </component>
@@ -454,60 +500,61 @@
       <workItem from="1542098490469" duration="684000" />
       <workItem from="1543216154878" duration="7014000" />
       <workItem from="1543248061587" duration="10528000" />
+      <workItem from="1543511300164" duration="8994000" />
+      <workItem from="1543653399878" duration="612000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ArticleCheckQuantityCommandConsumerIT - 2018.11.26 at 18h 02m 08s.xml">
-      <configuration name="ArticleCheckQuantityCommandConsumerIT" configurationId="JUnit" />
+    <history-entry file="ArticleCheckQuantitiesCommandConsumerIT_testEnoughArticlesInStock - 2018.11.29 at 20h 43m 52s.xml">
+      <configuration name="ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ArticleCheckQuantityCommandConsumerIT - 2018.11.26 at 18h 02m 15s.xml">
-      <configuration name="ArticleCheckQuantityCommandConsumerIT" configurationId="JUnit" />
+    <history-entry file="ArticleCheckQuantitiesCommandConsumerIT_testEnoughArticlesInStock - 2018.11.29 at 20h 44m 35s.xml">
+      <configuration name="ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ArticleCheckQuantityCommandConsumerIT - 2018.11.26 at 18h 15m 19s.xml">
-      <configuration name="ArticleCheckQuantityCommandConsumerIT" configurationId="JUnit" />
+    <history-entry file="ArticleCheckQuantitiesCommandConsumerIT_testEnoughArticlesInStock - 2018.11.29 at 20h 45m 08s.xml">
+      <configuration name="ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ArticleCheckQuantityCommandConsumerIT - 2018.11.26 at 18h 18m 25s.xml">
-      <configuration name="ArticleCheckQuantityCommandConsumerIT" configurationId="JUnit" />
+    <history-entry file="ArticleCheckQuantitiesCommandConsumerIT_testEnoughArticlesInStock - 2018.11.29 at 20h 46m 25s.xml">
+      <configuration name="ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ArticleCheckQuantityCommandConsumerIT - 2018.11.26 at 18h 18m 57s.xml">
-      <configuration name="ArticleCheckQuantityCommandConsumerIT" configurationId="JUnit" />
+    <history-entry file="ArticleCheckQuantitiesCommandConsumerIT_testEnoughArticlesInStock - 2018.12.01 at 09h 38m 06s.xml">
+      <configuration name="ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ArticleCheckQuantityCommandConsumerIT - 2018.11.26 at 18h 19m 55s.xml">
-      <configuration name="ArticleCheckQuantityCommandConsumerIT" configurationId="JUnit" />
+    <history-entry file="ArticleCheckQuantitiesCommandConsumerIT_testEnoughArticlesInStock - 2018.12.01 at 09h 40m 24s.xml">
+      <configuration name="ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ArticleGetAllCommandConsumerIT - 2018.11.26 at 18h 36m 39s.xml">
-      <configuration name="ArticleGetAllCommandConsumerIT" configurationId="JUnit" />
+    <history-entry file="ArticleCheckQuantitiesCommandConsumerIT_testEnoughArticlesInStock - 2018.12.01 at 09h 42m 22s.xml">
+      <configuration name="ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ArticleGetAllCommandConsumerIT - 2018.11.26 at 18h 37m 12s.xml">
-      <configuration name="ArticleGetAllCommandConsumerIT" configurationId="JUnit" />
+    <history-entry file="ArticleCheckQuantitiesCommandConsumerIT_testEnoughArticlesInStock - 2018.12.01 at 09h 42m 57s.xml">
+      <configuration name="ArticleCheckQuantitiesCommandConsumerIT.testEnoughArticlesInStock" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ArticleGetAllByIdCommandConsumerIT - 2018.11.26 at 18h 51m 42s.xml">
-      <configuration name="ArticleGetAllByIdCommandConsumerIT" configurationId="JUnit" />
+    <history-entry file="ArticleCheckQuantitiesCommandConsumerIT_testUnknownIdEnoughNotEnoughArticlesInStock - 2018.12.01 at 09h 44m 52s.xml">
+      <configuration name="ArticleCheckQuantitiesCommandConsumerIT.testUnknownIdEnoughNotEnoughArticlesInStock" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ArticleGetAllByIdCommandConsumerIT - 2018.11.26 at 18h 52m 09s.xml">
-      <configuration name="ArticleGetAllByIdCommandConsumerIT" configurationId="JUnit" />
+    <history-entry file="ArticleCheckQuantitiesCommandConsumerIT - 2018.12.01 at 09h 47m 04s.xml">
+      <configuration name="ArticleCheckQuantitiesCommandConsumerIT" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20611000" />
+    <option name="totallyTimeSpent" value="30217000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32550335" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25838926" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection Results" weight="0.48652482" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.32821497" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39923224" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.32765958" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39858156" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -515,8 +562,9 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.32821497" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32917467" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32907802" />
       <window_info anchor="bottom" id="SonarLint" order="12" />
+      <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.48652482" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -526,6 +574,7 @@
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.21744967" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,9 +584,26 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantitiesCommandConsumer.java</url>
+          <line>30</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java</url>
+          <line>67</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="properties.getReplyTo()" language="JAVA" />
+        <watch expression="articleCheckQuantityResultJson.get(0)" />
       </configuration>
     </watches-manager>
   </component>
@@ -575,23 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantityDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
-          <folding>
-            <element signature="e#180#181#0" expanded="true" />
-            <element signature="e#212#213#0" expanded="true" />
-            <element signature="e#260#261#0" expanded="true" />
-            <element signature="e#302#303#0" expanded="true" />
-            <element signature="e#334#335#0" expanded="true" />
-            <element signature="e#365#366#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-            <element signature="e#450#451#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/consumer/GetArticleCommandConsumer.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositorySingleton.java">
@@ -601,24 +650,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantityResultDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/RabbitMqConnector.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="7" column="53" lean-forward="true" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/github/fridujo/rabbitmq-mock/1.0.8/rabbitmq-mock-1.0.8.jar!/com/github/fridujo/rabbitmq/mock/MockQueue.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
         </state>
       </provider>
     </entry>
@@ -633,9 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="39" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -665,36 +697,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="50" column="5" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#284#285#0" expanded="true" />
-            <element signature="e#316#317#0" expanded="true" />
-            <element signature="e#364#365#0" expanded="true" />
-            <element signature="e#406#407#0" expanded="true" />
-            <element signature="e#437#438#0" expanded="true" />
-            <element signature="e#464#465#0" expanded="true" />
-            <element signature="e#504#505#0" expanded="true" />
-            <element signature="e#536#537#0" expanded="true" />
-            <element signature="e#574#575#0" expanded="true" />
-            <element signature="e#608#609#0" expanded="true" />
-            <element signature="e#662#663#0" expanded="true" />
-            <element signature="e#708#709#0" expanded="true" />
-            <element signature="e#744#745#0" expanded="true" />
-            <element signature="e#772#773#0" expanded="true" />
-            <element signature="e#818#819#0" expanded="true" />
-            <element signature="e#852#853#0" expanded="true" />
-            <element signature="e#884#885#0" expanded="true" />
-            <element signature="e#915#916#0" expanded="true" />
-            <element signature="e#960#961#0" expanded="true" />
-            <element signature="e#1000#1001#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/converter/JsonConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -702,23 +704,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/CommandTopicsConsumerMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="29" column="70" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantityCommandConsumer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="31" column="69" lean-forward="true" selection-start-line="30" selection-start-column="8" selection-end-line="31" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -726,12 +715,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="e#143#144#0" expanded="true" />
-            <element signature="e#175#176#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#265#266#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -749,47 +732,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/rabbitmq.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="45" lean-forward="true" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/manager/CommandManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/rabbitmq/amqp-client/5.4.2/amqp-client-5.4.2.jar!/com/rabbitmq/client/DefaultConsumer.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/WarehouseManagerApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="78" selection-start-line="13" selection-start-column="78" selection-end-line="13" selection-end-column="78" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -811,12 +757,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/config/RabbitMqConfig.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/CommandTopicsConsumerMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="334">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#908#909#0" expanded="true" />
-            <element signature="e#973#974#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -824,7 +772,123 @@
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
-          <caret line="106" column="36" lean-forward="true" selection-start-line="106" selection-start-column="36" selection-end-line="106" selection-end-column="36" />
+          <caret line="106" column="36" selection-start-line="106" selection-start-column="36" selection-end-line="106" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/WarehouseManagerApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="78" selection-start-line="13" selection-start-column="78" selection-end-line="13" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/com/github/fridujo/rabbitmq-mock/1.0.8/rabbitmq-mock-1.0.8.jar!/com/github/fridujo/rabbitmq/mock/MockQueue.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="99" selection-start-line="99" selection-end-line="99" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantityDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="38" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/rabbitmq.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="45" lean-forward="true" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantitiesDtoTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantitiesResultDto.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantitiesDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+          <folding>
+            <element signature="e#219#220#0" expanded="true" />
+            <element signature="e#257#258#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantityResultDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+          <folding>
+            <element signature="e#396#397#0" expanded="true" />
+            <element signature="e#425#426#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/manager/CommandManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantitiesCommandConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2">
+          <caret line="38" column="102" selection-start-line="38" selection-start-column="73" selection-end-line="38" selection-end-column="102" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantitiesCommandConsumerIT.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1751">
+          <caret line="124" column="1" lean-forward="true" selection-start-line="124" selection-start-column="1" selection-end-line="124" selection-end-column="1" />
         </state>
       </provider>
     </entry>

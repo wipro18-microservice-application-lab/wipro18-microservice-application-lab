@@ -6,6 +6,8 @@ import ch.hslu.wipro.micros.warehousemanagement.dto.ArticleDtoBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ArticleRepositoryVolatile implements ArticleRepository {
     private final List<ArticleDto> articleDtos = new ArrayList<>();
@@ -50,5 +52,21 @@ public class ArticleRepositoryVolatile implements ArticleRepository {
                 .filter(a -> a.getArticleId() == articleId)
                 .findFirst()
                 .orElse(defaultArticleDto);
+    }
+
+    @Override
+    public ArticleCheckQuantityResultDto checkQuantities(Map<Long, Integer> amountToArticle) {
+        ArticleCheckQuantityResultDto articleCheckQuantityResultDto = new ArticleCheckQuantityResultDto();
+
+        String articleCheckQuantityResult = amountToArticle
+                .entrySet()
+                .stream()
+                .map(a -> checkQuantity(a.getKey(), a.getValue()))
+                .map(ArticleCheckQuantityResultDto::getResult)
+                .collect(Collectors.joining(", "));
+
+        articleCheckQuantityResultDto.setResult(articleCheckQuantityResult);
+
+        return articleCheckQuantityResultDto;
     }
 }

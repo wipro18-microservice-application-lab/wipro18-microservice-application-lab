@@ -4,6 +4,7 @@ import ch.hslu.wipro.micros.warehousemanagement.dto.ArticleCheckQuantityResultDt
 import ch.hslu.wipro.micros.warehousemanagement.dto.ArticleDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ArticleRepository {
     void create(ArticleDto articleDto);
@@ -13,4 +14,6 @@ public interface ArticleRepository {
     List<ArticleDto> getAll();
 
     ArticleDto getById(long articleId);
+
+    ArticleCheckQuantityResultDto checkQuantities(Map<Long, Integer> amountToArticle);
 }
