@@ -17,12 +17,12 @@ class ReminderEntry:
     def __init__(self, customer_id, fee, issue_date):
         self.customer_id = customer_id
         self.fee = fee
-        self.issue_date = issue_date
+        self.issue_date = str(issue_date)
 
     def to_json_str(self):
-        return '{"customerId:"' + self.customer_id \
-               + ',"fee":' + self.fee \
-               + ',"issue_date":' + str(self.issue_date)
+        return json.dumps({"customerId": self.customer_id,
+                           "fee:": self.fee,
+                           "issueDate": self.issue_date})
 
 
 def listen_for_order_events():
@@ -66,7 +66,5 @@ def callback_command(ch, method, properties, body):
 
 
 if __name__ == '__main__':
-    #Thread(target=listen_for_order_events).start()
-    #Thread(target=listen_for_commands).start()
-
-    e = ReminderEntry(1,44,create_timestamp())
+    Thread(target=listen_for_order_events).start()
+    Thread(target=listen_for_commands).start()
