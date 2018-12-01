@@ -1,4 +1,4 @@
-let host = 'localhost'; // wiproh18-tbjauner.el.eee.intern
+let host = 'wiproh18-tbjauner.el.eee.intern'; // wiproh18-tbjauner.el.eee.intern
 let port = "7001";
 
 let SALES_HEALTH_URL = 'http://' + host + ':' + port + '/gateway/sales/health';
