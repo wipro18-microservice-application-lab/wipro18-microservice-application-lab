@@ -1,0 +1,52 @@
+<div id="customer-health" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<h1>Demo Articles</h1>
+<form class="mui-form">
+    <div class="mui-textfield">
+        <input id="customerCreateFullNameInput" type="text">
+        <label>Full Name</label>
+    </div>
+    <div class="mui-textfield">
+        <input id="customerCreateAddressInput" type="text">
+        <label>Address</label>
+    </div>
+    <div class="mui-textfield">
+        <input id="customerCreateEmailInput" type="text">
+        <label>E-Mail</label>
+    </div>
+</form>
+
+<h1>CustomerDto as Json</h1>
+<div id="customerDto" class="mui-panel">
+    <!-- dynamic -->
+</div>
+<button class="mui-btn mui-btn--primary" onclick="customerCreateCommand(customerDto)">Create</button>
+
+<script>
+    var customerDto = {fullName:'', address:'', email:''};
+
+    jQuery(function($) {
+        checkHealth('customer-health', CUSTOMER_HEALTH_URL);
+        $('#customerDto').text(JSON.stringify(customerDto));
+    });
+
+    $( '#customerCreateFullNameInput' ).change(function() {
+        customerDto.fullName = $('#customerCreateFullNameInput').val();
+
+        $('#customerDto').text(JSON.stringify(customerDto));
+    });
+
+    $( '#customerCreateAddressInput' ).change(function() {
+        customerDto.address = $('#customerCreateAddressInput').val();
+
+        $('#customerDto').text(JSON.stringify(customerDto));
+    });
+
+    $( '#customerCreateEmailInput' ).change(function() {
+        customerDto.email = $('#customerCreateEmailInput').val();
+
+        $('#customerDto').text(JSON.stringify(customerDto));
+    });
+</script>

@@ -1,0 +1,25 @@
+<div id="customer-health" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<table id="all-customers" class="mui-table mui-table--bordered">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Address</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+        <!-- dynamic -->
+    </tbody>
+</table>
+
+<script>
+    jQuery(function($) {
+        checkHealth('customer-health', CUSTOMER_HEALTH_URL);
+        customerGetAllCommand();
+        console.log("hi")
+    });
+</script>
