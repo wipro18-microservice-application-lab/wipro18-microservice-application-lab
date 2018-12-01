@@ -1,0 +1,14 @@
+FROM maven:3.5-jdk-8-alpine as build
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY . .
+RUN mvn clean install 
+
+FROM openjdk:8-jre-alpine
+WORKDIR /app
+
+COPY --from=build /app/target/customermanagement-1.0-SNAPSHOT-jar-with-dependencies.jar /app
+
+CMD java -jar customermanagement-1.0-SNAPSHOT-jar-with-dependencies.jar
