@@ -6,9 +6,11 @@ import rabbit_manager
 import timeutil
 
 from threading import Thread
+from pika import exceptions
 
 # that much time must be elapsed to mark a bad customer
 TIME_THRESHOLD = config.values['threshold_seconds']
+HOST = config.values['host']
 
 reminders = []
 bad_customer_list = set()
@@ -90,7 +92,22 @@ def callback_command(ch, method, properties, body):
     print("all reminders", bad_customers_json)
 
 
+def test_rabbitmq_connection_blocking(sleep_time):
+
+    while True:
+        time.sleep(sleep_time)
+
+        try:
+            connection = pika.BlockingConnection(pika.ConnectionParameters(host=HOST))
+            connection.channel()
+            break
+        except (pika.exceptions.AMQPChannelError, pika.exceptions.AMQPConnectionError):
+            print("Connection was closed, retrying...")
+
+
 if __name__ == '__main__':
+    test_rabbitmq_connection_blocking(5)
+
     Thread(target=listen_for_order_events).start()
     Thread(target=listen_for_commands).start()
     Thread(target=check_for_bad_customers).start()
