@@ -30,6 +30,13 @@ function customerCreateCommand(customerDto) {
 function customerGetAllCommand() {
     $.get(CUSTOMER_URL , function(response) {
         response.forEach(function(customerDto) {
+            let flaggedCell = '';
+            if (customerDto.isFlagged) {
+                flaggedCell = `<td style="background-color: #FFCDD2">${customerDto.isFlagged}</td>`;
+            } else {
+                flaggedCell = `<td style="background-color: #C8E6C9">${customerDto.isFlagged}</td>`;
+            }
+
             $('#all-customers').find('> tbody:last-child')
                 .append(
                     '<tr>' +
@@ -37,7 +44,7 @@ function customerGetAllCommand() {
                     `<td>${customerDto.fullName}</td>` +
                     `<td>${customerDto.address}</td>` +
                     `<td>${customerDto.email}</td>` +
-                    `<td>${customerDto.isFlagged}</td>` +
+                    flaggedCell +
                     '</tr>');
         });
     });
@@ -45,6 +52,13 @@ function customerGetAllCommand() {
 
 function customerGetByIdCommand(customerId) {
     $.get(CUSTOMER_URL + '/' + customerId, function(customerDto) {
+        let flaggedCell = '';
+        if (customerDto.isFlagged) {
+            flaggedCell = `<td style="background-color: #FFCDD2">${customerDto.isFlagged}</td>`;
+        } else {
+            flaggedCell = `<td style="background-color: #C8E6C9">${customerDto.isFlagged}</td>`;
+        }
+
         $('#customers-by-id').find('> tbody:last-child')
             .append(
                 '<tr>' +
@@ -52,7 +66,7 @@ function customerGetByIdCommand(customerId) {
                 `<td>${customerDto.fullName}</td>` +
                 `<td>${customerDto.address}</td>` +
                 `<td>${customerDto.email}</td>` +
-                `<td>${customerDto.isFlagged}</td>` +
+                `<td>flaggedCell</td>` +
                 '</tr>');
     });
 }

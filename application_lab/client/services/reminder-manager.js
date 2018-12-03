@@ -1,8 +1,10 @@
 function reminderGetAllCommand() {
-    $.get(REMINDER_URL , function(response) {
-        console.log(response);
+    console.log("hi");
 
-        response.forEach(function(reminderDto) {
+    $.get(REMINDER_URL , function(response) {
+        console.log(response.reminders);
+
+        response.reminder.forEach(function(reminderDto) {
             $('#all-reminders').find('> tbody:last-child')
                 .append(
                     '<tr>' +
