@@ -1,22 +1,15 @@
 package ch.hslu.wipro.micros.warehousemanagement.dto;
 
+import java.util.Map;
+
 public class ArticleReduceDto {
-    private long articleId;
-    private int quantity;
+    private Map<Long, Integer> amountToArticle;
 
-    public long getArticleId() {
-        return articleId;
+    public Map<Long, Integer> getAmountToArticle() {
+        return amountToArticle;
     }
 
-    public void setArticleId(long articleId) {
-        this.articleId = articleId;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setAmountToArticle(Map<Long, Integer> amountToArticle) {
+        this.amountToArticle = amountToArticle;
     }
 }

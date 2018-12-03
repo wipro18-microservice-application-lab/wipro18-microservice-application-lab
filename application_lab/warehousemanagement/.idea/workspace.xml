@@ -4,7 +4,8 @@
     <list default="true" id="476107f8-d44d-40c1-b427-d2656a57aa86" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../client/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/CommandTopicsConsumerMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/CommandTopicsConsumerMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleReduceDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleReduceDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleReduceCommandConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleReduceCommandConsumer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java" afterDir="false" />
     </list>
@@ -24,21 +25,21 @@
     <session id="1239324578">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.2" value="3" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="4" />
-          <entry key="java" value="80" />
+          <entry key="java" value="84" />
           <entry key="md" value="1" />
           <entry key="properties" value="6" />
           <entry key="xml" value="6" />
@@ -47,7 +48,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="4" />
-          <entry key="JAVA" value="80" />
+          <entry key="JAVA" value="84" />
           <entry key="Markdown" value="1" />
           <entry key="Properties" value="6" />
           <entry key="XML" value="6" />
@@ -56,14 +57,14 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="40" />
-          <entry key="java" value="6438" />
+          <entry key="java" value="6627" />
           <entry key="properties" value="136" />
           <entry key="xml" value="65" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="6438" />
+          <entry key="JAVA" value="6627" />
           <entry key="PLAIN_TEXT" value="40" />
           <entry key="Properties" value="136" />
           <entry key="XML" value="65" />
@@ -77,36 +78,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="875">
-              <caret line="84" column="5" lean-forward="true" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+            <state relative-caret-position="722">
+              <caret line="80" column="38" lean-forward="true" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantityResultDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
-              <folding>
-                <element signature="e#396#397#0" expanded="true" />
-                <element signature="e#425#426#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/rabbitmq.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="45" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
             </state>
           </provider>
         </entry>
@@ -123,11 +102,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleReduceCommandConsumer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
+            <state relative-caret-position="323">
+              <caret line="36" column="83" selection-start-line="36" selection-start-column="83" selection-end-line="36" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantitiesDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="13" column="5" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="13" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -135,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+            <state relative-caret-position="221">
+              <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -144,7 +132,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
+            <state relative-caret-position="1717">
               <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
             </state>
           </provider>
@@ -153,7 +141,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/manager/CommandManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="221">
               <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -217,12 +205,12 @@
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantitiesResultDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantitiesCommandConsumer.java" />
         <option value="$PROJECT_DIR$/src/test/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantitiesCommandConsumerIT.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleReduceDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/CommandTopicsConsumerMap.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleReduceResultDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleReduceDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleReduceCommandConsumer.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleReduceCommandConsumer.java" />
       </list>
     </option>
   </component>
@@ -232,7 +220,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1912" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -362,7 +350,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543828337518" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543828338298" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
@@ -531,7 +519,8 @@
       <workItem from="1543511300164" duration="8994000" />
       <workItem from="1543653399878" duration="4206000" />
       <workItem from="1543662639025" duration="89000" />
-      <workItem from="1543827134977" duration="1200000" />
+      <workItem from="1543827134977" duration="1362000" />
+      <workItem from="1543829841385" duration="746000" />
     </task>
     <servers />
   </component>
@@ -568,13 +557,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35100000" />
+    <option name="totallyTimeSpent" value="36008000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26439232" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26705757" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -817,68 +806,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantitiesResultDto.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantitiesDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="25" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantitiesCommandConsumer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="38" column="102" selection-start-line="38" selection-start-column="73" selection-end-line="38" selection-end-column="102" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/rabbitmq.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="45" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/manager/CommandManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleReduceDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantityDto.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="21" column="5" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="21" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/CommandTopicsConsumerMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="55" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -900,10 +831,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1717">
+          <caret line="101" column="20" selection-start-line="101" selection-start-column="20" selection-end-line="101" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/manager/CommandManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantitiesDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleReduceDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleCheckQuantitiesCommandConsumer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="609">
+          <caret line="38" column="102" selection-start-line="38" selection-start-column="73" selection-end-line="38" selection-end-column="102" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/dto/ArticleCheckQuantityResultDto.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="4" lean-forward="true" selection-start-line="3" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="15" selection-end-column="5" />
           <folding>
             <element signature="e#396#397#0" expanded="true" />
             <element signature="e#425#426#0" expanded="true" />
@@ -911,17 +883,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepository.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/rabbitmq.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+        <state relative-caret-position="17">
+          <caret line="1" column="45" selection-start-line="1" selection-start-column="45" selection-end-line="1" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/CommandTopicsConsumerMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="84" column="5" lean-forward="true" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
+        <state relative-caret-position="629">
+          <caret line="37" column="55" selection-start-line="37" selection-start-column="55" selection-end-line="37" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -930,8 +902,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/rabbitmq/consumer/ArticleReduceCommandConsumer.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="36" column="83" selection-start-line="36" selection-start-column="83" selection-end-line="36" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
+          <caret line="18" column="46" selection-start-line="18" selection-start-column="46" selection-end-line="18" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ch/hslu/wipro/micros/warehousemanagement/repository/ArticleRepositoryVolatile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="722">
+          <caret line="80" column="38" lean-forward="true" selection-start-line="80" selection-start-column="38" selection-end-line="80" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

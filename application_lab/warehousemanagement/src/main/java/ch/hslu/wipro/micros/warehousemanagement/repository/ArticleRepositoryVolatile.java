@@ -72,15 +72,19 @@ public class ArticleRepositoryVolatile implements ArticleRepository {
     }
 
     @Override
-    public ArticleReduceResultDto reduceQuantity(long articleId, int quantity) {
+    public ArticleReduceResultDto reduceQuantity(Map<Long, Integer> amountToArticle) {
         ArticleReduceResultDto articleReduceResultDto = new ArticleReduceResultDto();
         articleReduceResultDto.setResult(ArticleReduceResultDto.SUCCESS);
 
+        amountToArticle.forEach(this::reduceQuantity);
+
+        return articleReduceResultDto;
+    }
+
+    private void reduceQuantity(long articleId, int quantity) {
         articleDtos.stream()
                 .filter(a -> a.getArticleId() == articleId)
                 .findFirst()
                 .ifPresent(a -> a.setQuantity(a.getQuantity() - quantity));
-
-        return articleReduceResultDto;
     }
 }

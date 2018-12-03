@@ -18,5 +18,5 @@ public interface ArticleRepository {
 
     ArticleCheckQuantityResultDto checkQuantities(Map<Long, Integer> amountToArticle);
 
-    ArticleReduceResultDto reduceQuantity(long articleId, int quantity);
+    ArticleReduceResultDto reduceQuantity(Map<Long, Integer> amountToArticle);
 }

@@ -35,8 +35,7 @@ public class ArticleReduceCommandConsumer extends DefaultConsumer {
 
         ArticleRepository articleRepository = ArticleRepositorySingleton.getArticleRepository();
         ArticleReduceResultDto articleReduceResultDto = articleRepository.reduceQuantity(
-                articleReduceDto.getArticleId(),
-                articleReduceDto.getQuantity());
+                articleReduceDto.getAmountToArticle());
 
         String articleReduceResultJson = new JsonConverterFactory<ArticleReduceResultDto>()
                 .get().toJson(articleReduceResultDto);
