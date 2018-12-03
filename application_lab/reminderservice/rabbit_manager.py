@@ -1,4 +1,5 @@
 import pika
+import uuid
 import config
 
 # Gets the rabbitmq configurations
@@ -89,10 +90,12 @@ def send_command_to_customer(channel, request):
     # declare a new exclusive queue (rabbitmq declares the name of it)
     result = channel.queue_declare(exclusive=True)
     reply_queue = result.method.queue
-
+    corr_id = str(uuid.uuid4())
+    print("correlation id is",corr_id)
     channel.basic_publish(exchange=CUSTOMER_EXCHANGE,
-                          routing_key='rpc_queue',
+                          routing_key=CUSTOMER_COMMAND,
                           properties=pika.BasicProperties(
                               reply_to=reply_queue,
+                              correlation_id=corr_id
                           ),
                           body=request)

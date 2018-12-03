@@ -83,11 +83,11 @@ def check_for_bad_customers():
     """Checks the reminder list for bad customers.
     """
     time_threshold = TIME_THRESHOLD
+    print("start checking for bad customers")
     while True:
         bad_customers = [c for c in reminders if timeutil.is_date_elapsed(c.issue_date, time_threshold)]
         for customer in bad_customers:
             bad_customer_list.add(customer)
-            #todo customer command
             channel = rabbit_manager.prepare_customer_channel()
             rabbit_manager.send_command_to_customer(channel, json.dumps({'customerId': customer.customer_id}))
             reminders.remove(customer)

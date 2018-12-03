@@ -1,6 +1,6 @@
 
 values = {
-    'host': 'localhost',
+    'host': 'rabbitmq',
     'order_exchange': 'ch.hslu.wipro.micros.Order',
     'order_event': 'order.event.complete',
     'reminder_exchange': 'ch.hslu.wipro.micros.Reminder',
