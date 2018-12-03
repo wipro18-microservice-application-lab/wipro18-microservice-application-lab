@@ -1,6 +1,7 @@
 package ch.hslu.wipro.micros.customermanagement;
 
 import ch.hslu.wipro.micros.customermanagement.rabbitmq.consumer.CustomerCreateCommandConsumer;
+import ch.hslu.wipro.micros.customermanagement.rabbitmq.consumer.CustomerFlagCommandConsumer;
 import ch.hslu.wipro.micros.customermanagement.rabbitmq.consumer.CustomerGetAllCommandConsumer;
 import ch.hslu.wipro.micros.customermanagement.rabbitmq.consumer.CustomerGetByIdCommandConsumer;
 import ch.hslu.wipro.micros.customermanagement.rabbitmq.topic.Topic;
@@ -28,6 +29,11 @@ public class CommandTopicsConsumerMap {
                 .atRoute("customer.command.getById")
                 .atQueue("ch.hslu.wipro.micros.CustomerGetByIdCommand").build();
         handledTopics.put(articleCommandGetAll, CustomerGetByIdCommandConsumer.class);
+
+        Topic articleCommandFlag = new TopicBuilder()
+                .atRoute("customer.command.flag")
+                .atQueue("ch.hslu.wipro.micros.CustomerFlagCommand").build();
+        handledTopics.put(articleCommandGetAll, CustomerFlagCommandConsumer.class);
     }
 
     public Map<Topic, Class<? extends DefaultConsumer>> getAsMap() {

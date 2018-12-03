@@ -25,6 +25,7 @@ public class CustomerDtoBuilder {
         customerDto.setFullName(fullName);
         customerDto.setAddress(address);
         customerDto.setEmail(email);
+        customerDto.setFlagged(false);
 
         return customerDto;
     }

@@ -1,6 +1,7 @@
 package ch.hslu.wipro.micros.customermanagement.repository;
 
 import ch.hslu.wipro.micros.customermanagement.dto.CustomerDto;
+import ch.hslu.wipro.micros.customermanagement.dto.CustomerFlagResultDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,5 +32,21 @@ public class CustomerRepositoryVolatile implements CustomerRepository {
                 .filter(a -> a.getCustomerId() == customerId)
                 .findFirst()
                 .orElse(defaultCustomerDto);
+    }
+
+    @Override
+    public CustomerFlagResultDto flagCustomerById(long customerId) {
+        CustomerFlagResultDto customerFlagResultDto = new CustomerFlagResultDto();
+        customerFlagResultDto.setResult("failed");
+
+        customerDtos.stream()
+                .filter(c -> c.getCustomerId() == customerId)
+                .findFirst()
+                .ifPresent(c -> {
+                    c.setFlagged(true);
+                    customerFlagResultDto.setResult("success");
+                });
+
+        return customerFlagResultDto;
     }
 }

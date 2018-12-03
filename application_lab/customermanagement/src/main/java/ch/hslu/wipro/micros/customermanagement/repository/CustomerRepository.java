@@ -1,9 +1,9 @@
 package ch.hslu.wipro.micros.customermanagement.repository;
 
 import ch.hslu.wipro.micros.customermanagement.dto.CustomerDto;
+import ch.hslu.wipro.micros.customermanagement.dto.CustomerFlagResultDto;
 
 import java.util.List;
-import java.util.Map;
 
 public interface CustomerRepository {
     void create(CustomerDto customerDto);
@@ -11,4 +11,6 @@ public interface CustomerRepository {
     List<CustomerDto> getAll();
 
     CustomerDto getById(long customerId);
+
+    CustomerFlagResultDto flagCustomerById(long customerId);
 }

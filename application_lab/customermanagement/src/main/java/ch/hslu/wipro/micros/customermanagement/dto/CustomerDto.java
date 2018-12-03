@@ -7,6 +7,7 @@ public class CustomerDto {
     private String fullName;
     private String address;
     private String email;
+    private boolean isFlagged;
 
     public long getCustomerId() {
         return customerId;
@@ -40,6 +41,14 @@ public class CustomerDto {
         this.email = email;
     }
 
+    public boolean isFlagged() {
+        return isFlagged;
+    }
+
+    public void setFlagged(boolean flagged) {
+        isFlagged = flagged;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,13 +57,14 @@ public class CustomerDto {
         return Objects.equals(customerId, that.customerId) &&
                 Objects.equals(fullName, that.fullName) &&
                 Objects.equals(address, that.address) &&
-                Objects.equals(email, that.email);
+                Objects.equals(email, that.email) &&
+                Objects.equals(isFlagged, that.isFlagged);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(
-                customerId, fullName, address, email
+                customerId, fullName, address, email, isFlagged
         );
     }
 }
