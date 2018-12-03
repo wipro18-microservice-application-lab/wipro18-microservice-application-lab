@@ -13,7 +13,7 @@ TIME_THRESHOLD = config.values['threshold_seconds']
 HOST = config.values['host']
 
 reminders = []
-bad_customer_list = set()
+bad_customer_list = []
 
 
 class ReminderEntry:
@@ -73,10 +73,15 @@ def callback_command(ch, method, properties, body):
 def get_reminders_as_json(reminder_list):
     """Parse the reminder list to json
     """
-    reminders_json = []
-    for reminder in reminder_list:
-        reminders_json.append(reminder.to_json_str())
-    return (json.dumps({"reminders": reminders_json})).replace('\\"',"\"")
+    len_list = len(reminder_list)
+    reminders_json = "["
+    for i in range(len_list):
+        reminder = reminder_list[i]
+        reminders_json += (reminder.to_json_str())
+        if not i == len_list - 1:
+            reminders_json += ","
+    reminders_json += "]"
+    return '{"reminders":' + reminders_json+'}'
 
 
 def check_for_bad_customers():
@@ -87,7 +92,7 @@ def check_for_bad_customers():
     while True:
         bad_customers = [c for c in reminders if timeutil.is_date_elapsed(c.issue_date, time_threshold)]
         for customer in bad_customers:
-            bad_customer_list.add(customer)
+            bad_customer_list.append(customer)
             channel = rabbit_manager.prepare_customer_channel()
             rabbit_manager.send_command_to_customer(channel, json.dumps({'customerId': customer.customer_id}))
             reminders.remove(customer)
@@ -113,3 +118,9 @@ if __name__ == '__main__':
     Thread(target=listen_for_order_events).start()
     Thread(target=listen_for_commands).start()
     Thread(target=check_for_bad_customers).start()
+    """e1 = ReminderEntry(1,1,timeutil.stamp())
+    e2 = ReminderEntry(2,1,timeutil.stamp())
+    reminders.append(e1)
+    reminders.append(e2)
+    res = get_reminders_as_json(reminders)
+    print(res)"""
