@@ -24,9 +24,12 @@ def prepare_order_channel(callback):
     connection = pika.BlockingConnection(pika.ConnectionParameters(host=HOST))
     channel = connection.channel()
 
+    channel.exchange_declare(exchange=ORDER_EXCHANGE,
+                             exchange_type='topic')
+
     # declare a new exclusive queue (rabbitmq declares the name of it)
-    result = channel.queue_declare(exclusive=True)
-    queue_name = result.method.queue
+    queue_name = 'ch.hslu.wipro.micros.reminder.order_complete'
+    channel.queue_declare(queue=queue_name)
 
     # binds the queue to the order exchange
     channel.queue_bind(exchange=ORDER_EXCHANGE,
