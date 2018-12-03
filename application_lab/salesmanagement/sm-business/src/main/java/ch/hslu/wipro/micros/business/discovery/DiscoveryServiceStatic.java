@@ -6,6 +6,7 @@ public class DiscoveryServiceStatic implements DiscoveryService {
         return new MicroServiceBuilder()
                 .atExchange("ch.hslu.wipro.micros.Article")
                 .addCommand("checkQuantities", "article.command.checkQuantities")
+                .addCommand("reduce", "article.command.reduce")
                 .build();
     }
 

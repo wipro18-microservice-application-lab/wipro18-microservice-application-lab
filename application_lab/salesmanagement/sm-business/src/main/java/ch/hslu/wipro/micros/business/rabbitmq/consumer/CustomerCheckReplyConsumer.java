@@ -4,6 +4,7 @@ import ch.hslu.wipro.micros.business.converter.JsonConverterFactory;
 import ch.hslu.wipro.micros.business.result.OrderCreateCommandResult;
 import ch.hslu.wipro.micros.business.result.OrderCreateCommandResultBuilder;
 import ch.hslu.wipro.micros.business.saga.OrderCreatePersistState;
+import ch.hslu.wipro.micros.business.saga.OrderReduceArticleState;
 import ch.hslu.wipro.micros.business.saga.OrderSaga;
 import ch.hslu.wipro.micros.model.customer.CustomerDto;
 import com.rabbitmq.client.AMQP;
@@ -33,7 +34,7 @@ public class CustomerCheckReplyConsumer extends DefaultConsumer {
         CustomerDto customerDto = new JsonConverterFactory<CustomerDto>().get().fromJson(body, CustomerDto.class);
 
         if (customerDto.getFullName() != null) {
-            saga.setState(new OrderCreatePersistState());
+            saga.setState(new OrderReduceArticleState());
             saga.process();
         } else {
             logger.info("order failed: {} does not exist",
