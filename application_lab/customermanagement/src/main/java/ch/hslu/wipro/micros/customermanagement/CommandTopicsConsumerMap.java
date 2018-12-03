@@ -33,7 +33,7 @@ public class CommandTopicsConsumerMap {
         Topic articleCommandFlag = new TopicBuilder()
                 .atRoute("customer.command.flag")
                 .atQueue("ch.hslu.wipro.micros.CustomerFlagCommand").build();
-        handledTopics.put(articleCommandGetAll, CustomerFlagCommandConsumer.class);
+        handledTopics.put(articleCommandFlag, CustomerFlagCommandConsumer.class);
     }
 
     public Map<Topic, Class<? extends DefaultConsumer>> getAsMap() {
