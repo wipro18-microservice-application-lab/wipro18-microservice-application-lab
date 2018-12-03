@@ -56,6 +56,20 @@ def listen_for_commands():
     channel.start_consuming()
 
 
+def callback_command(ch, method, properties, body):
+    """Interact with an incoming command.
+    """
+    bad_customers_json = get_reminders_as_json(bad_customer_list)
+    reply_properties = pika.BasicProperties(correlation_id=properties.correlation_id)
+
+    ch.basic_publish(exchange='',
+                     routing_key=properties.reply_to,
+                     properties=reply_properties,
+                     body=bad_customers_json)
+
+    print("all reminders", bad_customers_json)
+
+
 def get_reminders_as_json(reminder_list):
     """Parse the reminder list to json
     """
@@ -74,22 +88,10 @@ def check_for_bad_customers():
         for customer in bad_customers:
             bad_customer_list.add(customer)
             #todo customer command
+            channel = rabbit_manager.prepare_customer_channel()
+            rabbit_manager.send_command_to_customer(channel, json.dumps({'customerId': customer.customer_id}))
             reminders.remove(customer)
         time.sleep(time_threshold)
-
-
-def callback_command(ch, method, properties, body):
-    """Interact with an incoming command.
-    """
-    bad_customers_json = get_reminders_as_json(bad_customer_list)
-    reply_properties = pika.BasicProperties(correlation_id=properties.correlation_id)
-
-    ch.basic_publish(exchange='',
-                     routing_key=properties.reply_to,
-                     properties=reply_properties,
-                     body=bad_customers_json)
-
-    print("all reminders", bad_customers_json)
 
 
 def test_rabbitmq_connection_blocking(sleep_time):

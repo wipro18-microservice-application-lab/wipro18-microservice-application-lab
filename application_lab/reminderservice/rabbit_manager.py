@@ -7,6 +7,9 @@ HOST = config.values['host']
 ORDER_EXCHANGE = config.values['order_exchange']
 ORDER_EVENT = config.values['order_event']
 
+CUSTOMER_EXCHANGE = config.values['customer_exchange']
+CUSTOMER_COMMAND = config.values['customer_command']
+
 REMINDER_EXCHANGE = config.values['reminder_exchange']
 REMINDER_QUEUE = config.values['reminder_queue']
 REMINDER_COMMAND = config.values['reminder_command']
@@ -69,3 +72,27 @@ def prepare_command_channel(callback):
                           queue=queue_name,
                           no_ack=True)
     return channel
+
+
+def prepare_customer_channel():
+    """Prepares a channel for commands to the customer domain
+    :return: channel
+    """
+    # setup connection to the rabbitmq instance
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=HOST))
+    channel = connection.channel()
+
+    return channel
+
+
+def send_command_to_customer(channel, request):
+    # declare a new exclusive queue (rabbitmq declares the name of it)
+    result = channel.queue_declare(exclusive=True)
+    reply_queue = result.method.queue
+
+    channel.basic_publish(exchange=CUSTOMER_EXCHANGE,
+                          routing_key='rpc_queue',
+                          properties=pika.BasicProperties(
+                              reply_to=reply_queue,
+                          ),
+                          body=request)
