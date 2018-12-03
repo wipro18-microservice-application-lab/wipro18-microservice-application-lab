@@ -27,7 +27,7 @@ public class CustomerFlagCommandConsumer extends DefaultConsumer {
     public void handleDelivery(String consumerTag, Envelope envelope,
                                AMQP.BasicProperties properties, byte[] body) throws IOException {
 
-        logger.info("handle incoming CustomerCreateCommandConsumer with correlation id: {}",
+        logger.info("handle incoming CustomerFlagCommand with correlation id: {}",
                 properties.getCorrelationId());
 
         CustomerGetByIdDto customerGetByIdDto = new JsonConverterFactory<CustomerGetByIdDto>()
