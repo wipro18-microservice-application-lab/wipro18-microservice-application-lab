@@ -3,6 +3,7 @@ package ch.hslu.wipro.micros.warehousemanagement.repository;
 import ch.hslu.wipro.micros.warehousemanagement.dto.ArticleCheckQuantityResultDto;
 import ch.hslu.wipro.micros.warehousemanagement.dto.ArticleDto;
 import ch.hslu.wipro.micros.warehousemanagement.dto.ArticleDtoBuilder;
+import ch.hslu.wipro.micros.warehousemanagement.dto.ArticleReduceResultDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,5 +69,18 @@ public class ArticleRepositoryVolatile implements ArticleRepository {
         articleCheckQuantityResultDto.setResult(articleCheckQuantityResult);
 
         return articleCheckQuantityResultDto;
+    }
+
+    @Override
+    public ArticleReduceResultDto reduceQuantity(long articleId, int quantity) {
+        ArticleReduceResultDto articleReduceResultDto = new ArticleReduceResultDto();
+        articleReduceResultDto.setResult(ArticleReduceResultDto.SUCCESS);
+
+        articleDtos.stream()
+                .filter(a -> a.getArticleId() == articleId)
+                .findFirst()
+                .ifPresent(a -> a.setQuantity(a.getQuantity() - quantity));
+
+        return articleReduceResultDto;
     }
 }
