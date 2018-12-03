@@ -1,0 +1,23 @@
+<div id="reminder-health" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<table id="all-reminders" class="mui-table mui-table--bordered">
+    <thead>
+    <tr>
+        <th>Customer ID</th>
+        <th>Fee</th>
+        <th>Issue Date</th>
+    </tr>
+    </thead>
+    <tbody>
+        <!-- dynamic -->
+    </tbody>
+</table>
+
+<script>
+    jQuery(function($) {
+        checkHealth('reminder-health', REMINDER_HEALTH_URL);
+        reminderGetAllCommand();
+    });
+</script>

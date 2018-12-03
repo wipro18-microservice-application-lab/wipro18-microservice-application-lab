@@ -1,4 +1,4 @@
-let host = 'wiproh18-tbjauner.el.eee.intern'; // wiproh18-tbjauner.el.eee.intern
+let host = 'localhost'; // wiproh18-tbjauner.el.eee.intern
 let port = "7001";
 
 let SALES_HEALTH_URL = 'http://' + host + ':' + port + '/gateway/sales/health';
@@ -9,3 +9,6 @@ let WAREHOUSE_URL = 'http://' + host + ':' + port + '/gateway/warehouse';
 
 let CUSTOMER_HEALTH_URL = 'http://' + host + ':' + port + '/gateway/customers/health';
 let CUSTOMER_URL = 'http://' + host + ':' + port + '/gateway/customers';
+
+let REMINDER_HEALTH_URL = 'http://' + host + ':' + port + '/gateway/reminders/health';
+let REMINDER_URL = 'http://' + host + ':' + port + '/gateway/reminders';
