@@ -27,7 +27,7 @@ class ReminderEntry:
 
     def to_json_str(self):
         return json.dumps({"customerId": self.customer_id,
-                           "fee:": self.fee,
+                           "fee": self.fee,
                            "issueDate": timeutil.pretty_print(self.issue_date)})
 
 
