@@ -15,9 +15,30 @@
     </tbody>
 </table>
 
+<button class="mui-btn mui-btn--primary"
+        onclick="makeReminderReadable()">Make readable</button>
+
 <script>
+    let isClicked = false;
+
     jQuery(function($) {
         checkHealth('reminder-health', REMINDER_HEALTH_URL);
         reminderGetAllCommand();
     });
+
+    function makeReminderReadable() {
+        if (isClicked === false) {
+            isClicked = true;
+
+            $('#all-reminders > tbody  > tr').each(function() {
+                $(this).find('td').each(function (id) {
+                    console.log(id);
+                    if (id === 0) {
+                        /* get customer name */
+                        setCustomerNameById(this.id, $(this).text());
+                    }
+                })
+            });
+        }
+    }
 </script>

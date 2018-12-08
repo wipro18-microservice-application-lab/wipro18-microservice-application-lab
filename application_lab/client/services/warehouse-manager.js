@@ -56,3 +56,11 @@ function articleGetByIdCommand(articleId) {
                 '</tr>');
     });
 }
+
+function setArticleNameById(id, articleId, articleQuantity) {
+    console.log(id);
+
+    $.get(WAREHOUSE_URL + '/articles/' + articleId, function(articleDto) {
+        $('#' + id).find('> ul').append('<li>name: ' + articleDto.name + ', quantity: ' + articleQuantity + '</li>');
+    });
+}

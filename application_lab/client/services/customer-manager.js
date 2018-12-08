@@ -70,3 +70,9 @@ function customerGetByIdCommand(customerId) {
                 '</tr>');
     });
 }
+
+function setCustomerNameById(id, customerId) {
+    $.get(CUSTOMER_URL + '/' + customerId, function(customerDto) {
+        $('#' + id).text(customerDto.fullName);
+    });
+}

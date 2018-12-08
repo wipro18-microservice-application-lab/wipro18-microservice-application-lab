@@ -17,9 +17,44 @@
     </tbody>
 </table>
 
+<button class="mui-btn mui-btn--primary"
+            onclick="makeOrderReadable()">Make readable</button>
+
 <script>
+    let isClicked = false;
+
     jQuery(function($) {
         checkHealth('sales-health', SALES_HEALTH_URL);
         orderGetAllCommand();
     });
+
+    function makeOrderReadable() {
+        if (isClicked === false) {
+            isClicked = true;
+
+            $('#all-orders > tbody  > tr').each(function() {
+                $(this).find('td').each(function (id) {
+                    if (id === 1) {
+                        /* get customer name */
+                        setCustomerNameById(this.id, $(this).text());
+                    }
+
+                    if (id === 2) {
+                        /* get items */
+                        let itemsAsString = $(this).text().slice(1,-1);
+                        let itemsAsArray = itemsAsString.replace(/"/gi, '').split(',');
+
+                        let id = this.id;
+                        $(this).html('<ul></ul>');
+
+                        itemsAsArray.forEach(function (item) {
+                            let articleId = item.split(':')[0];
+                            let articleQuantity = item.split(':')[1];
+                            setArticleNameById(id, articleId, articleQuantity);
+                        });
+                    }
+                })
+            });
+        }
+    }
 </script>

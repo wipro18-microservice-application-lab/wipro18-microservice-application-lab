@@ -60,11 +60,27 @@ function orderGetAllCommand() {
             $('#all-orders').find('> tbody:last-child')
                 .append(
                     '<tr>' +
-                        `<td>${orderDto.orderId}</td>` +
-                        `<td>${orderDto.customerId}</td>` +
-                        `<td>${JSON.stringify(orderDto.amountToArticle)}</td>` +
-                        `<td>${orderDto.totalPrice}</td>` +
-                        `<td>${orderDto.status}</td>` +
+                    `<td>${orderDto.orderId}</td>` +
+                    `<td id='customer${orderDto.orderId}'>${orderDto.customerId}</td>` +
+                    `<td id='item${orderDto.orderId}'>${JSON.stringify(orderDto.amountToArticle)}</td>` +
+                    `<td>${orderDto.totalPrice}</td>` +
+                    `<td>${orderDto.status}</td>` +
+                    '</tr>');
+        });
+    });
+}
+
+function orderGetAllCommandForCreate() {
+    $.get(WAREHOUSE_URL , function(response) {
+        response.forEach(function(articleDto) {
+            $('#article-for-create').find('> tbody:last-child')
+                .append(
+                    '<tr>' +
+                    `<td>${articleDto.name}</td>` +
+                    `<td>${articleDto.description}</td>` +
+                    `<td>${articleDto.price}</td>` +
+                    `<td><button class="mui-btn mui-btn--flat mui-btn--primary" 
+                        onclick="addArticle(${articleDto.articleId}, ${articleDto.price})">Add</button></td>` +
                     '</tr>');
         });
     });
@@ -76,11 +92,11 @@ function orderGetAllByCustomerIdCommand(customerId) {
             $('#all-customer-orders').find('> tbody:last-child')
                 .append(
                     '<tr>' +
-                        `<td>${orderDto.orderId}</td>` +
-                        `<td>${orderDto.customerId}</td>` +
-                        `<td>${JSON.stringify(orderDto.amountToArticle)}</td>` +
-                        `<td>${orderDto.totalPrice}</td>`+
-                        `<td>${orderDto.status}</td>` +
+                    `<td>${orderDto.orderId}</td>` +
+                    `<td>${orderDto.customerId}</td>` +
+                    `<td>${JSON.stringify(orderDto.amountToArticle)}</td>` +
+                    `<td>${orderDto.totalPrice}</td>`+
+                    `<td>${orderDto.status}</td>` +
                     '</tr>');
         });
     });
