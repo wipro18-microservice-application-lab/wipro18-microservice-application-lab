@@ -210,7 +210,7 @@
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/WebstormProjects/housely" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="jsx.switch.disabled" value="true" />
@@ -274,12 +274,12 @@
       <workItem from="1543831392803" duration="6008000" />
       <workItem from="1543854266804" duration="1295000" />
       <workItem from="1543860195028" duration="1772000" />
-      <workItem from="1544261555918" duration="5837000" />
+      <workItem from="1544261555918" duration="6458000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="60771000" />
+    <option name="totallyTimeSpent" value="61392000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
