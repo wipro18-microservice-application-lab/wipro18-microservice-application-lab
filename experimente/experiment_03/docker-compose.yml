@@ -8,15 +8,3 @@ services:
     - "7000:15672"
     - "5672:5672"
     hostname: rabbitmq
-  discovery:
-    build:
-      context: ./discovery_service
-    ports:
-    - "5000:5000"
-    hostname: discovery_service
-  hospital:
-    build:
-      context: ./hospital_service
-    ports:
-    - "5001:5001"
-    hostname: hospital_service
