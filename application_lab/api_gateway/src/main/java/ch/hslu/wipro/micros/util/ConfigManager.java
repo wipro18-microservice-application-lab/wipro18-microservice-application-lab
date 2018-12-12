@@ -1,11 +1,12 @@
 package ch.hslu.wipro.micros.util;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * This is a helper class to read from the config properties file.
+ */
 public class ConfigManager {
 
     private final static String CONFIG_FILE_NAME = "gateway.properties";
@@ -22,6 +23,10 @@ public class ConfigManager {
         in.close();
     }
 
+    /**
+     * Gets the base uri from the properties. If the properties are not present the method uses default values.
+     * @return base uri string
+     */
     public String getGatewayUriFromProps() {
         String uri = "";
         uri += properties.getProperty("protocol", "http") + "://";
