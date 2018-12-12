@@ -8,6 +8,7 @@ import com.rabbitmq.client.DefaultConsumer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class CommandManager {
@@ -20,12 +21,15 @@ public class CommandManager {
     }
 
     public void startWithChannel(Channel channel) {
+        Map<String, Object> args = new HashMap<>();
+        args.put("x-message-ttl", 5000);
+        args.put("x-dead-letter-exchange", "ch.hslu.wipro.micros.DeadLetter");
         boolean noAutoAck = false;
 
         handledTopics.forEach((topic, consumer) -> {
             try {
                 channel.exchangeDeclare(rabbitMqConfig.getDomainExchange(), BuiltinExchangeType.TOPIC);
-                channel.queueDeclare(topic.getQueueName(), false, false, false, null);
+                channel.queueDeclare(topic.getQueueName(), false, false, false, args);
                 channel.queueBind(topic.getQueueName(),
                         rabbitMqConfig.getDomainExchange(),
                         topic.getRoutingKey());
