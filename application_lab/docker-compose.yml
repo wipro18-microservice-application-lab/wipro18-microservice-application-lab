@@ -9,13 +9,6 @@ services:
       - "5672:5672"
     hostname: rabbitmq
     
-  discovery:
-    build:
-      context: ./discoveryservice
-    depends_on:
-      - "rabbitmq"  
-    hostname: discovery
-    
   gateway:
     build:
       context: ./api_gateway
