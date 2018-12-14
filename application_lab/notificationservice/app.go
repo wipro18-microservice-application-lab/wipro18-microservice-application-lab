@@ -23,7 +23,7 @@ func declareQueue(ch *amqp.Channel, queueName string) {
 	_, err := ch.QueueDeclare(
 		queueName,
 		false, 		// durable
-		false, 	// delete when unused
+		false, 	    // delete when unused
 		true,  		// exclusive
 		false, 		// no-wait
 		nil,   		// arguments
@@ -45,7 +45,7 @@ func bindQueue(ch *amqp.Channel, queueName string, exchangeName string) {
 func listenForOrderComplete(ch *amqp.Channel, queueName string) {
 	confirmations, err := ch.Consume(
 		queueName,
-		"",    	// consumer
+		"",    	    // consumer
 		false, 		// auto-ack
 		false, 		// exclusive
 		false, 		// no-local
@@ -69,10 +69,9 @@ func listenForOrderComplete(ch *amqp.Channel, queueName string) {
 }
 
 func send(body string) {
-	// Birthday 23. April 1993
 	from := "noreply.wipro18@gmail.com"
 	pass := "wipro18-applab"
-	to := "alan.meile@gmail.com"
+	to := "noreply.wipro18@gmail.com"
 
 	msg := 	"From: " + from + "\n" +
 			"To: " + to + "\n" +
