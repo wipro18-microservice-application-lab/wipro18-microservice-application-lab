@@ -24,15 +24,6 @@
   "policies": [],
   "exchanges": [
     {
-      "name": "ch.hslu.wipro.micros.Discovery",
-      "vhost": "/",
-      "type": "topic",
-      "durable": false,
-      "auto_delete": false,
-      "internal": false,
-      "arguments": {}
-    },
-    {
       "name": "ch.hslu.wipro.micros.DeadLetter",
       "vhost": "/",
       "type": "fanout",
@@ -44,28 +35,6 @@
   ],
   "queues": [
     {
-      "name": "ch.hslu.wipro.micros.discovery.RegisterCommand",
-      "vhost": "/",
-      "durable": false,
-      "auto_delete": false,
-      "arguments": {
-        "x-dead-letter-exchange": "ch.hslu.wipro.micros.DeadLetter",
-        "x-dead-letter-routing-key": "",
-        "x-message-ttl": 60000
-      }
-    },
-    {
-      "name": "ch.hslu.wipro.micros.discovery.DiscoverCommand",
-      "vhost": "/",
-      "durable": false,
-      "auto_delete": false,
-      "arguments": {
-        "x-dead-letter-exchange": "ch.hslu.wipro.micros.DeadLetter",
-        "x-dead-letter-routing-key": "",
-        "x-message-ttl": 60000
-      }
-    },
-    {
       "name": "ch.hslu.wipro.micros.DeadLetter",
       "vhost": "/",
       "durable": false,
@@ -74,22 +43,6 @@
     }
   ],
   "bindings": [
-    {
-      "source": "ch.hslu.wipro.micros.Discovery",
-      "vhost": "/",
-      "destination": "ch.hslu.wipro.micros.discovery.RegisterCommand",
-      "destination_type": "queue",
-      "routing_key": "discovery.command.register",
-      "arguments": {}
-    },
-    {
-      "source": "ch.hslu.wipro.micros.Discovery",
-      "vhost": "/",
-      "destination": "ch.hslu.wipro.micros.discovery.DiscoverCommand",
-      "destination_type": "queue",
-      "routing_key": "discovery.command.discover",
-      "arguments": {}
-    },
     {
       "source": "ch.hslu.wipro.micros.DeadLetter",
       "vhost": "/",
