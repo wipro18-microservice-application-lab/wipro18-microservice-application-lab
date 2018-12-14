@@ -15,7 +15,7 @@ services:
     ports:
       - "7001:8080"  
     depends_on:
-      - "discovery"    
+      - "rabbitmq"    
     hostname: gateway
     
   client:
@@ -24,35 +24,35 @@ services:
     ports:
       - "7002:80"
     depends_on:
-      - "discovery"
+      - "rabbitmq"
     hostname: client
     
   sales:
     build:
       context: ./salesmanagement
     depends_on:
-      - "discovery"
+      - "rabbitmq"
     hostname: sales
     
   warehouse:
     build:
       context: ./warehousemanagement
     depends_on:
-      - "discovery"
+      - "rabbitmq"
     hostname: warehouse
     
   customer:
     build:
       context: ./customermanagement
     depends_on:
-      - "discovery"
+      - "rabbitmq"
     hostname: customer
     
   notification:
     build:
       context: ./notificationservice
     depends_on:
-      - "discovery"
+      - "rabbitmq"
     hostname: notification
   
   reminder:
