@@ -1,9 +1,16 @@
 function checkHealth(target, url) {
-    $.get(url , function(response) {
-        $('#' + target).css('background-color', '#C8E6C9').html(response);
-    })
-    .fail(function() {
-        $('#' + target).css('background-color', '#FFCDD2').html('sales management is not running..');
+    $.ajax({
+        type: 'GET',
+        url: url,
+        contentType: "application/json; charset=utf-8",
+        traditional: true,
+        timeout: TIMEOUT,
+        success: function (response) {
+            $('#' + target).css('background-color', '#C8E6C9').html(response);
+        },
+        error: function () {
+            $('#' + target).css('background-color', '#FFCDD2').html('gateway connection error');
+        }
     });
 }
 
@@ -12,21 +19,28 @@ function checkAllHealth() {
     let target = 'overallHealth';
 
     services.forEach(url => {
-        $.get(url , function(response) {
-            $('#' + target).find('> tbody:last-child')
-                .append(
-                    '<tr>' +
-                    `<td>${url}</td>` +
-                    `<td style="background-color: #C8E6C9">${response}</td>` +
-                    '</tr>');
-        })
-        .fail(function() {
-            $('#' + target).find('> tbody:last-child')
-                .append(
-                    '<tr>' +
-                    `<td>${url}</td>` +
-                    `<td style="background-color: #FFCDD2">${response}</td>` +
-                    '</tr>');
+        $.ajax({
+            type: 'GET',
+            url: url,
+            contentType: "application/json; charset=utf-8",
+            traditional: true,
+            timeout: TIMEOUT,
+            success: function (response) {
+                $('#' + target).find('> tbody:last-child')
+                    .append(
+                        '<tr>' +
+                        `<td>${url}</td>` +
+                        `<td style="background-color: #C8E6C9">${response}</td>` +
+                        '</tr>');
+            },
+            error: function () {
+                $('#' + target).find('> tbody:last-child')
+                    .append(
+                        '<tr>' +
+                        `<td>${url}</td>` +
+                        `<td style="background-color: #FFCDD2">gateway connection error</td>` +
+                        '</tr>');
+            }
         });
     });
 }

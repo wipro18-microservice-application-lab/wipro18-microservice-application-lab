@@ -9,6 +9,7 @@ function customerCreateCommand(customerDto) {
         data: JSON.stringify(customerDto),
         contentType: "application/json; charset=utf-8",
         traditional: true,
+        timeout: TIMEOUT,
         success: function (data) {
 
             let row = '';
@@ -23,13 +24,72 @@ function customerCreateCommand(customerDto) {
                     '<tr>' +
                     row +
                     '</tr>');
+        },
+        error: function () {
+            $('#customerCreateResults').find('> tbody:last-child')
+                .append(
+                    '<tr>' +
+                        '<td style="background-color: #FFCDD2">gateway connection error</td>' +
+                    '</tr>');
         }
     });
 }
 
 function customerGetAllCommand() {
-    $.get(CUSTOMER_URL , function(response) {
-        response.forEach(function(customerDto) {
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: 'GET',
+        url: CUSTOMER_URL,
+        contentType: "application/json; charset=utf-8",
+        traditional: true,
+        timeout: TIMEOUT,
+        success: function (response) {
+            response.forEach(function(customerDto) {
+                let flaggedCell = '';
+                if (customerDto.isFlagged) {
+                    flaggedCell = `<td style="background-color: #FFCDD2">${customerDto.isFlagged}</td>`;
+                } else {
+                    flaggedCell = `<td style="background-color: #C8E6C9">${customerDto.isFlagged}</td>`;
+                }
+
+                $('#all-customers').find('> tbody:last-child')
+                    .append(
+                        '<tr>' +
+                        `<td>${customerDto.customerId}</td>` +
+                        `<td>${customerDto.fullName}</td>` +
+                        `<td>${customerDto.address}</td>` +
+                        `<td>${customerDto.email}</td>` +
+                        flaggedCell +
+                        '</tr>');
+            });
+        },
+        error: function () {
+            $('#all-customers').find('> tbody:last-child')
+                .append(
+                    '<tr>' +
+                    '<td style="background-color: #FFCDD2">gateway connection error</td>' +
+                    '<td style="background-color: #FFCDD2"></td>' +
+                    '<td style="background-color: #FFCDD2"></td>' +
+                    '<td style="background-color: #FFCDD2"></td>' +
+                    '<td style="background-color: #FFCDD2"></td>' +
+                    '</tr>');
+        }
+    });
+}
+
+function customerGetByIdCommand(customerId) {
+    $.ajax({
+        headers: {
+            'Accept': 'application/json'
+        },
+        type: 'GET',
+        url: CUSTOMER_URL + '/' + customerId,
+        traditional: true,
+        timeout: TIMEOUT,
+        success: function (customerDto) {
             let flaggedCell = '';
             if (customerDto.isFlagged) {
                 flaggedCell = `<td style="background-color: #FFCDD2">${customerDto.isFlagged}</td>`;
@@ -37,37 +97,27 @@ function customerGetAllCommand() {
                 flaggedCell = `<td style="background-color: #C8E6C9">${customerDto.isFlagged}</td>`;
             }
 
-            $('#all-customers').find('> tbody:last-child')
+            $('#customers-by-id').find('> tbody:last-child')
                 .append(
                     '<tr>' +
-                    `<td>${customerDto.customerId}</td>` +
-                    `<td>${customerDto.fullName}</td>` +
-                    `<td>${customerDto.address}</td>` +
-                    `<td>${customerDto.email}</td>` +
-                    flaggedCell +
+                        `<td>${customerDto.customerId}</td>` +
+                        `<td>${customerDto.fullName}</td>` +
+                        `<td>${customerDto.address}</td>` +
+                        `<td>${customerDto.email}</td>` +
+                        `${flaggedCell}` +
                     '</tr>');
-        });
-    });
-}
-
-function customerGetByIdCommand(customerId) {
-    $.get(CUSTOMER_URL + '/' + customerId, function(customerDto) {
-        let flaggedCell = '';
-        if (customerDto.isFlagged) {
-            flaggedCell = `<td style="background-color: #FFCDD2">${customerDto.isFlagged}</td>`;
-        } else {
-            flaggedCell = `<td style="background-color: #C8E6C9">${customerDto.isFlagged}</td>`;
+        },
+        error: function () {
+            $('#customers-by-id').find('> tbody:last-child')
+                .append(
+                    '<tr>' +
+                        '<td style="background-color: #FFCDD2">gateway connection error</td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
+                    '</tr>');
         }
-
-        $('#customers-by-id').find('> tbody:last-child')
-            .append(
-                '<tr>' +
-                `<td>${customerDto.customerId}</td>` +
-                `<td>${customerDto.fullName}</td>` +
-                `<td>${customerDto.address}</td>` +
-                `<td>${customerDto.email}</td>` +
-                `${flaggedCell}` +
-                '</tr>');
     });
 }
 

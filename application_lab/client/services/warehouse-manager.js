@@ -10,6 +10,7 @@ function checkArticleQuantityCommand(articleCheckQuantityDto) {
         data: JSON.stringify(articleCheckQuantityDto),
         contentType: "application/json; charset=utf-8",
         traditional: true,
+        timeout: TIMEOUT,
         success: function (data) {
             let row = '';
             if (data.result === 'enough articles in stock') {
@@ -23,43 +24,90 @@ function checkArticleQuantityCommand(articleCheckQuantityDto) {
                     '<tr>' +
                         row +
                     '</tr>');
+        },
+        error: function () {
+            $('#checkQuantityResults').find('> tbody:last-child')
+                .append(
+                    '<tr>' +
+                        '<td style="background-color: #FFCDD2">gateway connection error</td>' +
+                    '</tr>');
         }
     });
 }
 
 function articleGetAllCommand() {
-    $.get(WAREHOUSE_URL , function(response) {
-        response.forEach(function(articleDto) {
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: 'GET',
+        url: WAREHOUSE_URL,
+        contentType: "application/json; charset=utf-8",
+        traditional: true,
+        timeout: TIMEOUT,
+        success: function (response) {
+            response.forEach(function(articleDto) {
+                $('#all-articles').find('> tbody:last-child')
+                    .append(
+                        '<tr>' +
+                            `<td>${articleDto.articleId}</td>` +
+                            `<td>${articleDto.name}</td>` +
+                            `<td>${articleDto.description}</td>` +
+                            `<td>${articleDto.price}</td>` +
+                            `<td>${articleDto.quantity}</td>` +
+                        '</tr>');
+            });
+        },
+        error: function () {
             $('#all-articles').find('> tbody:last-child')
                 .append(
                     '<tr>' +
-                    `<td>${articleDto.articleId}</td>` +
-                    `<td>${articleDto.name}</td>` +
-                    `<td>${articleDto.description}</td>` +
-                    `<td>${articleDto.price}</td>` +
-                    `<td>${articleDto.quantity}</td>` +
+                        '<td style="background-color: #FFCDD2">gateway connection error</td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
                     '</tr>');
-        });
+        }
     });
 }
 
 function articleGetByIdCommand(articleId) {
-    $.get(WAREHOUSE_URL + '/articles/' + articleId, function(articleDto) {
-        $('#article-by-id').find('> tbody:last-child')
-            .append(
-                '<tr>' +
-                `<td>${articleDto.articleId}</td>` +
-                `<td>${articleDto.name}</td>` +
-                `<td>${articleDto.description}</td>` +
-                `<td>${articleDto.price}</td>` +
-                `<td>${articleDto.quantity}</td>` +
-                '</tr>');
+    $.ajax({
+        headers: {
+            'Accept': 'application/json'
+        },
+        type: 'GET',
+        url: WAREHOUSE_URL + '/articles/' + articleId,
+        traditional: true,
+        timeout: TIMEOUT,
+        success: function (articleDto) {
+            $('#article-by-id').find('> tbody:last-child')
+                .append(
+                    '<tr>' +
+                        `<td>${articleDto.articleId}</td>` +
+                        `<td>${articleDto.name}</td>` +
+                        `<td>${articleDto.description}</td>` +
+                        `<td>${articleDto.price}</td>` +
+                        `<td>${articleDto.quantity}</td>` +
+                    '</tr>');
+        },
+        error: function () {
+            $('#article-by-id').find('> tbody:last-child')
+                .append(
+                    '<tr>' +
+                        '<td style="background-color: #FFCDD2">gateway connection error</td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
+                        '<td style="background-color: #FFCDD2"></td>' +
+                    '</tr>');
+        }
     });
 }
 
 function setArticleNameById(id, articleId, articleQuantity) {
-    console.log(id);
-
     $.get(WAREHOUSE_URL + '/articles/' + articleId, function(articleDto) {
         $('#' + id).find('> ul').append('<li>name: ' + articleDto.name + ', quantity: ' + articleQuantity + '</li>');
     });
