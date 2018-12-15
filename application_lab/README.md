@@ -1,26 +1,26 @@
+![Wipro Logo](./client/static/imgs/icon-microservices-with-text.png)
+
 # Microservice Application-Lab
 Während der Projektwochen 10 - 12 (23.11.2018 bis 21.12.2018) wurde fortgehend am Microservice Application-Lab gearbeitet.
 
-![Wipro Logo](./client/static/imgs/icon-microservices-with-text.png)
-
-## Dependencies
+## Verwendete Technologien
 - docker
 - docker-compose
-- Java 8
-- Python 3.6 (siehe requirements.txt)
 - Go
+- Java 8
+- Python 3.6
 
 ## Anleitungen
 Die ausführliche Variante ist unter [Anleitung PDF](/) zu finden. Die wichtigsten Punkte sind in diesem README.md zu finden.
 
-#### In die VM einloggen
+### In die VM einloggen
 Verbinde dich über *SSH* mit der VM.
 ```
 > ssh labuser@wiproh18-tbjauner.el.eee.intern
 > password: labuser
 ```
 
-#### Microservice Application-Lab starten
+### Microservice Application-Lab starten
 Navigiere auf der VM in den Ordner *wipro18-microservice-application-lab*. Das starten des Application-Lab ist dank *docker-compose* sehr leicht.
 ```
 > cd ~/wipro18-microservice-application-lab
@@ -39,14 +39,25 @@ Starting application_lab_warehouse      ... done
 Starting application_lab_customer       ... done
 ```
 
-#### RabbitMq Manager öffnen
+### RabbitMq Manager öffnen
 Wenn das Lab gestartet wurde kannst du in deinem Browser über die Url: http://wiproh18-tbjauner.el.eee.intern:7000 den RabbitMq Manager aufrufen. Logge dich mit folgenden Credentials ein.
 ```
 Username: guest
 Passwort: guest
 ```
 
-#### Client öffnen
+#### Resultat
+Unter dem Menüpunkt *Exchanges* sollten folgende Exchanges aufgelistet sein.
+
+| Name                            | Typ    |
+|---------------------------------|--------|
+| ch.hslu.wipro.micros.Article    | Topic  |
+| ch.hslu.wipro.micros.Customer   | Topic  |
+| ch.hslu.wipro.micros.DeadLetter | Fanout |
+| ch.hslu.wipro.micros.Order      | Topic  |
+| ch.hslu.wipro.micros.Reminder   | Topic  |
+
+### Client öffnen
 Wenn das Lab gestartet wurde kannst du in deinem Browser über die Url: http://wiproh18-tbjauner.el.eee.intern:7002 den Client aufrufen. Logge dich mit folgenden Credentials ein.
 
 #### Resultat
