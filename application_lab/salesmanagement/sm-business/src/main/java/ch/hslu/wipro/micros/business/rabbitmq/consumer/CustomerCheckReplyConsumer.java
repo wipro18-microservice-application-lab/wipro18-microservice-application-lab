@@ -6,7 +6,9 @@ import ch.hslu.wipro.micros.business.result.OrderCreateCommandResultBuilder;
 import ch.hslu.wipro.micros.business.saga.OrderCreatePersistState;
 import ch.hslu.wipro.micros.business.saga.OrderReduceArticleState;
 import ch.hslu.wipro.micros.business.saga.OrderSaga;
+import ch.hslu.wipro.micros.model.article.ArticleReduceReplyDto;
 import ch.hslu.wipro.micros.model.customer.CustomerDto;
+import com.google.gson.JsonSyntaxException;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
@@ -31,7 +33,14 @@ public class CustomerCheckReplyConsumer extends DefaultConsumer {
     public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
         logger.info("handle incoming CustomerCheckReplyConsumer with correlation id: {}", properties.getCorrelationId());
 
-        CustomerDto customerDto = new JsonConverterFactory<CustomerDto>().get().fromJson(body, CustomerDto.class);
+        CustomerDto customerDto;
+
+        try {
+            customerDto = new JsonConverterFactory<CustomerDto>().get().fromJson(body, CustomerDto.class);
+        } catch (JsonSyntaxException e) {
+            ConsumerUtil.unknownRequest(super.getChannel(), envelope.getDeliveryTag(), properties);
+            return;
+        }
 
         if (customerDto.getFullName() != null) {
             saga.setState(new OrderReduceArticleState());

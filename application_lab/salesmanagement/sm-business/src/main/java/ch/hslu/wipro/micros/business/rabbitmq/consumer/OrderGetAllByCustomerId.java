@@ -4,6 +4,7 @@ import ch.hslu.wipro.micros.business.converter.JsonConverterFactory;
 import ch.hslu.wipro.micros.model.customer.CustomerDto;
 import ch.hslu.wipro.micros.model.order.OrderDto;
 import ch.hslu.wipro.micros.service.repository.OrderRepositoryService;
+import com.google.gson.JsonSyntaxException;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
@@ -29,7 +30,14 @@ public class OrderGetAllByCustomerId extends DefaultConsumer {
         logger.info("handle incoming OrderGetAllByCustomerIdCommand with correlation id: {}", properties.getCorrelationId());
         String replyRoutingKey = "";
 
-        CustomerDto customerDto = new JsonConverterFactory<CustomerDto>().get().fromJson(body, CustomerDto.class);
+        CustomerDto customerDto;
+
+        try {
+            customerDto = new JsonConverterFactory<CustomerDto>().get().fromJson(body, CustomerDto.class);
+        } catch (JsonSyntaxException e) {
+            ConsumerUtil.unknownRequest(super.getChannel(), envelope.getDeliveryTag(), properties);
+            return;
+        }
 
         OrderRepositoryService repositoryService = new OrderRepositoryService();
         List<OrderDto> orderDtos = repositoryService.getAllOrdersByCustomerId(customerDto.getCustomerId());

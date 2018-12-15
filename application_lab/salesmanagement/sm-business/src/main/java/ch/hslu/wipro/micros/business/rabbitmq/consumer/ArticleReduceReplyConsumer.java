@@ -2,13 +2,10 @@ package ch.hslu.wipro.micros.business.rabbitmq.consumer;
 
 import ch.hslu.wipro.micros.business.converter.JsonConverter;
 import ch.hslu.wipro.micros.business.converter.JsonConverterFactory;
-import ch.hslu.wipro.micros.business.result.OrderCreateCommandResult;
-import ch.hslu.wipro.micros.business.result.OrderCreateCommandResultBuilder;
-import ch.hslu.wipro.micros.business.saga.OrderCreateCheckCustomerState;
 import ch.hslu.wipro.micros.business.saga.OrderCreatePersistState;
 import ch.hslu.wipro.micros.business.saga.OrderSaga;
-import ch.hslu.wipro.micros.model.article.ArticleCheckQuantityReplyDto;
 import ch.hslu.wipro.micros.model.article.ArticleReduceReplyDto;
+import com.google.gson.JsonSyntaxException;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
@@ -17,12 +14,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.stream.Stream;
 
 public class ArticleReduceReplyConsumer extends DefaultConsumer {
     private static final Logger logger = LogManager.getLogger(ArticleReduceReplyConsumer.class);
-    private static final String ENOUGH_ARTICLES = "enough articles in stock";
     private final OrderSaga saga;
 
     public ArticleReduceReplyConsumer(Channel channel, OrderSaga saga) {
@@ -37,8 +31,14 @@ public class ArticleReduceReplyConsumer extends DefaultConsumer {
         JsonConverter<ArticleReduceReplyDto> jsonConverter =
                 new JsonConverterFactory<ArticleReduceReplyDto>().get();
 
-        ArticleReduceReplyDto articleReduceReplyDto
-                = jsonConverter.fromJson(body, ArticleReduceReplyDto.class);
+        ArticleReduceReplyDto articleReduceReplyDto;
+
+        try {
+            articleReduceReplyDto = jsonConverter.fromJson(body, ArticleReduceReplyDto.class);
+        } catch (JsonSyntaxException e) {
+            ConsumerUtil.unknownRequest(super.getChannel(), envelope.getDeliveryTag(), properties);
+            return;
+        }
 
         logger.info("reduce articles: ", articleReduceReplyDto.getResult());
 

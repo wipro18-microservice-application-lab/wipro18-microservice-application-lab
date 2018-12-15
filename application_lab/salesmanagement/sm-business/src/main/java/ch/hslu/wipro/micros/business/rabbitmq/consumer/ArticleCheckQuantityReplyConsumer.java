@@ -5,9 +5,9 @@ import ch.hslu.wipro.micros.business.converter.JsonConverterFactory;
 import ch.hslu.wipro.micros.business.result.OrderCreateCommandResult;
 import ch.hslu.wipro.micros.business.result.OrderCreateCommandResultBuilder;
 import ch.hslu.wipro.micros.business.saga.OrderCreateCheckCustomerState;
-import ch.hslu.wipro.micros.business.saga.OrderCreatePersistState;
 import ch.hslu.wipro.micros.business.saga.OrderSaga;
 import ch.hslu.wipro.micros.model.article.ArticleCheckQuantityReplyDto;
+import com.google.gson.JsonSyntaxException;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
@@ -36,8 +36,14 @@ public class ArticleCheckQuantityReplyConsumer extends DefaultConsumer {
         JsonConverter<ArticleCheckQuantityReplyDto> jsonConverter =
                 new JsonConverterFactory<ArticleCheckQuantityReplyDto>().get();
 
-        ArticleCheckQuantityReplyDto articleCheckQuantityReplyDto
-                = jsonConverter.fromJson(body, ArticleCheckQuantityReplyDto.class);
+        ArticleCheckQuantityReplyDto articleCheckQuantityReplyDto;
+
+        try {
+            articleCheckQuantityReplyDto = jsonConverter.fromJson(body, ArticleCheckQuantityReplyDto.class);
+        } catch (JsonSyntaxException e) {
+            ConsumerUtil.unknownRequest(super.getChannel(), envelope.getDeliveryTag(), properties);
+            return;
+        }
 
         boolean enoughArticlesInStock = Stream.of(articleCheckQuantityReplyDto.getResult().split(", "))
                 .allMatch(r -> r.equals(ENOUGH_ARTICLES));

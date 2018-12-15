@@ -5,6 +5,7 @@ import ch.hslu.wipro.micros.business.converter.JsonConverterFactory;
 import ch.hslu.wipro.micros.model.order.OrderUpdateDto;
 import ch.hslu.wipro.micros.model.order.OrderUpdateResultDto;
 import ch.hslu.wipro.micros.service.repository.OrderRepositoryService;
+import com.google.gson.JsonSyntaxException;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
@@ -32,7 +33,15 @@ public class OrderUpdateStatusCommandConsumer extends DefaultConsumer {
         String replyRoutingKey = "";
 
         JsonConverter<OrderUpdateDto> jsonConverter = new JsonConverterFactory<OrderUpdateDto>().get();
-        OrderUpdateDto updateOrderDto = jsonConverter.fromJson(body, OrderUpdateDto.class);
+
+        OrderUpdateDto updateOrderDto;
+
+        try {
+            updateOrderDto = jsonConverter.fromJson(body, OrderUpdateDto.class);
+        } catch (JsonSyntaxException e) {
+            ConsumerUtil.unknownRequest(super.getChannel(), envelope.getDeliveryTag(), properties);
+            return;
+        }
 
         OrderRepositoryService repositoryService = new OrderRepositoryService();
         OrderUpdateResultDto orderUpdateResultDto = repositoryService.updateStatus(updateOrderDto);
