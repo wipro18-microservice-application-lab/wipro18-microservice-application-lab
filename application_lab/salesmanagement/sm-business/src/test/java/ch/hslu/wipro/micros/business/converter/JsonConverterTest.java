@@ -2,6 +2,7 @@ package ch.hslu.wipro.micros.business.converter;
 
 import ch.hslu.wipro.micros.model.order.OrderDtoBuilder;
 import ch.hslu.wipro.micros.model.order.OrderDto;
+import com.google.gson.JsonSyntaxException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -45,5 +46,19 @@ public class JsonConverterTest {
         String json = jsonConverter.toJson(orderDto);
 
         assertEquals(orderDto, jsonConverter.fromJson(json, OrderDto.class));
+    }
+
+    @Test
+    public void fromWrongJson() {
+        String wrongJson = "this is not json";
+        boolean didCatchFire = false;
+
+        try {
+            jsonConverter.fromJson(wrongJson, OrderDto.class);
+        } catch (JsonSyntaxException e) {
+            didCatchFire = true;
+        }
+
+        assertTrue(didCatchFire);
     }
 }

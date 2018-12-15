@@ -4,16 +4,15 @@ import ch.hslu.wipro.micros.business.converter.JsonConverter;
 import ch.hslu.wipro.micros.business.converter.JsonConverterFactory;
 import ch.hslu.wipro.micros.business.rabbitmq.command.Command;
 import ch.hslu.wipro.micros.business.rabbitmq.command.CommandBuilder;
-import ch.hslu.wipro.micros.business.saga.OrderCreateState;
-import ch.hslu.wipro.micros.business.saga.OrderSaga;
-import ch.hslu.wipro.micros.business.saga.OrderSagaContext;
-import ch.hslu.wipro.micros.business.saga.OrderSagaContextBuilder;
+import ch.hslu.wipro.micros.business.saga.*;
 import ch.hslu.wipro.micros.model.order.OrderDto;
+import com.google.gson.JsonSyntaxException;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Order;
 
 import static com.rabbitmq.client.AMQP.BasicProperties;
 
@@ -31,8 +30,15 @@ public class OrderCreateCommandConsumer extends DefaultConsumer {
 
         logger.info("handle incoming OrderCreateCommand with correlation id: {}", properties.getCorrelationId());
 
-        JsonConverter<OrderDto> jsonConverter = new JsonConverterFactory<OrderDto>().get();
-        OrderDto orderDto = jsonConverter.fromJson(body, OrderDto.class);
+        OrderDto orderDto;
+
+        try {
+            JsonConverter<OrderDto> jsonConverter = new JsonConverterFactory<OrderDto>().get();
+            orderDto = jsonConverter.fromJson(body, OrderDto.class);
+        } catch (JsonSyntaxException e) {
+            unknownRequest(envelope.getDeliveryTag(), properties);
+            return;
+        }
 
         Command<OrderDto> orderCreateCommand = new CommandBuilder<OrderDto>()
                 .atDeliveryTag(envelope.getDeliveryTag())
@@ -47,6 +53,25 @@ public class OrderCreateCommandConsumer extends DefaultConsumer {
                 .build();
 
         OrderSaga orderSaga = new OrderSaga(orderSagaContext, new OrderCreateState());
+        orderSaga.process();
+    }
+
+    private void unknownRequest(long deliveryTag, BasicProperties properties) {
+        OrderDto orderDto = new OrderDto();
+
+        Command<OrderDto> orderCreateCommand = new CommandBuilder<OrderDto>()
+                .atDeliveryTag(deliveryTag)
+                .withPayload(orderDto)
+                .atCorrelationId(properties.getCorrelationId())
+                .atReplyTo(properties.getReplyTo())
+                .build();
+
+        OrderSagaContext orderSagaContext = new OrderSagaContextBuilder()
+                .overChannel(super.getChannel())
+                .atCommand(orderCreateCommand)
+                .build();
+
+        OrderSaga orderSaga = new OrderSaga(orderSagaContext, new OrderUnknownRequestState());
         orderSaga.process();
     }
 }
