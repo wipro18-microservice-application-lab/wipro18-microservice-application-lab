@@ -66,7 +66,7 @@ function customerGetByIdCommand(customerId) {
                 `<td>${customerDto.fullName}</td>` +
                 `<td>${customerDto.address}</td>` +
                 `<td>${customerDto.email}</td>` +
-                `<td>flaggedCell</td>` +
+                `${flaggedCell}` +
                 '</tr>');
     });
 }
