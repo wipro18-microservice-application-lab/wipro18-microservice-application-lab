@@ -32,12 +32,6 @@ Um diesen Microservice zu starten überprüfe ob python 3.6 installiert ist und 
 /experimente/experiment_03/discovery_service> python app.py
 ```
 
-#### Hospital Microservice starten
-Um diesen Microservice zu starten überprüfe ob python 3.6 installiert ist und ob die requirements in requirements.txt erfüllt sind. Dann führe einen der folgenden Befehl aus:
-```
-/experimente/experiment_03/hospital_service> python app.py
-```
-
 #### SalesManager Microservice starten
 Um diesen Microservice zu starten überprüfe ob im target Ordner ein -jar-with-dependencies vorhanden ist. Dann führe einen der folgenden Befehl aus:
 ```
