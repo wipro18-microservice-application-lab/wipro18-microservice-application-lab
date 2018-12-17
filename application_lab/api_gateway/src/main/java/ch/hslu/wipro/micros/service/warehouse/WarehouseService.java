@@ -26,7 +26,12 @@ public class WarehouseService {
     @Path("health")
     @Produces(MediaType.TEXT_PLAIN)
     public String healthCheck() {
-        return "running";
+        Response response = getAllArticles();
+        String healthText = "Not running";
+        if (response.getStatus() == Response.ok().build().getStatus()) {
+            healthText = "running";
+        }
+        return healthText;
     }
 
     @GET
