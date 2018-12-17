@@ -8,7 +8,7 @@
     <label>Amount of Orders</label>
 </div>
 <div class="mui-textfield">
-    <input id="timeoutOfOrdersInput" type="text" placeholder="500">
+    <input id="timeoutOfOrdersInput" type="text" value="500">
     <label>Timeout between Orders</label>
 </div>
 <button class="mui-btn mui-btn--primary" onclick="spamOrders()">Spam</button>
@@ -76,7 +76,7 @@
 
     function spamOrders() {
         let amount = $('#amountOfOrdersInput').val();
-        let timeout = $('#timeoutOfOrdersInput').val();
+        let timeout = ($('#timeoutOfOrdersInput').val() == "") ? 500 : $('#timeoutOfOrdersInput').val();
         let i = 0;
 
         while(i < amount) {
