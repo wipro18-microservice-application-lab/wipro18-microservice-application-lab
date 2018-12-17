@@ -35,6 +35,12 @@ public class CustomerCheckReplyConsumer extends DefaultConsumer {
 
         CustomerDto customerDto;
 
+        if (properties.getReplyTo() == null) {
+            super.getChannel().basicReject(envelope.getDeliveryTag(), false);
+            logger.warn("missing routing key. sent to dead letter exchange.");
+            return;
+        }
+
         try {
             customerDto = new JsonConverterFactory<CustomerDto>().get().fromJson(body, CustomerDto.class);
         } catch (JsonSyntaxException e) {

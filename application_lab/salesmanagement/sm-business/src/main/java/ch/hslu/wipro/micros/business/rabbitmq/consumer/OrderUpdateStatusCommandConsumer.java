@@ -36,6 +36,12 @@ public class OrderUpdateStatusCommandConsumer extends DefaultConsumer {
 
         OrderUpdateDto updateOrderDto;
 
+        if (properties.getReplyTo() == null) {
+            super.getChannel().basicReject(envelope.getDeliveryTag(), false);
+            logger.warn("missing routing key. sent to dead letter exchange.");
+            return;
+        }
+
         try {
             updateOrderDto = jsonConverter.fromJson(body, OrderUpdateDto.class);
         } catch (JsonSyntaxException e) {

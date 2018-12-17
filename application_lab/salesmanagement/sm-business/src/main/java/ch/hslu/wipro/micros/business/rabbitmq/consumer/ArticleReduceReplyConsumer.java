@@ -33,6 +33,12 @@ public class ArticleReduceReplyConsumer extends DefaultConsumer {
 
         ArticleReduceReplyDto articleReduceReplyDto;
 
+        if (properties.getReplyTo() == null) {
+            super.getChannel().basicReject(envelope.getDeliveryTag(), false);
+            logger.warn("missing routing key. sent to dead letter exchange.");
+            return;
+        }
+
         try {
             articleReduceReplyDto = jsonConverter.fromJson(body, ArticleReduceReplyDto.class);
         } catch (JsonSyntaxException e) {

@@ -30,6 +30,12 @@ public class OrderGetAllCommandConsumer extends DefaultConsumer {
         logger.info("handle incoming OrderGetAllCommand with correlation id: {}", properties.getCorrelationId());
         String replyRoutingKey = "";
 
+        if (properties.getReplyTo() == null) {
+            super.getChannel().basicReject(envelope.getDeliveryTag(), false);
+            logger.warn("missing routing key. sent to dead letter exchange.");
+            return;
+        }
+
         OrderRepositoryService repositoryService = new OrderRepositoryService();
         List<OrderDto> orderDtos = repositoryService.getAllOrders();
 

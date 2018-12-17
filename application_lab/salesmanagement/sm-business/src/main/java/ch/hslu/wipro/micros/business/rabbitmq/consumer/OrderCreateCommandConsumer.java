@@ -16,6 +16,8 @@ import com.rabbitmq.client.Envelope;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
+
 import static com.rabbitmq.client.AMQP.BasicProperties;
 
 @SuppressWarnings("unchecked")
@@ -28,11 +30,17 @@ public class OrderCreateCommandConsumer extends DefaultConsumer {
 
     @Override
     public void handleDelivery(String consumerTag, Envelope envelope,
-                               BasicProperties properties, byte[] body) {
+                               BasicProperties properties, byte[] body) throws IOException {
 
         logger.info("handle incoming OrderCreateCommand with correlation id: {}", properties.getCorrelationId());
 
         OrderDto orderDto;
+
+        if (properties.getReplyTo() == null) {
+            super.getChannel().basicReject(envelope.getDeliveryTag(), false);
+            logger.warn("missing routing key. sent to dead letter exchange.");
+            return;
+        }
 
         try {
             JsonConverter<OrderDto> jsonConverter = new JsonConverterFactory<OrderDto>().get();
