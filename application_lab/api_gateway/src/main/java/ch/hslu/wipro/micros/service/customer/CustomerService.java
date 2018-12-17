@@ -21,7 +21,12 @@ public class CustomerService {
     @Path("health")
     @Produces(MediaType.TEXT_PLAIN)
     public String healthCheck() {
-        return "running";
+        Response response = getAllOrders();
+        String healthText = "Not running";
+        if (response.getStatus() == Response.ok().build().getStatus()) {
+            healthText = "running";
+        }
+        return healthText;
     }
 
     @GET
