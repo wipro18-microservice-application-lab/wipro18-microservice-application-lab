@@ -13,4 +13,4 @@ let CUSTOMER_URL = 'http://' + host + ':' + port + '/gateway/customers';
 let REMINDER_HEALTH_URL = 'http://' + host + ':' + port + '/gateway/reminders/health';
 let REMINDER_URL = 'http://' + host + ':' + port + '/gateway/reminders';
 
-let TIMEOUT = 1000;
+let TIMEOUT = 5000;

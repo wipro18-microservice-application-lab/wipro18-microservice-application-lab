@@ -1,0 +1,77 @@
+<div id="sales-health" class="mui-panel">
+    <!-- dynamic -->
+</div>
+
+<h1>Spam Orders</h1>
+<button class="mui-btn mui-btn--primary" onclick="spamOrders(50)">Spam</button>
+
+<h2>Result</h2>
+<table id="spamOrderResults" class="mui-table mui-table--bordered">
+    <thead>
+    <tr>
+        <th>Results</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- dynamic -->
+    </tbody>
+</table>
+
+<script>
+    jQuery(function($) {
+        checkHealth('sales-health', SALES_HEALTH_URL);
+    });
+
+    const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+    };
+
+    let orderDto = {"customerId": 0,"amountToArticle":{"0": 0},"totalPrice": 0,"status":"open"};
+
+    const doSomething = async () => {
+        await sleep(1000);
+
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: 'POST',
+            url: SALES_URL,
+            data: JSON.stringify(orderDto),
+            contentType: "application/json; charset=utf-8",
+            traditional: true,
+            timeout: TIMEOUT,
+            success: function (data) {
+                let row = '';
+                if (data.result === 'ORDER SUCCESSFUL') {
+                    row = '<td style="background-color: #C8E6C9">' + `${data.result.toLowerCase()}</td>`
+                } else {
+                    row = '<td style="background-color: #FFCDD2">' + `${data.result.toLowerCase()}</td>`
+                }
+
+                $('#spamOrderResults').find('> tbody:last-child')
+                    .append(
+                        '<tr>' +
+                        row +
+                        '</tr>');
+            },
+            error: function () {
+                $('#spamOrderResults').find('> tbody:last-child')
+                    .append(
+                        '<tr>' +
+                        '<td style="background-color: #FFCDD2">gateway connection error</td>' +
+                        '</tr>');
+            }
+        });
+    };
+
+    function spamOrders(amount) {
+        let i = 0;
+
+        while(i < amount) {
+            doSomething();
+            i++;
+        }
+    }
+</script>
