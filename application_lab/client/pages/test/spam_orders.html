@@ -3,7 +3,15 @@
 </div>
 
 <h1>Spam Orders</h1>
-<button class="mui-btn mui-btn--primary" onclick="spamOrders(50)">Spam</button>
+<div class="mui-textfield">
+    <input id="amountOfOrdersInput" type="text">
+    <label>Amount of Orders</label>
+</div>
+<div class="mui-textfield">
+    <input id="timeoutOfOrdersInput" type="text" placeholder="500">
+    <label>Timeout between Orders</label>
+</div>
+<button class="mui-btn mui-btn--primary" onclick="spamOrders()">Spam</button>
 
 <h2>Result</h2>
 <table id="spamOrderResults" class="mui-table mui-table--bordered">
@@ -28,8 +36,8 @@
 
     let orderDto = {"customerId": 0,"amountToArticle":{"0": 0},"totalPrice": 0,"status":"open"};
 
-    const doSomething = async () => {
-        await sleep(1000);
+    const sendDummyOrder = async (timeout) => {
+        await sleep(timeout);
 
         $.ajax({
             headers: {
@@ -66,11 +74,13 @@
         });
     };
 
-    function spamOrders(amount) {
+    function spamOrders() {
+        let amount = $('#amountOfOrdersInput').val();
+        let timeout = $('#timeoutOfOrdersInput').val();
         let i = 0;
 
         while(i < amount) {
-            doSomething();
+            sendDummyOrder(timeout);
             i++;
         }
     }
