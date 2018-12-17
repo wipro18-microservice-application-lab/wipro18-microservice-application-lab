@@ -44,5 +44,7 @@ public class ArticleReduceReplyConsumer extends DefaultConsumer {
 
         saga.setState(new OrderCreatePersistState());
         saga.process();
+
+        super.getChannel().basicCancel(consumerTag);
     }
 }

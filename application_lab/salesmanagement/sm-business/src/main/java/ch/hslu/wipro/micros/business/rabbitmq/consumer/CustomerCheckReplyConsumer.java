@@ -3,10 +3,8 @@ package ch.hslu.wipro.micros.business.rabbitmq.consumer;
 import ch.hslu.wipro.micros.business.converter.JsonConverterFactory;
 import ch.hslu.wipro.micros.business.result.OrderCreateCommandResult;
 import ch.hslu.wipro.micros.business.result.OrderCreateCommandResultBuilder;
-import ch.hslu.wipro.micros.business.saga.OrderCreatePersistState;
 import ch.hslu.wipro.micros.business.saga.OrderReduceArticleState;
 import ch.hslu.wipro.micros.business.saga.OrderSaga;
-import ch.hslu.wipro.micros.model.article.ArticleReduceReplyDto;
 import ch.hslu.wipro.micros.model.customer.CustomerDto;
 import com.google.gson.JsonSyntaxException;
 import com.rabbitmq.client.AMQP;
@@ -73,9 +71,8 @@ public class CustomerCheckReplyConsumer extends DefaultConsumer {
                     replyToQueue,
                     replyProperties,
                     operationResult.getBytes(StandardCharsets.UTF_8));
-
-            boolean acknowledgeAll = false;
-            channel.basicAck(saga.getContext().getCommand().getDeliveryTag(), acknowledgeAll);
         }
+
+        super.getChannel().basicCancel(consumerTag);
     }
 }

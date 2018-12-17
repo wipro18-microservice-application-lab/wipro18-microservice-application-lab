@@ -46,7 +46,7 @@ public class OrderReduceArticleState implements OrderSagaState {
                 replyProperties,
                 amountToArticleJson.getBytes(StandardCharsets.UTF_8));
 
-        boolean noAutoAck = false;
+        boolean noAutoAck = true;
         channel.basicConsume(replyToQueue, noAutoAck, new ArticleReduceReplyConsumer(channel, saga));
     }
 }

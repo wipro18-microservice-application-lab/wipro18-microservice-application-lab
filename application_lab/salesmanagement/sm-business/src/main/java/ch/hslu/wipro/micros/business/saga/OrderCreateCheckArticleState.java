@@ -44,7 +44,7 @@ public class OrderCreateCheckArticleState implements OrderSagaState {
                 replyProperties,
                 amountToArticleJson.getBytes(StandardCharsets.UTF_8));
 
-        boolean noAutoAck = false;
+        boolean noAutoAck = true;
         channel.basicConsume(replyToQueue, noAutoAck, new ArticleCheckQuantityReplyConsumer(channel, saga));
     }
 }

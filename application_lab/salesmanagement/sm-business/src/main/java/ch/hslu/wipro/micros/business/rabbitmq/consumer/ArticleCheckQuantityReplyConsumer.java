@@ -78,9 +78,8 @@ public class ArticleCheckQuantityReplyConsumer extends DefaultConsumer {
                     replyToQueue,
                     replyProperties,
                     operationResult.getBytes(StandardCharsets.UTF_8));
-
-            boolean acknowledgeAll = false;
-            channel.basicAck(saga.getContext().getCommand().getDeliveryTag(), acknowledgeAll);
         }
+
+        super.getChannel().basicCancel(consumerTag);
     }
 }

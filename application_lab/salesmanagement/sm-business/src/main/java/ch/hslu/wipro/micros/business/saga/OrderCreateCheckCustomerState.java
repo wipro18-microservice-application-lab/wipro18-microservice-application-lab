@@ -44,7 +44,7 @@ public class OrderCreateCheckCustomerState implements OrderSagaState {
                 replyProperties,
                 customerByIdJson.getBytes(StandardCharsets.UTF_8));
 
-        boolean noAutoAck = false;
+        boolean noAutoAck = true;
         channel.basicConsume(replyToQueue, noAutoAck, new CustomerCheckReplyConsumer(channel, saga));
     }
 }
