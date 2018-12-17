@@ -38,12 +38,6 @@ public class ArticleCheckQuantityReplyConsumer extends DefaultConsumer {
 
         ArticleCheckQuantityReplyDto articleCheckQuantityReplyDto;
 
-        if (properties.getReplyTo() == null) {
-            super.getChannel().basicReject(envelope.getDeliveryTag(), false);
-            logger.warn("missing routing key. sent to dead letter exchange.");
-            return;
-        }
-
         try {
             articleCheckQuantityReplyDto = jsonConverter.fromJson(body, ArticleCheckQuantityReplyDto.class);
         } catch (JsonSyntaxException e) {
