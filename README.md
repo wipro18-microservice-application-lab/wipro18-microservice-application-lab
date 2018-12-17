@@ -6,5 +6,5 @@ Mit dieser Arbeit soll untersucht werden, ob sich der Ansatz einer Microservice-
 ## Inhalt
 - [Experiment 01 - Message Broker kennenlernen](./experimente/experiment_01)
 - [Experiment 02 - Audit Trail loggen](./experimente/experiment_02)
-- [Experiment 03 - Discovery Service verwenden](./experimente/experiment_01)
+- [Experiment 03 - Discovery Service verwenden](./experimente/experiment_03)
 - [**Application-Lab**](./application_lab)
