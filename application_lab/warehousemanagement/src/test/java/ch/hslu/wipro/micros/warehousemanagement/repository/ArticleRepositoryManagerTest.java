@@ -3,6 +3,10 @@ package ch.hslu.wipro.micros.warehousemanagement.repository;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+
 import static org.junit.Assert.assertEquals;
 
 public class ArticleRepositoryManagerTest {
@@ -31,5 +35,10 @@ public class ArticleRepositoryManagerTest {
     public void checkGeneratedInventoryLastArticle() {
         assertEquals("article" + (amountToGenerate - 1), articleRepository
                 .getById(amountToGenerate - 1).getName());
+    }
+
+    @Test
+    public void testForTheEye() {
+        articleRepository.getAll().forEach(a -> System.out.println(a.getPrice()));
     }
 }

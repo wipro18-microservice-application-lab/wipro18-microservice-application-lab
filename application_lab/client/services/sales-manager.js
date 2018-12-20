@@ -120,13 +120,16 @@ function orderGetAllCommandForCreate() {
         traditional: true,
         timeout: TIMEOUT,
         success: function (response) {
+
             response.forEach(function(articleDto) {
+                let articlePrice = parseFloat(Math.round(articleDto.price * 100) / 100).toFixed(2);
+
                 $('#article-for-create').find('> tbody:last-child')
                     .append(
                         '<tr>' +
                         `<td>${articleDto.name}</td>` +
                         `<td>${articleDto.description}</td>` +
-                        `<td>${articleDto.price}</td>` +
+                        `<td>${articlePrice}</td>` +
                         `<td><button class="mui-btn mui-btn--flat mui-btn--primary" 
                                 onclick="addArticle(${articleDto.articleId}, ${articleDto.price})">Add</button></td>` +
                         '</tr>');
