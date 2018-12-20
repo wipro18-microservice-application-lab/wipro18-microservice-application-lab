@@ -21,7 +21,7 @@ public class CustomerService {
     @Path("health")
     @Produces(MediaType.TEXT_PLAIN)
     public String healthCheck() {
-        Response response = getAllOrders();
+        Response response = getAllCustomers();
         String healthText = "Not running";
         if (response.getStatus() == Response.ok().build().getStatus()) {
             healthText = "running";
@@ -31,7 +31,7 @@ public class CustomerService {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllOrders() {
+    public Response getAllCustomers() {
         Command<String> command = CustomerCommandFactory.createGetAllCustomersCommand();
         String answer = callMessageBroker(command);
         return Response.ok(answer, MediaType.APPLICATION_JSON).build();
