@@ -1,6 +1,7 @@
 import pika
 import uuid
 import config
+from threading import Thread
 
 # Gets the rabbitmq configurations
 HOST = config.values['host']
@@ -89,12 +90,15 @@ def prepare_customer_channel():
     return channel
 
 
+def consume_customer_answer(ch, method, properties, body):
+    ch.basic_ack(delivery_tag=method.delivery_tag)
+
+
 def send_command_to_customer(channel, request):
     # declare a new exclusive queue (rabbitmq declares the name of it)
-    result = channel.queue_declare(exclusive=True)
+    result = channel.queue_declare(exclusive=True, auto_delete=True)
     reply_queue = result.method.queue
     corr_id = str(uuid.uuid4())
-    print("correlation id is",corr_id)
     channel.basic_publish(exchange=CUSTOMER_EXCHANGE,
                           routing_key=CUSTOMER_COMMAND,
                           properties=pika.BasicProperties(
@@ -102,3 +106,8 @@ def send_command_to_customer(channel, request):
                               correlation_id=corr_id
                           ),
                           body=request)
+
+    channel.basic_consume(consume_customer_answer,
+                      queue=reply_queue,
+                      no_ack=True)
+
