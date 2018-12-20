@@ -48,13 +48,15 @@ function articleGetAllCommand() {
         timeout: TIMEOUT,
         success: function (response) {
             response.forEach(function(articleDto) {
+                let articlePrice = parseFloat(Math.round(articleDto.price * 100) / 100).toFixed(2);
+
                 $('#all-articles').find('> tbody:last-child')
                     .append(
                         '<tr>' +
                             `<td>${articleDto.articleId}</td>` +
                             `<td>${articleDto.name}</td>` +
                             `<td>${articleDto.description}</td>` +
-                            `<td>${articleDto.price}</td>` +
+                            `<td>${articlePrice}</td>` +
                             `<td>${articleDto.quantity}</td>` +
                         '</tr>');
             });
@@ -83,13 +85,15 @@ function articleGetByIdCommand(articleId) {
         traditional: true,
         timeout: TIMEOUT,
         success: function (articleDto) {
+            let articlePrice = parseFloat(Math.round(articleDto.price * 100) / 100).toFixed(2);
+
             $('#article-by-id').find('> tbody:last-child')
                 .append(
                     '<tr>' +
                         `<td>${articleDto.articleId}</td>` +
                         `<td>${articleDto.name}</td>` +
                         `<td>${articleDto.description}</td>` +
-                        `<td>${articleDto.price}</td>` +
+                        `<td>${articlePrice}</td>` +
                         `<td>${articleDto.quantity}</td>` +
                     '</tr>');
         },
