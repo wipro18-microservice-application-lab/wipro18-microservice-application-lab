@@ -11,7 +11,7 @@ Während der Projektwochen 10 - 12 (23.11.2018 bis 21.12.2018) wurde fortgehend 
 - Python 3.6
 
 ## Anleitungen
-Die ausführliche Variante ist unter [Anleitung PDF](/) zu finden. Die wichtigsten Punkte sind in diesem README.md zu finden.
+Die ausführliche Variante ist unter [Anleitung PDF](./Benutzeranleitung_Application_Lab.pdf) zu finden. Die wichtigsten Punkte sind in diesem README.md zu finden.
 
 ### In die VM einloggen
 Verbinde dich über *SSH* mit der VM.
