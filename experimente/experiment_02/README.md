@@ -1,6 +1,5 @@
-# Experiment 1 - Python Logger
+# Experiment 2 - Python Logger
 Für die Projektwoche 5 - 6 (19.10.2018 bis 02.11.2018) ist ein kleiner Prototyp zu erstellen.
-
 
 ## Dependencies
 - Python (V3.7.1)
@@ -19,5 +18,4 @@ Username: guest
 Passwort: guest
 ```
 #### Python Logger starten
-Der Logger benötigt Python 3 und pika. Es steht eine requirements-Datei zur Verfügung, welche die benötigte pika-Version enthält. Die Pyhton Datei get_logs.py kann einfach
-ausgeführt werden. Wenn anschliessend die Microservices SalesManagement und WarehouseManagement (siehe Experiment 01) gestartet werden, sollten Lognachrichten in die Python-Konsole geschrieben werden.
+Der Logger benötigt Python 3 und pika. Es steht eine requirements-Datei zur Verfügung, welche die benötigte pika-Version enthält. Die Pyhton Datei get_logs.py kann einfach ausgeführt werden. Wenn anschliessend die Microservices SalesManagement und WarehouseManagement (siehe Experiment 01) gestartet werden, sollten Lognachrichten in die Python-Konsole geschrieben werden.
